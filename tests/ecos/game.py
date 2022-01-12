@@ -25,7 +25,6 @@ class Game:
         for wall in tmx_data.objects:
             if wall.name == "collision":
                 self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))
-        print(self.walls)
 
         # Générer un joueur
 
