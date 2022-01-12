@@ -16,7 +16,7 @@ class Grille:
         return self.width
 
     # méthodes
-    def initGrille(self, defVal):
+    def __initGrille(self, defVal):
         """Initialise une grille avec une valeur par défaut donnée
         :param defVal: la valeur par défaut
         :return: la grille

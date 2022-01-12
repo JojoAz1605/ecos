@@ -27,7 +27,7 @@ while True:
             sys.exit()
 
     for i in range(randint(0, 100)):
-        fenetre.grille.changerVal((randint(0, fenetre.grille.getWidth() - 1), randint(0, fenetre.grille.getHeight() - 1)), randint(0, 4))
+        fenetre.grille.changerVal((randint(0, fenetre.getGrid().getWidth() - 1), randint(0, fenetre.getGrid().getHeight() - 1)), randint(0, 4))
 
     labelColor = (randint(0, 255), randint(0, 255), randint(0, 255))
 
