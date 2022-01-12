@@ -6,7 +6,7 @@ class Grille:
         """
         self.height = height
         self.width = width
-        self.grille = self.initGrille(0)  # initialise une grille avec que des 0 dedans
+        self.grille = self.initGrille(1)  # initialise une grille avec que des 0 dedans
 
     # getters
     def getHeight(self):
@@ -39,3 +39,10 @@ class Grille:
         :param newVal: la nouvelle valeur
         """
         self.grille[pos[0]][pos[1]] = newVal
+
+    def getVal(self, pos):
+        """Retourne la valeur à la position donnée
+        :param pos: la position d'une case
+        :return: la valeur de la case
+        """
+        return self.grille[pos[0]][pos[1]]

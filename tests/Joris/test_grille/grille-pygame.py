@@ -1,30 +1,38 @@
 import sys
-from Window import *
 
-# création et affichage de grille en console
-grille = Grille(5, 5)
-grille.afficheGrille()
-grille.changerVal((3, 3), 3)
-grille.afficheGrille()
+import pygame.font
+
+from Window import *
+from random import randint
+from lesCouleurs import*
 
 # affichage via pygame
 
 pygame.init()  # initialise pygame(quoi que ça veuille dire)
 
-WIN_HEIGHT = 500  # hauteur de la fenêtre
-WIN_WIDTH = 500  # largeur de la fenêtre
+WIN_HEIGHT = 700  # hauteur de la fenêtre
+WIN_WIDTH = 700  # largeur de la fenêtre
 
-grille = Grille(5, 5)  # initialisation d'une grille
+grille = Grille(100, 100)  # initialisation d'une grille
+
+fenetre = Window(grille, WIN_WIDTH, WIN_HEIGHT)  # initialise une fenêtre
+fenetre.getWindow().fill((255, 255, 255))  # rempli la fenêtre de noir
+
+maPolice = pygame.font.SysFont("monospace", 80)
+
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # pour gérer la sortie de la fenêtre avec la petite croix en haut à droite
             sys.exit()
 
-    fenetre = Window(grille, WIN_WIDTH, WIN_HEIGHT)  # initialise une fenêtre
-    fenetre.getWindow().fill((255, 255, 255))  # rempli la fenêtre de noir
+    for i in range(randint(0, 100)):
+        fenetre.grille.changerVal((randint(0, fenetre.grille.getWidth() - 1), randint(0, fenetre.grille.getHeight() - 1)), randint(0, 4))
 
-    # TODO les changements sur la grille se répercutent sur le dessin
+    labelColor = (randint(0, 255), randint(0, 255), randint(0, 255))
+
     fenetre.afficheGrille()  # affiche la grille sur la fenêtre
+    label = maPolice.render("AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH", True, labelColor)
+    fenetre.window.blit(label, (randint(0, fenetre.getWidth() - 1), randint(0, fenetre.getHeight() - 1)))
 
     pygame.display.flip()  # alors
