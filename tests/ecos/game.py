@@ -33,7 +33,7 @@ class Game:
 
         # Dessin du groupe de calques
 
-        self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=4)
+        self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
         self.group.add(self.player)
 
     def touches_input(self):  # Fonction de prise en compte de l'entrée clavier
