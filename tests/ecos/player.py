@@ -21,6 +21,7 @@ class Player(pygame.sprite.Sprite):
         }
         self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # Pied du joueur de la taille de la moitié du joueur
         self.oldposition = self.position.copy()  # Copie de la position du joueur avant qu'il ne bouge
+        self.brain = Brain(self)  # le cerveau du joueur, il ne fait pas grand-chose pour l'instant
 
     def save_location(self):
         self.oldposition = self.position.copy()
@@ -48,6 +49,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):  # Récupère la position de base
         self.rect.topleft = self.position
         self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
+        self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
 
     def move_collision(self):
         self.position = self.oldposition  # La position reste la position d'avant la collision
