@@ -49,7 +49,7 @@ class Player(pygame.sprite.Sprite):
     def update(self):  # Récupère la position de base
         self.rect.topleft = self.position
         self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
-        self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
+        #  self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
 
     def move_collision(self):
         self.position = self.oldposition  # La position reste la position d'avant la collision
