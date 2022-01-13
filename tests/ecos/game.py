@@ -53,25 +53,27 @@ class Game:
 
     def update(self):
         self.group.update()
+        # Vérifier la collision
         for sprite in self.group.sprites():
             if sprite.feet.collidelist(self.walls) > -1:
                 sprite.move_collision()
 
     def run(self):
 
-        clock = pygame.time.Clock()  # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement
+        clock = pygame.time.Clock()
+        # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement
 
         # Boucle de la simulation
 
         running = True
         while running:
-            self.player.save_location()
-            self.touches_input()
-            self.update()
-            self.group.draw(self.screen)
+            self.player.save_location() # Sauvegarde la position du joueur
+            self.touches_input() # Prise en compte de l'entrée clavier
+            self.update() # Update la position pour la gestion de collisions
+            self.group.draw(self.screen) # Affiche la map
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
-            clock.tick(60)
+                    running = False # Si l'utilisateur clique sur la croix, quitter la fenêtre
+            clock.tick(60) # Fixe le nombre de FPS
         pygame.quit()
