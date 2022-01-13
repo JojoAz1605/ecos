@@ -40,16 +40,12 @@ class Game:
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_UP]:
             self.player.move_up()
-            self.player.animation('up')
-        if pressed[pygame.K_DOWN]:
+        elif pressed[pygame.K_DOWN]:
             self.player.move_down()
-            self.player.animation('down')
-        if pressed[pygame.K_LEFT]:
+        elif pressed[pygame.K_LEFT]:
             self.player.move_left()
-            self.player.animation('left')
-        if pressed[pygame.K_RIGHT]:
+        elif pressed[pygame.K_RIGHT]:
             self.player.move_right()
-            self.player.animation('right')
 
     def update(self):
         self.group.update()
@@ -67,13 +63,13 @@ class Game:
 
         running = True
         while running:
-            self.player.save_location() # Sauvegarde la position du joueur
-            self.touches_input() # Prise en compte de l'entrée clavier
-            self.update() # Update la position pour la gestion de collisions
-            self.group.draw(self.screen) # Affiche la map
+            self.player.save_location()  # Sauvegarde la position du joueur
+            self.touches_input()  # Prise en compte de l'entrée clavier
+            self.update()  # Update la position pour la gestion de collisions
+            self.group.draw(self.screen)  # Affiche la map
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(60) # Fixe le nombre de FPS
+                    running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
+            clock.tick(60)  # Fixe le nombre de FPS
         pygame.quit()
