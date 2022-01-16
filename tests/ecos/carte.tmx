@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="116">
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="119">
  <tileset firstgid="1" source="nature.tsx"/>
  <layer id="1" name="background" width="50" height="50">
   <data encoding="csv">
@@ -264,6 +264,9 @@
   <object id="74" name="collision" x="643.901" y="174.908" width="21.3244" height="14"/>
   <object id="75" name="collision" x="581.489" y="159.072" width="21.3244" height="14"/>
   <object id="76" name="collision" x="421.265" y="255.02" width="21.3244" height="14"/>
+  <object id="118" name="collision" x="388.661" y="320.227" width="21.3244" height="14"/>
+  <object id="117" name="collision" x="151.121" y="268.993" width="21.3244" height="14"/>
+  <object id="116" name="collision" x="98.0233" y="268.993" width="21.3244" height="14"/>
   <object id="77" name="collision" x="307.618" y="191.676" width="21.3244" height="14"/>
   <object id="78" name="collision" x="228.438" y="126.469" width="21.3244" height="14"/>
   <object id="56" name="collision" x="184.667" y="383.333" width="16.6667" height="14"/>
