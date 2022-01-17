@@ -68,6 +68,24 @@ class Player(pygame.sprite.Sprite):
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
 
+    def get_all(self, name, gender, health, attack, age, lifetime):
+        return (self.name, self.gender, self.health, self.attack, self.age, self.lifetime)
+
+    def set_all(self, name, gender, health, attack, age, lifetime):
+        self.age = age
+        self.gender = gender
+        self.name = name
+        self.health = health
+        self.attack = attack
+        self.lifetime = lifetime
+
+    def damage(self, damage):
+        self.health -= damage
+        print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
+
+    def player_attack(self, target_player):
+        target_player.damage(self.attack)
+
     def get_all(self):
         return tuple((self.name, self.gender, self.health, self.attack, self.age, self.lifetime))
 
