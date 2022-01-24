@@ -14,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.attack = attack  # Variable attaque
         self.lifetime = lifetime  # Variable durée de vie
         self.weapon = None  # Variable arme initialisée à None car il n'a pas d'arme en main au début du jeu
-        self.sprite_sheet = pygame.image.load('player.png')  # Chargement de la map
+        self.sprite_sheet = pygame.image.load('player.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)
         # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir

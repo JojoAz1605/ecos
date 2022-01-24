@@ -1,7 +1,8 @@
 import pygame
 import pytmx
 import pyscroll
-from player import Player
+from orc import Orc
+from human import Human
 
 
 class Game:
@@ -29,23 +30,30 @@ class Game:
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
-        self.player = Player(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50)
+        player2_position = tmx_data.get_object_by_name("orc")
+        self.player = Human(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50)
+        self.player2 = Orc(player2_position.x, player2_position.y, 0, "Fred", 100, 10, 0, 50)
 
         # Dessin du groupe de calques
 
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
         self.group.add(self.player)
+        self.group.add(self.player2)
 
     def touches_input(self):  # Fonction de prise en compte de l'entrée clavier
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_UP]:
             self.player.move_up()
+            self.player2.move_up()
         elif pressed[pygame.K_DOWN]:
             self.player.move_down()
+            self.player2.move_down()
         elif pressed[pygame.K_LEFT]:
             self.player.move_left()
+            self.player2.move_left()
         elif pressed[pygame.K_RIGHT]:
             self.player.move_right()
+            self.player2.move_right()
 
     def update(self):
         self.group.update()
@@ -63,6 +71,7 @@ class Game:
 
         running = True
         while running:
+            self.player2.save_location()
             self.player.save_location()  # Sauvegarde la position du joueur
             self.touches_input()  # Prise en compte de l'entrée clavier
             self.update()  # Update la position pour la gestion de collisions
