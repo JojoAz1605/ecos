@@ -29,7 +29,7 @@ class Game:
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
-        self.player = Player(player_position.x, player_position.y)
+        self.player = Player(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50)
 
         # Dessin du groupe de calques
 

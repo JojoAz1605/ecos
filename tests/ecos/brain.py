@@ -1,3 +1,4 @@
+import time
 from random import randint
 
 
@@ -8,10 +9,9 @@ class Brain:
         """
         self.owner = owner
 
-    def doNextMove(self):
-        """Fais un déplacement, mais pour l'instant, c'est aléatoire
-        """
-        nextMove = randint(0, 3)  # lance un dé virtuel, pour décider dans quelle direction aller
+    def idle(self):
+        """Déplacement aléatoire"""
+        nextMove = randint(0, 100)  # lance un dé virtuel, pour décider dans quelle direction aller
 
         if nextMove == 0:
             self.owner.move_left()
@@ -19,5 +19,10 @@ class Brain:
             self.owner.move_right()
         elif nextMove == 2:
             self.owner.move_up()
-        else:
+        elif nextMove == 3:
             self.owner.move_down()
+
+    def doNextMove(self):
+        """Choix du déplacement
+        """
+        self.idle()
