@@ -7,8 +7,7 @@ class Grille:
         self.height = height
         self.width = width
         self.grille = self.initGrille(0)  # initialise une grille avec que des 0 dedans
-        self.passable = [0, 2, 3, 4, 5]
-        self.window = None
+        self.passable = [0]  # les valeurs dans la grille, qui seront comptées comme traversable par un personnage
 
     # getters
     def getHeight(self):
@@ -35,22 +34,23 @@ class Grille:
             print(ligne)
         print()  # saute une ligne pour la visibilité
 
-    def setVal(self, pos: tuple, newVal):
+    def setVal(self, pos: tuple, newVal: int):
         """Change une valeur à une position donnée par une nouvelle
         :param pos: la position de la valeur à changer
         :param newVal: la nouvelle valeur
         """
         self.grille[pos[0]][pos[1]] = newVal
-        if self.window is not None:
-            self.window.afficheGrille()
 
-    def getVal(self, pos):
+    def getVal(self, pos: tuple):
         """Retourne la valeur à la position donnée
         :param pos: la position d'une case
         :return: la valeur de la case
         """
         return self.grille[pos[0]][pos[1]]
 
-    def getIsPassable(self, pos):
+    def getIsPassable(self, pos: tuple):
+        """Retourne si la valeur à une position donnée est traversable
+        :return: oui ou non
+        """
         val = self.getVal(pos)
         return val in self.passable
