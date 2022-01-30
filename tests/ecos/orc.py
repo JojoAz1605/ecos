@@ -4,8 +4,8 @@ from player import Player
 
 class Orc(Player):
 
-    def __init__(self, x, y, gender, name, health, attack, age, lifetime):
-        super().__init__(x, y, gender, name, health, attack, age, lifetime)
+    def __init__(self, x, y, gender, name, health, attack, age, lifetime, grille):
+        super().__init__(x, y, gender, name, health, attack, age, lifetime, grille)
         self.weapon = None
         self.sprite_sheet = pygame.image.load('orc.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)

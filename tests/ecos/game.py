@@ -3,6 +3,7 @@ import pytmx
 import pyscroll
 from orc import Orc
 from human import Human
+from myAstar.grille import Grille
 
 
 class Game:
@@ -12,7 +13,8 @@ class Game:
         # Création de la fenêtre
 
         self.screen = pygame.display.set_mode((800, 800))
-        pygame.display.set_caption("Ecose - Simulation d'ecosysteme")
+        self.TAILLE_CASE = 16
+        pygame.display.set_caption("Ecose - Simulation d'écosystème")
 
         # Chargement de la carte
 
@@ -22,17 +24,21 @@ class Game:
 
         # Définition d'une liste qui va gérer les collisions en stockant les objets tiles de collision
 
+        self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE), int(self.screen.get_size()[1] / self.TAILLE_CASE))
         self.walls = []
         for wall in tmx_data.objects:
             if wall.name == "collision":
-                self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))
+                newWall = pygame.Rect(wall.x, wall.y, wall.width, wall.height)
+                self.walls.append(newWall)
+                for point in self.getRectPixels(newWall):
+                    self.grille.setVal(point, 1)
 
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
         player2_position = tmx_data.get_object_by_name("orc")
-        self.player = Human(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50)
-        self.player2 = Orc(player2_position.x, player2_position.y, 0, "Fred", 100, 10, 0, 50)
+        self.player = Human(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50, self.grille)
+        self.player2 = Orc(player2_position.x, player2_position.y, 0, "Fred", 100, 10, 0, 50, self.grille)
 
         # Dessin du groupe de calques
 
@@ -54,6 +60,13 @@ class Game:
         elif pressed[pygame.K_RIGHT]:
             self.player.move_right()
             self.player2.move_right()
+
+    def getRectPixels(self, rect: pygame.Rect):
+        posList = []
+        for x in range(int(rect.x / self.TAILLE_CASE), int((rect.x + rect.width) / self.TAILLE_CASE)):
+            for y in range(int(rect.y / self.TAILLE_CASE), int((rect.y + rect.height) / self.TAILLE_CASE)):
+                posList.append((x, y))
+        return posList
 
     def update(self):
         self.group.update()

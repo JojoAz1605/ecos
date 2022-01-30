@@ -3,8 +3,8 @@ from player import Player
 
 class Human(Player):
 
-    def __init__(self, x, y, gender, name, health, attack, age, lifetime):
-        super().__init__(x, y, gender, name, health, attack, age, lifetime)
+    def __init__(self, x, y, gender, name, health, attack, age, lifetime, grille):
+        super().__init__(x, y, gender, name, health, attack, age, lifetime, grille)
         self.weapon = None
 
     def player_attack(self, target_player):

@@ -5,7 +5,7 @@ from brain import Brain
 class Player(pygame.sprite.Sprite):
     # Element graphique du jeu qui peut interargir avec d'autres sprite
 
-    def __init__(self, x, y, gender, name, health, attack, age, lifetime):
+    def __init__(self, x, y, gender, name, health, attack, age, lifetime, grille):
         super().__init__()  # Initialisation du sprite
         self.name = name  # Variable nom
         self.gender = gender  # Variable sexe
@@ -28,6 +28,7 @@ class Player(pygame.sprite.Sprite):
         }
         self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # Pied du joueur de la taille de la moitié du joueur
         self.oldposition = self.position.copy()  # Copie de la position du joueur avant qu'il ne bouge
+        self.grille = grille
         self.brain = Brain(self)  # le cerveau du joueur, il ne fait pas grand-chose pour l'instant
 
     def save_location(self):
@@ -56,11 +57,11 @@ class Player(pygame.sprite.Sprite):
     def update(self):  # Récupère la position de base
         self.rect.topleft = self.position
         self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
-        #  self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
+        self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
 
     def move_collision(self):
         self.position = self.oldposition  # La position reste la position d'avant la collision
-        self.rect.topleft = self.position  # Position par rapport au rectangl
+        self.rect.topleft = self.position  # Position par rapport au rectangle
         self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
@@ -68,26 +69,12 @@ class Player(pygame.sprite.Sprite):
         image.blit(self.sprite_sheet, (0, 0), (x, y, 32, 32))
         return image
 
-    def get_all(self, name, gender, health, attack, age, lifetime):
+    def get_all(self):
         return (self.name, self.gender, self.health, self.attack, self.age, self.lifetime)
 
-    def set_all(self, name, gender, health, attack, age, lifetime):
-        self.age = age
-        self.gender = gender
-        self.name = name
-        self.health = health
-        self.attack = attack
-        self.lifetime = lifetime
-
     def damage(self, damage):
         self.health -= damage
         print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
-
-    def player_attack(self, target_player):
-        target_player.damage(self.attack)
-
-    def get_all(self):
-        return tuple((self.name, self.gender, self.health, self.attack, self.age, self.lifetime))
 
     def set_all(self, name, gender, health, attack, age, lifetime):
         self.age = age
@@ -96,10 +83,6 @@ class Player(pygame.sprite.Sprite):
         self.health = health
         self.attack = attack
         self.lifetime = lifetime
-
-    def damage(self, damage):
-        self.health -= damage
-        print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
 
     def player_attack(self, target_player):
         damage = self.attack
