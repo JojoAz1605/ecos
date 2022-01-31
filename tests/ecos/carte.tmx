@@ -222,7 +222,7 @@
   <object id="2" name="collision" x="0" y="784" width="800" height="16"/>
   <object id="5" name="collision" x="0" y="0" width="16" height="800"/>
   <object id="7" name="collision" x="784" y="0" width="16" height="800"/>
-  <object id="6" x="-78.5093" y="463.578" width="0.934634"/>
+  <object id="6" x="-79" y="464" width="1"/>
   <object id="8" name="collision" x="160" y="112" width="160" height="176"/>
   <object id="15" name="collision" x="496" y="576" width="144" height="144"/>
   <object id="9" name="collision" x="320" y="112" width="320" height="48"/>

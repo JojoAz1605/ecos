@@ -38,7 +38,7 @@ class Brain:
                     vec = (path[i][0] - path[i + 1][0], path[i][1] - path[i + 1][1])
                     for j in range(8):
                         directions.append(self.vec2Dir(vec))
-                print("la liste de direction est: ", directions)
+                print(self.owner.name, "- la liste de direction est: ", directions)
                 return directions
 
     def doNextMove(self):
