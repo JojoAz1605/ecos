@@ -3,24 +3,24 @@ from .grille import Grille
 
 
 class Graph:
-    def __init__(self, grid: Grille, startPos: tuple, endPos: tuple):
+    def __init__(self, grid: Grille, start_pos: tuple, end_pos: tuple) -> None:
         """Pour représenter la grille et ses nodes, plutôt que d'avoir une grille de node
         :param grid: une grille
-        :param startPos: une position de départ
-        :param endPos: une position de fin
+        :param start_pos: une position de départ
+        :param end_pos: une position de fin
         """
         self.grid = grid
-        self.startNode = Node(self, startPos, self.grid.getVal(startPos), None)
-        self.endNode = Node(self, endPos, self.grid.getVal(endPos), None)
+        self.start_node = Node(self, start_pos, self.grid.get_val(start_pos), None)
+        self.end_node = Node(self, end_pos, self.grid.get_val(end_pos), None)
 
-    def setStartNode(self, node: Node):
-        self.startNode = node
+    def set_start_node(self, node: Node) -> None:
+        self.start_node = node
 
-    def setEndNode(self, node: Node):
-        self.endNode = node
+    def set_end_node(self, node: Node) -> None:
+        self.end_node = node
 
-    def getStartNode(self):
-        return self.startNode
+    def get_start_node(self) -> Node:
+        return self.start_node
 
-    def getEndNode(self):
-        return self.endNode
+    def get_end_node(self) -> Node:
+        return self.end_node

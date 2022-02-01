@@ -31,7 +31,7 @@ class Game:
                 newWall = pygame.Rect(wall.x, wall.y, wall.width, wall.height)
                 self.walls.append(newWall)
                 for point in self.getRectPixels(newWall):
-                    self.grille.setVal(point, 1)
+                    self.grille.set_val(point, 1)
 
         # Générer un joueur
 

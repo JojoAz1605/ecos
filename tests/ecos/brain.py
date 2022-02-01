@@ -13,7 +13,8 @@ class Brain:
         self.grille = self.owner.grille
         self.path = None
         self.destination = self.getRandomDest()
-        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)), self.destination)
+        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)),
+                          self.destination)
 
     def vec2Dir(self, vec):
         if vec == (0, 1):
@@ -43,7 +44,7 @@ class Brain:
 
     def doNextMove(self):
         if type(self.path) != list:
-            if not self.algo.getNbIterations() >= 30:
+            if not self.algo.get_nb_iterations() >= 30:
                 self.path = self.path2Dir(self.algo.iteration())
             else:
                 self.path = [-1]
@@ -66,6 +67,6 @@ class Brain:
                 self.path = None
                 self.etape = 0
                 self.destination = self.getRandomDest()
-                self.algo.setStartPos((int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)))
-                self.algo.setEndPos(self.destination)
+                self.algo.set_start_pos((int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)))
+                self.algo.set_end_pos(self.destination)
                 self.algo.reset()

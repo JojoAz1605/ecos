@@ -1,104 +1,88 @@
 class Node:
-    def __init__(self, graph, pos: tuple, isPassable: bool, parent):
+    def __init__(self, graph, pos: tuple[int, int], is_passable: bool, parent) -> None:
         """Un noeud d'un graph
         :param graph: le graph
         :param pos: une position
-        :param isPassable: si le noeud est traversable
-        :param parent: le parent du noeud
+        :param is_passable: si le noeud est traversable
+        :param parent: le parent du noeud ou None s'il n'en a pas
         """
         self.graph = graph
         self.pos = pos
-        self.isPassable = isPassable
+        self.is_passable = is_passable
         if parent is None:  # si le noeud n'a pas de parent
             self.parent = self  # il est son propre parent
         else:
             self.parent = parent  # sinon prend la valeur donnée
-        self.fScore = 0  # score du noeud
-        self.gScore = 0  # distance de manhattan du noeud par rapport à son parent
-        self.hScore = 0  # distance de manhattan du noeud par rapport à la destination
+        self.f_score = 0  # score du noeud
+        self.g_score = 0  # distance de manhattan du noeud par rapport à son parent
+        self.h_score = 0  # distance de manhattan du noeud par rapport à la destination
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         """Si le noeud possède la même position qu'un autre noeud, alors ce sont les mêmes"""
         return self.pos == other.pos
 
-    def __str__(self):
+    def __str__(self) -> str:
         """Pour l'affichage console"""
         return str(self.pos)
 
-    def __calculateG(self):
+    def __calculate_g(self) -> None:
         """Calcule le score G"""
         node = self.parent
-        self.gScore = abs(node.pos[0] - self.pos[0]) + abs(node.pos[1] - self.pos[1])
+        self.g_score = abs(node.pos[0] - self.pos[0]) + abs(node.pos[1] - self.pos[1])
 
-    def __calculateH(self):
+    def __calculate_h(self) -> None:
         """Calcule le score H"""
-        node = self.graph.getEndNode()
-        self.hScore = abs(self.pos[0] - node.pos[0]) + abs(self.pos[1] - node.pos[1])
+        node = self.graph.get_end_node()
+        self.h_score = abs(self.pos[0] - node.pos[0]) + abs(self.pos[1] - node.pos[1])
 
-    def getPos(self):
+    def get_pos(self) -> tuple[int, int]:
         return self.pos
 
-    def getParent(self):
+    def get_parent(self):
         return self.parent
 
-    def getScore(self):
+    def get_score(self) -> int:
         """Calcule le score et le retourne
-        :return:
+        :return: le score de la node
         """
-        self.__calculateG()
-        self.__calculateH()
-        self.fScore = self.gScore + self.hScore
-        return self.fScore
+        self.__calculate_g()
+        self.__calculate_h()
+        self.f_score = self.g_score + self.h_score
+        return self.f_score
 
-    def getIsPassable(self):
-        return self.isPassable
+    def get_is_passable(self) -> bool:
+        return self.is_passable
 
-    def setParent(self, parent):
+    def set_parent(self, parent) -> None:
         self.parent = parent
 
-    def __getNeigboursNodes(self):
+    def __get_neigbours_nodes(self) -> list:
         """Retourne les nodes adjacentes
         :return: les nodes adjacentes
         """
         res = []
 
-        nodeX = self.pos[0]
-        nodeY = self.pos[1]
-        if nodeX + 1 < self.graph.grid.width:
-            res.append(Node(self.graph,
-                            (nodeX + 1, nodeY),
-                            self.graph.grid.getIsPassable((nodeX + 1, nodeY)),
-                            self
-                            ))
-        if nodeX - 1 > 0:
-            res.append(Node(self.graph,
-                            (nodeX - 1, nodeY),
-                            self.graph.grid.getIsPassable((nodeX - 1, nodeY)),
-                            self
-                            ))
-        if nodeY + 1 < self.graph.grid.height:
-            res.append(Node(self.graph,
-                            (nodeX, nodeY + 1),
-                            self.graph.grid.getIsPassable((nodeX, nodeY + 1)),
-                            self
-                            ))
-        if nodeY - 1 > 0:
-            res.append(Node(self.graph,
-                            (nodeX, nodeY - 1),
-                            self.graph.grid.getIsPassable((nodeX, nodeY - 1)),
-                            self
-                            ))
+        node_x = self.pos[0]
+        node_y = self.pos[1]
+        if node_x + 1 < self.graph.grid.width:
+            res.append(Node(self.graph, (node_x + 1, node_y), self.graph.grid.get_is_passable((node_x + 1, node_y)), self))
+        if node_x - 1 > 0:
+            res.append(Node(self.graph, (node_x - 1, node_y), self.graph.grid.get_is_passable((node_x - 1, node_y)), self))
+        if node_y + 1 < self.graph.grid.height:
+            res.append(Node(self.graph, (node_x, node_y + 1), self.graph.grid.get_is_passable((node_x, node_y + 1)), self))
+        if node_y - 1 > 0:
+            res.append(Node(self.graph, (node_x, node_y - 1), self.graph.grid.get_is_passable((node_x, node_y - 1)), self))
 
         return res
 
-    def getSuccessors(self):
+    def get_successors(self) -> list:
         """Donne les successeurs de la node
         :return: les successeur de la node
         """
         res = []
-        neighbors = self.__getNeigboursNodes()  # prend ses voisins
+        neighbors = self.__get_neigbours_nodes()  # prend ses voisins
         for neighbor in neighbors:  # pour tous les voisins
-            if neighbor.getIsPassable():  # si le voisin est traversable
+            if neighbor.get_is_passable():  # si le voisin est traversable
                 res.append(neighbor)  # l'ajoute au résultat
         return res
 
