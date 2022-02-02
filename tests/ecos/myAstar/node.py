@@ -1,15 +1,14 @@
 class Node:
-    def __init__(self, graph, pos: tuple[int, int], is_passable: bool, parent) -> None:
+    def __init__(self, graph, pos: tuple[int, int], parent) -> None:
         """Un noeud d'un graph
         :param graph: le graph
         :param pos: une position
-        :param is_passable: si le noeud est traversable
         :param parent: le parent du noeud ou None s'il n'en a pas
         """
         self.graph = graph
         self.pos = pos
-        self.is_passable = is_passable
-        if parent is None:  # si le noeud n'a pas de parent
+        self.is_passable = self.graph.grid.get_is_passable(self.pos)
+        if parent is None:  # si le nœud n'a pas de parent
             self.parent = self  # il est son propre parent
         else:
             self.parent = parent  # sinon prend la valeur donnée
@@ -65,19 +64,19 @@ class Node:
         node_x = self.pos[0]
         node_y = self.pos[1]
         if node_x + 1 < self.graph.grid.width:
-            res.append(Node(self.graph, (node_x + 1, node_y), self.graph.grid.get_is_passable((node_x + 1, node_y)), self))
+            res.append(Node(self.graph, (node_x + 1, node_y), self))
         if node_x - 1 > 0:
-            res.append(Node(self.graph, (node_x - 1, node_y), self.graph.grid.get_is_passable((node_x - 1, node_y)), self))
+            res.append(Node(self.graph, (node_x - 1, node_y), self))
         if node_y + 1 < self.graph.grid.height:
-            res.append(Node(self.graph, (node_x, node_y + 1), self.graph.grid.get_is_passable((node_x, node_y + 1)), self))
+            res.append(Node(self.graph, (node_x, node_y + 1), self))
         if node_y - 1 > 0:
-            res.append(Node(self.graph, (node_x, node_y - 1), self.graph.grid.get_is_passable((node_x, node_y - 1)), self))
+            res.append(Node(self.graph, (node_x, node_y - 1), self))
 
         return res
 
     def get_successors(self) -> list:
         """Donne les successeurs de la node
-        :return: les successeur de la node
+        :return: les successeurs de la node
         """
         res = []
         neighbors = self.__get_neigbours_nodes()  # prend ses voisins

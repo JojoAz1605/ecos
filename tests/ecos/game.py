@@ -28,9 +28,8 @@ class Game:
         self.walls = []
         for wall in tmx_data.objects:
             if wall.name == "collision":
-                newWall = pygame.Rect(wall.x, wall.y, wall.width, wall.height)
-                self.walls.append(newWall)
-                for point in self.getRectPixels(newWall):
+                self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))
+                for point in self.getRectPixels(self.walls[-1]):
                     self.grille.set_val(point, 1)
 
         # Générer un joueur

@@ -10,8 +10,8 @@ class Graph:
         :param end_pos: une position de fin
         """
         self.grid = grid
-        self.start_node = Node(self, start_pos, self.grid.get_val(start_pos), None)
-        self.end_node = Node(self, end_pos, self.grid.get_val(end_pos), None)
+        self.start_node = Node(self, start_pos, None)
+        self.end_node = Node(self, end_pos, None)
 
     def set_start_node(self, node: Node) -> None:
         self.start_node = node

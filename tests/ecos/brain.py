@@ -13,8 +13,7 @@ class Brain:
         self.grille = self.owner.grille
         self.path = None
         self.destination = self.getRandomDest()
-        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)),
-                          self.destination)
+        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)), self.destination)
 
     def vec2Dir(self, vec):
         if vec == (0, 1):
