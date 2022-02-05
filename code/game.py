@@ -1,9 +1,9 @@
 import pygame
 import pytmx
 import pyscroll
-from orc import Orc
-from human import Human
-from myAstar.grille import Grille
+from code.orc import Orc
+from code.human import Human
+from code.pathfinding.utility.grille import Grille
 
 
 class Game:
@@ -18,7 +18,7 @@ class Game:
 
         # Chargement de la carte
 
-        tmx_data = pytmx.util_pygame.load_pygame('carte.tmx')
+        tmx_data = pytmx.util_pygame.load_pygame('maps/carte.tmx')
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
 

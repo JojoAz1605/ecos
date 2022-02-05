@@ -1,6 +1,5 @@
 from random import randint
-
-from myAstar.astar import Astar
+from code.pathfinding.astar import Astar
 
 
 class Brain:

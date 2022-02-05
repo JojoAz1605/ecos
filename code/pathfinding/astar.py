@@ -1,5 +1,5 @@
-from .graph import Graph
-from .grille import Grille
+from code.pathfinding.utility.graph import Graph
+from code.pathfinding.utility.grille import Grille
 from .node import Node
 
 

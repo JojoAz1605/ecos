@@ -1,4 +1,4 @@
-from .node import Node
+from code.pathfinding.node import Node
 from .grille import Grille
 
 
