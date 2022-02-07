@@ -13,7 +13,6 @@ class Player(pygame.sprite.Sprite):
         self.health = health  # Variable vie
         self.attack = attack  # Variable attaque
         self.lifetime = lifetime  # Variable durée de vie
-        self.weapon = None  # Variable arme initialisée à None, car il n'a pas d'arme en main au début du jeu
         self.sprite_sheet = pygame.image.load('textures/entities/player.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)
         # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
@@ -80,11 +79,4 @@ class Player(pygame.sprite.Sprite):
         self.lifetime = lifetime
 
     def player_attack(self, target_player):
-        damage = self.attack
-
-    def set_weapon(self, weapon):
-        self.weapon = weapon
-        print(f"{self.name} a trouvé {self.weapon.name} et gagne {self.weapon.damage} points d'attaque")
-
-    def has_weapon(self):
-        return self.weapon is not None
+        target_player.damage(self.attack)

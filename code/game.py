@@ -36,7 +36,6 @@ class Game:
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
-        player2_position = tmx_data.get_object_by_name("orc")
         self.entities = []
         for i in range(100):
             if randint(0, 1) == 1:

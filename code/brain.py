@@ -40,6 +40,9 @@ class Brain:
                 # print(self.owner.name, "- la liste de direction est: ", directions)
                 return directions
 
+    def go_to(self, dest: tuple[int, int]):
+        self.destination = dest
+
     def do_next_move(self):
         if type(self.path) != list:
             if not self.algo.get_nb_iterations() >= 30:
