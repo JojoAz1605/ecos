@@ -5,6 +5,7 @@ from code.orc import Orc
 from code.human import Human
 from code.pathfinding.utility.grille import Grille
 from random import randint
+from code.caillou import Caillou
 
 
 class Game:
@@ -37,7 +38,7 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         self.entities = []
-        for i in range(100):
+        for i in range(2):
             if randint(0, 1) == 1:
                 self.entities.append(Human(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
             else:
@@ -75,5 +76,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(600)  # Fixe le nombre de FPS
+            clock.tick(60)  # Fixe le nombre de FPS
         pygame.quit()
