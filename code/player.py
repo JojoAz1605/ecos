@@ -55,7 +55,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):  # Récupère la position de base
         self.rect.midbottom = self.position
-        self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
+        self.brain.do_next_move()  # demande au cerveau de donner le prochain mouvement
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
         image = pygame.Surface([32, 32])  # Le perso fait 32x32
@@ -79,9 +79,6 @@ class Player(pygame.sprite.Sprite):
 
     def player_attack(self, target_player):
         damage = self.attack
-        if self.has_weapon():
-            damage += self.weapon.damage
-        target_player.damage(damage)
 
     def set_weapon(self, weapon):
         self.weapon = weapon

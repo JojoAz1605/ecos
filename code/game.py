@@ -4,6 +4,7 @@ import pyscroll
 from code.orc import Orc
 from code.human import Human
 from code.pathfinding.utility.grille import Grille
+from random import randint
 
 
 class Game:
@@ -36,29 +37,17 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         player2_position = tmx_data.get_object_by_name("orc")
-        self.player = Human(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50, self.grille)
-        self.player2 = Orc(player2_position.x, player2_position.y, 0, "Fred", 100, 10, 0, 50, self.grille)
+        self.entities = []
+        for i in range(100):
+            if randint(0, 1) == 1:
+                self.entities.append(Human(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+            else:
+                self.entities.append(Orc(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
 
         # Dessin du groupe de calques
-
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
-        self.group.add(self.player)
-        self.group.add(self.player2)
-
-    def touches_input(self):  # Fonction de prise en compte de l'entrée clavier
-        pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_UP]:
-            self.player.move_up()
-            self.player2.move_up()
-        elif pressed[pygame.K_DOWN]:
-            self.player.move_down()
-            self.player2.move_down()
-        elif pressed[pygame.K_LEFT]:
-            self.player.move_left()
-            self.player2.move_left()
-        elif pressed[pygame.K_RIGHT]:
-            self.player.move_right()
-            self.player2.move_right()
+        for entity in self.entities:
+            self.group.add(entity)
 
     def getRectPixels(self, rect: pygame.Rect):
         posList = []
@@ -79,14 +68,13 @@ class Game:
 
         running = True
         while running:
-            self.player2.save_location()
-            self.player.save_location()  # Sauvegarde la position du joueur
-            self.touches_input()  # Prise en compte de l'entrée clavier
+            for entity in self.entities:
+                entity.save_location()  # Sauvegarde la position du joueur
             self.update()  # Update la position pour la gestion de collisions
             self.group.draw(self.screen)  # Affiche la map
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(60)  # Fixe le nombre de FPS
+            clock.tick(600)  # Fixe le nombre de FPS
         pygame.quit()
