@@ -69,10 +69,6 @@ class Game:
 
     def update(self):
         self.group.update()
-        # Vérifier la collision
-        for sprite in self.group.sprites():
-            if sprite.feet.collidelist(self.walls) > -1:
-                sprite.move_collision()
 
     def run(self):
 

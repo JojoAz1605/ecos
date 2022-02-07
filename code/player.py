@@ -26,7 +26,6 @@ class Player(pygame.sprite.Sprite):
             'left': self.get_image(0, 32),
             'up': self.get_image(0, 96)
         }
-        self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # Pied du joueur de la taille de la moitié du joueur
         self.oldposition = self.position.copy()  # Copie de la position du joueur avant qu'il ne bouge
         self.grille = grille
         self.brain = Brain(self)  # le cerveau du joueur, il ne fait pas grand-chose pour l'instant
@@ -55,14 +54,8 @@ class Player(pygame.sprite.Sprite):
         self.animation('down')
 
     def update(self):  # Récupère la position de base
-        self.rect.topleft = self.position
-        self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
+        self.rect.midbottom = self.position
         self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
-
-    def move_collision(self):
-        self.position = self.oldposition  # La position reste la position d'avant la collision
-        self.rect.topleft = self.position  # Position par rapport au rectangle
-        self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
         image = pygame.Surface([32, 32])  # Le perso fait 32x32
