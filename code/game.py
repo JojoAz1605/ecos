@@ -5,7 +5,8 @@ from code.orc import Orc
 from code.human import Human
 from code.pathfinding.utility.grille import Grille
 from random import randint
-from code.caillou import Caillou
+from code.pebble import Pebble
+from code.woodenbranch import Woodenbranch
 from code.rabbit import Rabbit
 
 
@@ -39,6 +40,8 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         self.entities = []
+        self.entities.append(Woodenbranch(player_position.x, player_position.y, "woodenbranch", 20))
+        self.entities.append(Pebble(player_position.x, player_position.y, "pebble", 20))
         for i in range(100):
             self.entities.append(Rabbit(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
         for i in range(2):

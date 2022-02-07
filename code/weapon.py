@@ -13,5 +13,3 @@ class Weapon(pygame.sprite.Sprite):
 
     def get_damage(self):
         return self.damage
-
-    
