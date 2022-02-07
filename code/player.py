@@ -20,6 +20,7 @@ class Player(pygame.sprite.Sprite):
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir
         self.rect = self.image.get_rect()
         self.position = [x, y]  # Récupère la position du joueur
+        self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # pied du joueur de la taille de la moitié du joueur
         self.images = {
             'down': self.get_image(0, 0),
             'right': self.get_image(0, 64),
@@ -55,6 +56,7 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):  # Récupère la position de base
         self.rect.midbottom = self.position
+        self.feet.midbottom = self.rect.midbottom
         self.brain.do_next_move()  # demande au cerveau de donner le prochain mouvement
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
