@@ -8,6 +8,7 @@ from random import randint
 from code.pebble import Pebble
 from code.woodenbranch import Woodenbranch
 from code.rabbit import Rabbit
+from code.bear import Bear
 
 
 class Game:
@@ -40,15 +41,18 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         self.entities = []
-        self.entities.append(Woodenbranch(player_position.x, player_position.y, "woodenbranch", 20))
-        self.entities.append(Pebble(player_position.x, player_position.y, "pebble", 20))
-        for i in range(100):
-            self.entities.append(Rabbit(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
-        for i in range(2):
-            if randint(0, 1) == 1:
+        self.entities.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
+        self.entities.append(Pebble(16*4, 16*16, "pebble", 20))
+        for i in range(10):
+            rand_num = randint(0, 3)
+            if rand_num == 0:
                 self.entities.append(Human(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
-            else:
+            elif rand_num == 1:
                 self.entities.append(Orc(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+            elif rand_num == 2:
+                self.entities.append(Rabbit(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+            elif rand_num == 3:
+                self.entities.append(Bear(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
