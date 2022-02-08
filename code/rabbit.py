@@ -1,14 +1,17 @@
 import pygame
-from code.player import Player
+from code.animal import Animal
 
 
-class Rabbit(Player):
+class Rabbit(Animal):
+    def __init__(self, position, name, gender, grille):
+        super().__init__(position, name, gender, grille)
+        self.health = 20
+        self.attack = 2
+        self.age = 0
+        self.lifetime = 10
 
-    def __init__(self, x, y, gender, name, health, attack, age, lifetime, grille):
-        super().__init__(x, y, gender, name, health, attack, age, lifetime, grille)
         self.sprite_sheet = pygame.image.load('textures/entities/rabbit.png')  # Chargement du joueur
-        self.image = self.get_image(32, 0)
-        # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
+        self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir
         self.rect = self.image.get_rect()
         self.images = {

@@ -46,13 +46,13 @@ class Game:
         for i in range(10):
             rand_num = randint(0, 3)
             if rand_num == 0:
-                self.entities.append(Human(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+                self.entities.append(Human([player_position.x, player_position.y], str(i), 0, self.grille))
             elif rand_num == 1:
-                self.entities.append(Orc(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+                self.entities.append(Orc([player_position.x, player_position.y], str(i), 0, self.grille))
             elif rand_num == 2:
-                self.entities.append(Rabbit(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+                self.entities.append(Rabbit([player_position.x, player_position.y], str(i), 0, self.grille))
             elif rand_num == 3:
-                self.entities.append(Bear(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+                self.entities.append(Bear([player_position.x, player_position.y], str(i), 0, self.grille))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)

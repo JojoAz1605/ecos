@@ -1,24 +1,26 @@
 import pygame
+from code.pathfinding.utility.grille import Grille
 from code.brain import Brain
 
 
-class Player(pygame.sprite.Sprite):
-    # Element graphique du jeu qui peut interargir avec d'autres sprite
+class LivingEntity(pygame.sprite.Sprite):
+    def __init__(self, position: list[int, int], name: str,  gender: int, grille: Grille):
+        super().__init__()
+        self.position = position
+        self.oldposition = self.position.copy()
+        self.name = name
+        self.gender = gender
+        self.health = int
+        self.attack = int
+        self.age = int
+        self.lifetime = int
+        self.grille = grille
+        self.brain = Brain(self)
 
-    def __init__(self, x, y, gender, name, health, attack, age, lifetime, grille):
-        super().__init__()  # Initialisation du sprite
-        self.name = name  # Variable nom
-        self.gender = gender  # Variable sexe
-        self.age = age  # Variable age
-        self.health = health  # Variable vie
-        self.attack = attack  # Variable attaque
-        self.lifetime = lifetime  # Variable durée de vie
-        self.sprite_sheet = pygame.image.load('textures/entities/player.png')  # Chargement du joueur
-        self.image = self.get_image(0, 0)
-        # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
+        self.sprite_sheet = pygame.image.load('textures/entities/placeholder.png')  # Chargement du joueur
+        self.image = self.get_image(0, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir
         self.rect = self.image.get_rect()
-        self.position = [x, y]  # Récupère la position du joueur
         self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # pied du joueur de la taille de la moitié du joueur
         self.images = {
             'down': self.get_image(0, 0),
@@ -26,12 +28,9 @@ class Player(pygame.sprite.Sprite):
             'left': self.get_image(0, 32),
             'up': self.get_image(0, 96)
         }
-        self.oldposition = self.position.copy()  # Copie de la position du joueur avant qu'il ne bouge
-        self.grille = grille
-        self.brain = Brain(self)  # le cerveau du joueur, il ne fait pas grand-chose pour l'instant
 
     def save_location(self):
-        self.oldposition = self.position.copy()
+        self.oldposition = list(self.position).copy()
 
     def animation(self, name):  # Va chercher l'image à appliquer à l'appui dela touche
         self.image = self.images[name]
@@ -66,10 +65,6 @@ class Player(pygame.sprite.Sprite):
     def get_all(self):
         return (self.name, self.gender, self.health, self.attack, self.age, self.lifetime)
 
-    def damage(self, damage):
-        self.health -= damage
-        print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
-
     def set_all(self, name, gender, health, attack, age, lifetime):
         self.age = age
         self.gender = gender
@@ -78,5 +73,9 @@ class Player(pygame.sprite.Sprite):
         self.attack = attack
         self.lifetime = lifetime
 
-    def player_attack(self, target_player):
+    def damage(self, damage):
+        self.health -= damage
+        print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
+
+    def entity_attack(self, target_player):
         target_player.damage(self.attack)
