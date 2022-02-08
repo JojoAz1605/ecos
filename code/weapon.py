@@ -1,6 +1,10 @@
-class Weapon:
+import pygame.sprite
+
+
+class Weapon(pygame.sprite.Sprite):
     
     def __init__(self, name, damage):
+        super().__init__()
         self.name = name
         self.damage = damage
 
@@ -9,5 +13,3 @@ class Weapon:
 
     def get_damage(self):
         return self.damage
-
-    

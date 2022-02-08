@@ -1,5 +1,5 @@
-from .graph import Graph
-from .grille import Grille
+from code.pathfinding.utility.graph import Graph
+from code.pathfinding.utility.grille import Grille
 from .node import Node
 
 
@@ -56,7 +56,7 @@ class Astar:
             self.open.remove(successor)  # retire celui qui a un score inférieur
             self.open.append(successor)  # et ajoute celui qui a un meilleur score à la place
         else:  # sinon l'ajoute à la liste
-            self.open.append(Node(self.graph, successor.pos, successor.get_is_passable, studied_node))
+            self.open.append(Node(self.graph, successor.pos, studied_node))
 
     def __convert_to_pos(self) -> list[tuple[int, int]]:
         """Convertit les nodes du résultat en positions exploitables par un cerveau de créature
@@ -81,10 +81,10 @@ class Astar:
         return self.nb_iterations
 
     def set_end_pos(self, pos: tuple) -> None:
-        self.graph.set_end_node(Node(self.graph, pos, self.graph.grid.get_val(pos), None))
+        self.graph.set_end_node(Node(self.graph, pos, None))
 
     def set_start_pos(self, pos: tuple) -> None:
-        self.graph.set_start_node(Node(self.graph, pos, self.graph.grid.get_val(pos), None))
+        self.graph.set_start_node(Node(self.graph, pos, None))
 
     def iteration(self) -> None or bool:
         """Une itération de l'algorithme

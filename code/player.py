@@ -1,5 +1,5 @@
 import pygame
-from brain import Brain
+from code.brain import Brain
 
 
 class Player(pygame.sprite.Sprite):
@@ -13,20 +13,19 @@ class Player(pygame.sprite.Sprite):
         self.health = health  # Variable vie
         self.attack = attack  # Variable attaque
         self.lifetime = lifetime  # Variable durée de vie
-        self.weapon = None  # Variable arme initialisée à None car il n'a pas d'arme en main au début du jeu
-        self.sprite_sheet = pygame.image.load('player.png')  # Chargement du joueur
+        self.sprite_sheet = pygame.image.load('textures/entities/player.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)
         # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir
         self.rect = self.image.get_rect()
         self.position = [x, y]  # Récupère la position du joueur
+        self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # pied du joueur de la taille de la moitié du joueur
         self.images = {
             'down': self.get_image(0, 0),
             'right': self.get_image(0, 64),
             'left': self.get_image(0, 32),
             'up': self.get_image(0, 96)
         }
-        self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)  # Pied du joueur de la taille de la moitié du joueur
         self.oldposition = self.position.copy()  # Copie de la position du joueur avant qu'il ne bouge
         self.grille = grille
         self.brain = Brain(self)  # le cerveau du joueur, il ne fait pas grand-chose pour l'instant
@@ -55,14 +54,9 @@ class Player(pygame.sprite.Sprite):
         self.animation('down')
 
     def update(self):  # Récupère la position de base
-        self.rect.topleft = self.position
-        self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
-        self.brain.doNextMove()  # demande au cerveau de donner le prochain mouvement
-
-    def move_collision(self):
-        self.position = self.oldposition  # La position reste la position d'avant la collision
-        self.rect.topleft = self.position  # Position par rapport au rectangle
-        self.feet.midbottom = self.rect.midbottom  # Positionner les pieds par rapport au rectangle
+        self.rect.midbottom = self.position
+        self.feet.midbottom = self.rect.midbottom
+        self.brain.do_next_move()  # demande au cerveau de donner le prochain mouvement
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
         image = pygame.Surface([32, 32])  # Le perso fait 32x32
@@ -85,14 +79,4 @@ class Player(pygame.sprite.Sprite):
         self.lifetime = lifetime
 
     def player_attack(self, target_player):
-        damage = self.attack
-        if self.has_weapon():
-            damage += self.weapon.damage
-        target_player.damage(damage)
-
-    def set_weapon(self, weapon):
-        self.weapon = weapon
-        print(f"{self.name} a trouvé {self.weapon.name} et gagne {self.weapon.damage} points d'attaque")
-
-    def has_weapon(self):
-        return self.weapon is not None
+        target_player.damage(self.attack)

@@ -55,5 +55,4 @@ class Grille:
         """Retourne si la valeur à une position donnée est traversable
         :return: oui ou non
         """
-        val = self.get_val(pos)
-        return val in self.passable
+        return self.get_val(pos) in self.passable

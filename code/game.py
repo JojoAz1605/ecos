@@ -1,9 +1,13 @@
 import pygame
 import pytmx
 import pyscroll
-from orc import Orc
-from human import Human
-from myAstar.grille import Grille
+from code.orc import Orc
+from code.human import Human
+from code.pathfinding.utility.grille import Grille
+from random import randint
+from code.pebble import Pebble
+from code.woodenbranch import Woodenbranch
+from code.rabbit import Rabbit
 
 
 class Game:
@@ -18,7 +22,7 @@ class Game:
 
         # Chargement de la carte
 
-        tmx_data = pytmx.util_pygame.load_pygame('carte.tmx')
+        tmx_data = pytmx.util_pygame.load_pygame('maps/carte.tmx')
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
 
@@ -28,38 +32,28 @@ class Game:
         self.walls = []
         for wall in tmx_data.objects:
             if wall.name == "collision":
-                newWall = pygame.Rect(wall.x, wall.y, wall.width, wall.height)
-                self.walls.append(newWall)
-                for point in self.getRectPixels(newWall):
+                self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))
+                for point in self.getRectPixels(self.walls[-1]):
                     self.grille.set_val(point, 1)
 
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
-        player2_position = tmx_data.get_object_by_name("orc")
-        self.player = Human(player_position.x, player_position.y, 0, "Jamie", 100, 10, 0, 50, self.grille)
-        self.player2 = Orc(player2_position.x, player2_position.y, 0, "Fred", 100, 10, 0, 50, self.grille)
+        self.entities = []
+        self.entities.append(Woodenbranch(player_position.x, player_position.y, "woodenbranch", 20))
+        self.entities.append(Pebble(player_position.x, player_position.y, "pebble", 20))
+        for i in range(100):
+            self.entities.append(Rabbit(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+        for i in range(2):
+            if randint(0, 1) == 1:
+                self.entities.append(Human(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
+            else:
+                self.entities.append(Orc(player_position.x, player_position.y, 0, str(i), 100, 10, 0, 50, self.grille))
 
         # Dessin du groupe de calques
-
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
-        self.group.add(self.player)
-        self.group.add(self.player2)
-
-    def touches_input(self):  # Fonction de prise en compte de l'entrée clavier
-        pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_UP]:
-            self.player.move_up()
-            self.player2.move_up()
-        elif pressed[pygame.K_DOWN]:
-            self.player.move_down()
-            self.player2.move_down()
-        elif pressed[pygame.K_LEFT]:
-            self.player.move_left()
-            self.player2.move_left()
-        elif pressed[pygame.K_RIGHT]:
-            self.player.move_right()
-            self.player2.move_right()
+        for entity in self.entities:
+            self.group.add(entity)
 
     def getRectPixels(self, rect: pygame.Rect):
         posList = []
@@ -70,10 +64,6 @@ class Game:
 
     def update(self):
         self.group.update()
-        # Vérifier la collision
-        for sprite in self.group.sprites():
-            if sprite.feet.collidelist(self.walls) > -1:
-                sprite.move_collision()
 
     def run(self):
 
@@ -84,9 +74,8 @@ class Game:
 
         running = True
         while running:
-            self.player2.save_location()
-            self.player.save_location()  # Sauvegarde la position du joueur
-            self.touches_input()  # Prise en compte de l'entrée clavier
+            for entity in self.entities:
+                entity.save_location()  # Sauvegarde la position du joueur
             self.update()  # Update la position pour la gestion de collisions
             self.group.draw(self.screen)  # Affiche la map
             pygame.display.flip()
