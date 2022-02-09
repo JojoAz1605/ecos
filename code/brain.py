@@ -1,4 +1,5 @@
 from random import randint
+
 from code.pathfinding.astar import Astar
 
 

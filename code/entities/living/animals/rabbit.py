@@ -1,6 +1,8 @@
-import pygame
-from code.animal import Animal
 from random import randint
+
+import pygame
+
+from code.entities.living.animals.animal import Animal
 
 
 class Rabbit(Animal):

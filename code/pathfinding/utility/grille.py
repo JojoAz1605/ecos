@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Grille:
     def __init__(self, height: int, width: int) -> None:
         """Une grille, c'est sympa comme truc

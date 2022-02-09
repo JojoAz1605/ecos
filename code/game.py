@@ -1,14 +1,16 @@
 import pygame
-import pytmx
 import pyscroll
-from code.orc import Orc
-from code.human import Human
-from code.pathfinding.utility.grille import Grille
+import pytmx
+
 from random import randint
-from code.pebble import Pebble
-from code.woodenbranch import Woodenbranch
-from code.rabbit import Rabbit
-from code.bear import Bear
+from code.entities.items.pebble import Pebble
+from code.entities.items.woodenbranch import Woodenbranch
+from code.entities.living.animals.bear import Bear
+from code.entities.living.animals.rabbit import Rabbit
+from code.entities.living.animals.wolf import Wolf
+from code.entities.living.humanoid.human import Human
+from code.entities.living.humanoid.orc import Orc
+from code.pathfinding.utility.grille import Grille
 
 
 class Game:
@@ -44,10 +46,10 @@ class Game:
         self.items = []
         self.items.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
         self.items.append(Pebble(16*4, 16*16, "pebble", 20))
-        for i in range(1):
-            entity_type = 2
+        for i in range(10):
+            entity_type = randint(0, 4)
             entity_name = str(i)
-            gender = 1
+            gender = randint(0, 1)
             if entity_type == 0:
                 self.entities.append(Human([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 1:
@@ -56,6 +58,8 @@ class Game:
                 self.entities.append(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 3:
                 self.entities.append(Bear([player_position.x, player_position.y], entity_name, gender, self))
+            elif entity_type == 4:
+                self.entities.append(Wolf([player_position.x, player_position.y], entity_name, gender, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)

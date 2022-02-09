@@ -1,6 +1,8 @@
-import pygame
-from code.brain import Brain
 from random import randint
+
+import pygame
+
+from code.brain import Brain
 
 
 class LivingEntity(pygame.sprite.Sprite):
@@ -106,7 +108,7 @@ class LivingEntity(pygame.sprite.Sprite):
             self.world.entities.append(new_child)
             self.world.group.add(new_child)
             print(self.name, " a donné naissance !")
-            # self.pregnant["is_pregnant"] = False
+            self.pregnant["is_pregnant"] = False
             self.pregnant["time_pregnant"] = 0
         elif self.pregnant["is_pregnant"]:
             self.pregnant["time_pregnant"] += 1

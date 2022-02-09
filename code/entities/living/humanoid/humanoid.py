@@ -1,4 +1,4 @@
-from code.livingentity import LivingEntity
+from code.entities.living.livingentity import LivingEntity
 
 
 class Humanoid(LivingEntity):
