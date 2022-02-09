@@ -1,16 +1,15 @@
 import pygame
-import pyscroll
 import pytmx
-
-from random import randint
+import pyscroll
+from code.entities.living.humanoid.orc import Orc
+from code.entities.living.humanoid.human import Human
+from code.pathfinding.utility.grille import Grille
 from code.entities.items.pebble import Pebble
 from code.entities.items.woodenbranch import Woodenbranch
-from code.entities.living.animals.bear import Bear
 from code.entities.living.animals.rabbit import Rabbit
+from code.entities.living.animals.bear import Bear
 from code.entities.living.animals.wolf import Wolf
-from code.entities.living.humanoid.human import Human
-from code.entities.living.humanoid.orc import Orc
-from code.pathfinding.utility.grille import Grille
+from random import randint
 
 
 class Game:
@@ -31,7 +30,8 @@ class Game:
 
         # Définition d'une liste qui va gérer les collisions en stockant les objets tiles de collision
 
-        self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE), int(self.screen.get_size()[1] / self.TAILLE_CASE))
+        self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE),
+                             int(self.screen.get_size()[1] / self.TAILLE_CASE))
         self.walls = []
         for wall in tmx_data.objects:
             if wall.name == "collision":
@@ -42,31 +42,36 @@ class Game:
         # Générer un joueur
 
         player_position = tmx_data.get_object_by_name("humain")
-        self.entities = []
-        self.items = []
-        self.items.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
-        self.items.append(Pebble(16*4, 16*16, "pebble", 20))
-        for i in range(10):
+        self.entities = {
+            "humans": [],
+            "orcs": [],
+            "rabbits": [],
+            "bears": [],
+            "wolves": [],
+            "items": []
+        }
+        self.entities["items"].append(Woodenbranch(16 * 4, 16 * 4, "woodenbranch", 20))
+        self.entities["items"].append(Pebble(16 * 4, 16 * 16, "pebble", 20))
+        for i in range(20):
             entity_type = randint(0, 4)
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
-                self.entities.append(Human([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["humans"].append(Human([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 1:
-                self.entities.append(Orc([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["orcs"].append(Orc([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 2:
-                self.entities.append(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["rabbits"].append(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 3:
-                self.entities.append(Bear([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["bears"].append(Bear([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 4:
-                self.entities.append(Wolf([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["wolves"].append(Wolf([player_position.x, player_position.y], entity_name, gender, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
-        for entity in self.entities:
-            self.group.add(entity)
-        for item in self.items:
-            self.group.add(item)
+        for entity_type in self.entities:
+            for entity in self.entities[entity_type]:
+                self.group.add(entity)
         self.day = 0
         self.year = 0
 
@@ -79,11 +84,14 @@ class Game:
 
     def nouveau_jour(self):
         if self.day == 365:  # à modifier pour changer le rythme de passage des années
-            for entity in self.entities:
-                entity.age += 1
-                if not entity.is_alive:
-                    self.entities.remove(entity)
-                    self.group.remove(entity)
+            for entity_type in self.entities:
+                if entity_type == "items":
+                    continue
+                for entity in self.entities[entity_type]:
+                    entity.age += 1
+                    if not entity.is_alive:
+                        self.entities[entity_type].remove(entity)
+                        self.group.remove(entity)
             self.day = 0
             self.year += 1
             print(f"Une nouvelle année commence, nous sommes en l'an {self.year} !")
@@ -103,8 +111,9 @@ class Game:
 
         running = True
         while running:
-            for entity in self.entities:
-                entity.save_location()  # Sauvegarde la position du joueur
+            for entity_type in self.entities:
+                for entity in self.entities[entity_type]:
+                    entity.save_location()  # Sauvegarde la position du joueur
             self.update()  # Update la position pour la gestion de collisions
             self.group.draw(self.screen)  # Affiche la map
             pygame.display.flip()

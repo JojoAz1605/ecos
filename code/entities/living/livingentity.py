@@ -100,12 +100,13 @@ class LivingEntity(pygame.sprite.Sprite):
 
     def give_birth(self):
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
-        return LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)
+        newChild = LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)
+        self.world.entities[None].append(newChild)
+        return newChild
 
     def check_pregnant(self):
         if self.pregnant["is_pregnant"] and self.pregnant["time_pregnant"] == self.pregnancy_time:
             new_child = self.give_birth()
-            self.world.entities.append(new_child)
             self.world.group.add(new_child)
             print(self.name, " a donné naissance !")
             self.pregnant["is_pregnant"] = False

@@ -29,4 +29,6 @@ class Bear(Animal):
 
     def give_birth(self):
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
-        return Bear(position_offset, self.name + " child", randint(0, 1), self.world)
+        newChild = Bear(position_offset, self.name + " child", randint(0, 1), self.world)
+        self.world.entities["bears"].append(newChild)
+        return newChild

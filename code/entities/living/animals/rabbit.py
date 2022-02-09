@@ -29,4 +29,6 @@ class Rabbit(Animal):
 
     def give_birth(self):
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
-        return Rabbit(position_offset, self.name + " child", randint(0, 1), self.world)
+        newChild = Rabbit(position_offset, self.name + " child", randint(0, 1), self.world)
+        self.world.entities["rabbits"].append(newChild)
+        return newChild
