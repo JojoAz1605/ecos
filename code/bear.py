@@ -12,6 +12,7 @@ class Bear(Animal):
         self.attack = 13
         self.age = 0
         self.lifetime = randint(20, 30)
+        self.pregnancy_time = 315  # en jours
 
         self.sprite_sheet = pygame.image.load('textures/entities/ours.png')  # Chargement du joueur
         self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
@@ -23,3 +24,7 @@ class Bear(Animal):
             'left': self.get_image(0, 32),
             'up': self.get_image(0, 0)
         }
+
+    def give_birth(self):
+        position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
+        return Bear(position_offset, self.name + " child", randint(0, 1), self.world)

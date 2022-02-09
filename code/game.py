@@ -44,10 +44,10 @@ class Game:
         self.items = []
         self.items.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
         self.items.append(Pebble(16*4, 16*16, "pebble", 20))
-        for i in range(100):
-            entity_type = randint(0, 3)
+        for i in range(1):
+            entity_type = 2
             entity_name = str(i)
-            gender = randint(0, 1)
+            gender = 1
             if entity_type == 0:
                 self.entities.append(Human([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 1:
@@ -74,7 +74,7 @@ class Game:
         return posList
 
     def nouveau_jour(self):
-        if self.day == 50:  # à modifier pour changer le rythme de passage des années
+        if self.day == 365:  # à modifier pour changer le rythme de passage des années
             for entity in self.entities:
                 entity.age += 1
                 if not entity.is_alive:
@@ -107,5 +107,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(600)  # Fixe le nombre de FPS
+            clock.tick(60)  # Fixe le nombre de FPS
         pygame.quit()

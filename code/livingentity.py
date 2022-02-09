@@ -1,5 +1,6 @@
 import pygame
 from code.brain import Brain
+from random import randint
 
 
 class LivingEntity(pygame.sprite.Sprite):
@@ -18,6 +19,10 @@ class LivingEntity(pygame.sprite.Sprite):
         self.is_alive = True
         self.grille = world.grille
         self.brain = Brain(self)
+        self.pregnant = {"is_pregnant": False, "time_pregnant": 0}
+        if self.gender == 1:
+            self.pregnant["is_pregnant"] = True
+        self.pregnancy_time = -1
 
         self.sprite_sheet = pygame.image.load('textures/entities/placeholder.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
@@ -69,6 +74,7 @@ class LivingEntity(pygame.sprite.Sprite):
 
     def update(self):  # Récupère la position de base
         self.check_life()
+        self.check_pregnant()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
         if self.brain is not None:
@@ -89,6 +95,21 @@ class LivingEntity(pygame.sprite.Sprite):
         self.health = health
         self.attack = attack
         self.lifetime = lifetime
+
+    def give_birth(self):
+        position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
+        return LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)
+
+    def check_pregnant(self):
+        if self.pregnant["is_pregnant"] and self.pregnant["time_pregnant"] == self.pregnancy_time:
+            new_child = self.give_birth()
+            self.world.entities.append(new_child)
+            self.world.group.add(new_child)
+            print(self.name, " a donné naissance !")
+            # self.pregnant["is_pregnant"] = False
+            self.pregnant["time_pregnant"] = 0
+        elif self.pregnant["is_pregnant"]:
+            self.pregnant["time_pregnant"] += 1
 
     def damage(self, damage):
         self.health -= damage
