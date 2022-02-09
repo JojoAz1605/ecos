@@ -5,7 +5,7 @@ from code.brain import Brain
 class LivingEntity(pygame.sprite.Sprite):
     def __init__(self, position: list[int, int], name: str,  gender: int, world):
         super().__init__()
-        self.TYPE = "Living entity"
+        self.type = "Living entity"
         self.position = position
         self.oldposition = self.position.copy()
         self.name = name
@@ -31,6 +31,9 @@ class LivingEntity(pygame.sprite.Sprite):
             'up': self.get_image(0, 96)
         }
 
+    def __str__(self):
+        return f"Type: {self.type}; Name: {self.name}; gender: {self.gender}"
+
     def save_location(self):
         self.oldposition = list(self.position).copy()
 
@@ -55,7 +58,7 @@ class LivingEntity(pygame.sprite.Sprite):
         self.animation('down')
 
     def die(self):
-        print(f"HO MON DIEU, {self.name}, un {self.TYPE} vient de mourir, c'était un/e {self.gender} :'O")
+        print(f"HO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
         self.brain = None  # supprime le cerveau pour éviter que la créature ne bouge
         self.image.set_alpha(0)
         self.is_alive = False

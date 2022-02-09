@@ -79,6 +79,7 @@ class Game:
                 entity.age += 1
                 if not entity.is_alive:
                     self.entities.remove(entity)
+                    self.group.remove(entity)
             self.day = 0
             self.year += 1
             print(f"Une nouvelle année commence, nous sommes en l'an {self.year} !")

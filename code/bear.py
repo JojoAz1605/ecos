@@ -6,7 +6,7 @@ from random import randint
 class Bear(Animal):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
-        self.TYPE = "Bear"
+        self.type = "Bear"
         self.regime = 1
         self.health = 140
         self.attack = 13
