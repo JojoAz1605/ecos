@@ -41,23 +41,28 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         self.entities = []
-        self.entities.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
-        self.entities.append(Pebble(16*4, 16*16, "pebble", 20))
-        for i in range(10):
+        self.items = []
+        self.items.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
+        self.items.append(Pebble(16*4, 16*16, "pebble", 20))
+        for i in range(100):
             rand_num = randint(0, 3)
             if rand_num == 0:
-                self.entities.append(Human([player_position.x, player_position.y], str(i), 0, self.grille))
+                self.entities.append(Human([player_position.x, player_position.y], str(i), 0, self))
             elif rand_num == 1:
-                self.entities.append(Orc([player_position.x, player_position.y], str(i), 0, self.grille))
+                self.entities.append(Orc([player_position.x, player_position.y], str(i), 0, self))
             elif rand_num == 2:
-                self.entities.append(Rabbit([player_position.x, player_position.y], str(i), 0, self.grille))
+                self.entities.append(Rabbit([player_position.x, player_position.y], str(i), 0, self))
             elif rand_num == 3:
-                self.entities.append(Bear([player_position.x, player_position.y], str(i), 0, self.grille))
+                self.entities.append(Bear([player_position.x, player_position.y], str(i), 0, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
         for entity in self.entities:
             self.group.add(entity)
+        for item in self.items:
+            self.group.add(item)
+
+        self.day = 0
 
     def getRectPixels(self, rect: pygame.Rect):
         posList = []
@@ -66,7 +71,16 @@ class Game:
                 posList.append((x, y))
         return posList
 
+    def nouveau_jour(self):
+        if self.day == 50:  # à modifier pour changer le rythme de passage des années
+            for entity in self.entities:
+                entity.age += 1
+            self.day = 0
+        else:
+            self.day += 1
+
     def update(self):
+        self.nouveau_jour()
         self.group.update()
 
     def run(self):

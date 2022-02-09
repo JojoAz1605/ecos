@@ -1,20 +1,20 @@
 import pygame
-from code.pathfinding.utility.grille import Grille
 from code.brain import Brain
 
 
 class LivingEntity(pygame.sprite.Sprite):
-    def __init__(self, position: list[int, int], name: str,  gender: int, grille: Grille):
+    def __init__(self, position: list[int, int], name: str,  gender: int, world):
         super().__init__()
         self.position = position
         self.oldposition = self.position.copy()
         self.name = name
         self.gender = gender
+        self.world = world
         self.health = int
         self.attack = int
         self.age = int
         self.lifetime = int
-        self.grille = grille
+        self.grille = world.grille
         self.brain = Brain(self)
 
         self.sprite_sheet = pygame.image.load('textures/entities/placeholder.png')  # Chargement du joueur
@@ -52,10 +52,23 @@ class LivingEntity(pygame.sprite.Sprite):
         self.position[1] += 2
         self.animation('down')
 
+    def die(self):
+        # TODO qu'est-ce qu'une entité va faire en mourant
+        print(f"HO MON DIEU, {self.name} vient de mourir :'O")
+        self.brain = None  # supprime le cerveau pour éviter que la créature ne bouge
+        self.image.set_alpha(0)
+
+    def check_life(self):
+        print(self.name, self.age)
+        if self.health == 0 or self.age == self.lifetime:
+            self.die()
+
     def update(self):  # Récupère la position de base
+        self.check_life()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
-        self.brain.do_next_move()  # demande au cerveau de donner le prochain mouvement
+        if self.brain is not None:
+            self.brain.do_next_move()  # demande au cerveau de donner le prochain mouvement
 
     def get_image(self, x, y):  # Fonction pour retourner la map avec les sprites
         image = pygame.Surface([32, 32])  # Le perso fait 32x32
