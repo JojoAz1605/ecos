@@ -6,6 +6,7 @@ import pygame
 class Human(Humanoid):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
+        self.TYPE = "Human"
         self.health = 100
         self.attack = 10
         self.age = 0

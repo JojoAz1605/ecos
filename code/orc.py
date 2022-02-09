@@ -6,6 +6,7 @@ import pygame
 class Orc(Humanoid):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
+        self.type = "Orc"
         self.health = 150
         self.attack = 15
         self.age = 0

@@ -7,7 +7,7 @@ class Pebble(Weapon):
         super().__init__(x, y, name, damage)
         self.image = pygame.image.load("textures/items/caillou.png")
         self.rect = self.image.get_rect()
-        self.image.set_colorkey([0, 0, 0])
+        self.image.set_colorkey([0, 255, 0])
         self.position = [x, y]
         self.feet = pygame.Rect(0, 0, self.rect.width * 0.5, 12)
 

@@ -45,15 +45,17 @@ class Game:
         self.items.append(Woodenbranch(16*4, 16*4, "woodenbranch", 20))
         self.items.append(Pebble(16*4, 16*16, "pebble", 20))
         for i in range(100):
-            rand_num = randint(0, 3)
-            if rand_num == 0:
-                self.entities.append(Human([player_position.x, player_position.y], str(i), 0, self))
-            elif rand_num == 1:
-                self.entities.append(Orc([player_position.x, player_position.y], str(i), 0, self))
-            elif rand_num == 2:
-                self.entities.append(Rabbit([player_position.x, player_position.y], str(i), 0, self))
-            elif rand_num == 3:
-                self.entities.append(Bear([player_position.x, player_position.y], str(i), 0, self))
+            entity_type = randint(0, 3)
+            entity_name = str(i)
+            gender = randint(0, 1)
+            if entity_type == 0:
+                self.entities.append(Human([player_position.x, player_position.y], entity_name, gender, self))
+            elif entity_type == 1:
+                self.entities.append(Orc([player_position.x, player_position.y], entity_name, gender, self))
+            elif entity_type == 2:
+                self.entities.append(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
+            elif entity_type == 3:
+                self.entities.append(Bear([player_position.x, player_position.y], entity_name, gender, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
@@ -61,8 +63,8 @@ class Game:
             self.group.add(entity)
         for item in self.items:
             self.group.add(item)
-
         self.day = 0
+        self.year = 0
 
     def getRectPixels(self, rect: pygame.Rect):
         posList = []
@@ -75,7 +77,11 @@ class Game:
         if self.day == 50:  # à modifier pour changer le rythme de passage des années
             for entity in self.entities:
                 entity.age += 1
+                if not entity.is_alive:
+                    self.entities.remove(entity)
             self.day = 0
+            self.year += 1
+            print(f"Une nouvelle année commence, nous sommes en l'an {self.year} !")
         else:
             self.day += 1
 
@@ -100,5 +106,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(60)  # Fixe le nombre de FPS
+            clock.tick(600)  # Fixe le nombre de FPS
         pygame.quit()
