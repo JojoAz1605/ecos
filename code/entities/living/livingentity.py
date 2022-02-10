@@ -64,18 +64,19 @@ class LivingEntity(pygame.sprite.Sprite):
         self.position[1] += 2
         self.animation('down')
 
-    def die(self):
+    def die(self) -> None:
+        """Ce qu'il se passe à la mort d'une entité"""
         print(f"HO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
         self.brain = None  # supprime le cerveau pour éviter que la créature ne bouge
-        self.image.set_alpha(0)
-        self.is_alive = False
+        self.image.set_alpha(0)  # rend invisible la créature
+        self.is_alive = False  # la rend morte parce qu'elle est morte
 
-    def check_life(self):
+    def check_life(self) -> None:
+        """Check si oui ou non l'entité est morte"""
         if self.health == 0 or self.age == self.lifetime:
             self.die()
 
     def update(self):  # Récupère la position de base
-        self.check_life()
         self.check_pregnant()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
@@ -99,20 +100,24 @@ class LivingEntity(pygame.sprite.Sprite):
         self.lifetime = lifetime
 
     def give_birth(self):
-        position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
-        newChild = LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)
-        self.world.entities[None].append(newChild)
-        return newChild
+        """Créé une nouvelle créature
+        :return: la nouvelle créature
+        """
+        position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]  # sert pour bien placer le nouveau-né sur la grille
+        newChild = LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)  # créer une nouvelle créature
+        self.world.entities[None].append(newChild)  # la rajoute à la liste des entités de son type
+        return newChild  # retourne le nouveau-né
 
-    def check_pregnant(self):
-        if self.pregnant["is_pregnant"] and self.pregnant["time_pregnant"] == self.pregnancy_time:
-            new_child = self.give_birth()
-            self.world.group.add(new_child)
+    def check_pregnant(self) -> None:
+        """Check si une créature est enceinte, et si elle est prête à mettre bas"""
+        if self.pregnant["is_pregnant"] and self.pregnant["time_pregnant"] == self.pregnancy_time:  # si la créature est enceinte et qu'elle est prête à mettre bas
+            new_child = self.give_birth()  # une naissance
+            self.world.group.add(new_child)  # on l'ajoute au groupe
             print(self.name, " a donné naissance !")
-            self.pregnant["is_pregnant"] = False
+            self.pregnant["is_pregnant"] = False  # la créature n'est plus enceinte
             self.pregnant["time_pregnant"] = 0
-        elif self.pregnant["is_pregnant"]:
-            self.pregnant["time_pregnant"] += 1
+        elif self.pregnant["is_pregnant"]:  # si la créature est enceinte, mais qu'elle n'est pas encore prête à mettre bas
+            self.pregnant["time_pregnant"] += 1  # un jour de plus au compteur
 
     def damage(self, damage):
         self.health -= damage

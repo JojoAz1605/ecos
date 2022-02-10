@@ -6,6 +6,7 @@ from code.entities.living.humanoid.human import Human
 from code.pathfinding.utility.grille import Grille
 from code.entities.items.pebble import Pebble
 from code.entities.items.woodenbranch import Woodenbranch
+from code.entities.living.livingentity import LivingEntity
 from code.entities.living.animals.rabbit import Rabbit
 from code.entities.living.animals.bear import Bear
 from code.entities.living.animals.wolf import Wolf
@@ -72,31 +73,50 @@ class Game:
         for entity_type in self.entities:
             for entity in self.entities[entity_type]:
                 self.group.add(entity)
-        self.day = 0
-        self.year = 0
+        self.day = 0  # le jour actuel
+        self.year = 0  # l'année actuelle
+        self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
 
-    def getRectPixels(self, rect: pygame.Rect):
+
+    def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
+        """Renvoie la liste des pixels composants un rectangle
+        :param rect: un rectangle
+        :return: une liste des positions des pixels
+        """
         posList = []
         for x in range(int(rect.x / self.TAILLE_CASE), int((rect.x + rect.width) / self.TAILLE_CASE)):
             for y in range(int(rect.y / self.TAILLE_CASE), int((rect.y + rect.height) / self.TAILLE_CASE)):
                 posList.append((x, y))
         return posList
 
-    def nouveau_jour(self):
-        if self.day == 365:  # à modifier pour changer le rythme de passage des années
-            for entity_type in self.entities:
-                if entity_type == "items":
-                    continue
-                for entity in self.entities[entity_type]:
-                    entity.age += 1
-                    if not entity.is_alive:
-                        self.entities[entity_type].remove(entity)
-                        self.group.remove(entity)
-            self.day = 0
-            self.year += 1
+    def nouveau_jour(self) -> None:
+        """Fonction qui définit ce qu'il se passe pour un nouveau jour
+        """
+        if self.day == self.nb_jour_dans_une_annee:  # vérifie si on a atteint le nb de jours dans une année
+            for entity_type in self.entities:  # parcours les différentes listes d'entités
+                if entity_type == "items":  # si on parcourt la liste des items
+                    continue  # on l'ignore
+                for entity in self.entities[entity_type]:  # pour toutes les entités dans la liste
+                    entity.age += 1  # on incrémente son âge
+                    entity.check_life()
+                    if not entity.is_alive:  # si l'entité n'est plus vivante
+                        self.remove_entity(entity_type, entity)  # on la retire des listes pour qu'elle ne soit plus gérée
+            self.day = 0  # on reset le nb de jours
+            self.year += 1  # on incrémente l'année
             print(f"Une nouvelle année commence, nous sommes en l'an {self.year} !")
         else:
-            self.day += 1
+            self.day += 1  # on incrémente le jour
+
+    def remove_entity(self, entity_type: str, entity: LivingEntity) -> None:
+        """Retire une entité des listes
+        :param entity_type: le type de l'entité à retirer
+        :param entity: l'entité à retirer
+        """
+        if entity in self.entities[entity_type]:  # vérifie que l'entité est présente dans la liste
+            self.entities[entity_type].remove(entity)  # on la retire
+            self.group.remove(entity)
+        else:
+            print(f"ERREUR: L'entité {entity}, n'est pas présente dans la liste")
 
     def update(self):
         self.nouveau_jour()
