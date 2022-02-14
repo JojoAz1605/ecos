@@ -1,13 +1,13 @@
 class Node:
-    def __init__(self, graph, pos: tuple[int, int], parent) -> None:
-        """Un noeud d'un graph
-        :param graph: le graph
+    def __init__(self, algo, pos: tuple[int, int], parent) -> None:
+        """Un noeud d'un algo
+        :param algo: l'algo
         :param pos: une position
         :param parent: le parent du noeud ou None s'il n'en a pas
         """
-        self.graph = graph
+        self.algo = algo
         self.pos = pos
-        self.is_passable = self.graph.grid.get_is_passable(self.pos)
+        self.is_passable = self.algo.grid.get_is_passable(self.pos)
         if parent is None:  # si le nœud n'a pas de parent
             self.parent = self  # il est son propre parent
         else:
@@ -31,7 +31,7 @@ class Node:
 
     def __calculate_h(self) -> None:
         """Calcule le score H"""
-        node = self.graph.get_end_node()
+        node = self.algo.get_end_node()
         self.h_score = abs(self.pos[0] - node.pos[0]) + abs(self.pos[1] - node.pos[1])
 
     def get_pos(self) -> tuple[int, int]:
@@ -63,14 +63,14 @@ class Node:
 
         node_x = self.pos[0]
         node_y = self.pos[1]
-        if node_x + 1 < self.graph.grid.width:
-            res.append(Node(self.graph, (node_x + 1, node_y), self))
+        if node_x + 1 < self.algo.grid.width:
+            res.append(Node(self.algo, (node_x + 1, node_y), self))
         if node_x - 1 > 0:
-            res.append(Node(self.graph, (node_x - 1, node_y), self))
-        if node_y + 1 < self.graph.grid.height:
-            res.append(Node(self.graph, (node_x, node_y + 1), self))
+            res.append(Node(self.algo, (node_x - 1, node_y), self))
+        if node_y + 1 < self.algo.grid.height:
+            res.append(Node(self.algo, (node_x, node_y + 1), self))
         if node_y - 1 > 0:
-            res.append(Node(self.graph, (node_x, node_y - 1), self))
+            res.append(Node(self.algo, (node_x, node_y - 1), self))
 
         return res
 

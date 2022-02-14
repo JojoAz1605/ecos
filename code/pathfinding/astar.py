@@ -1,4 +1,3 @@
-from code.pathfinding.utility.graph import Graph
 from code.pathfinding.utility.grille import Grille
 from .node import Node
 
@@ -10,8 +9,10 @@ class Astar:
         :param start_pos: la position de départ
         :param end_pos: la position d'arrivée
         """
-        self.graph = Graph(grid, start_pos, end_pos)
-        self.open = [self.graph.get_start_node()]  # la liste ouverte, stockant les nœuds qui restent à explorer
+        self.grid = grid
+        self.start_node = Node(self, start_pos, None)
+        self.end_node = Node(self, end_pos, None)
+        self.open = [self.start_node]  # la liste ouverte, stockant les nœuds qui restent à explorer
         self.close = []  # la liste fermée, stockant les nœuds les plus prometteurs
         self.nb_iterations = 0  # le nombre actuel d'itération de l'algorithme
 
@@ -21,7 +22,7 @@ class Astar:
         """
         path = [self.close[-1]]  # prend le dernier nœud de la liste fermée
         parent = path[-1].get_parent()  # prend son parent
-        while parent != self.graph.get_start_node():  # tant que le nœud parent n'est pas le nœud de départ
+        while parent != self.get_start_node():  # tant que le nœud parent n'est pas le nœud de départ
             parent = path[-1].get_parent()  # prend le parent du dernier noeud ajouté à la liste
             path.append(parent)  # et l'ajoute à la liste
         self.reset()  # reset l'algorithme
@@ -30,7 +31,7 @@ class Astar:
 
     def reset(self) -> None:
         """Remet à 0 l'algorithme"""
-        self.open = [self.graph.get_start_node()]
+        self.open = [self.get_start_node()]
         self.close = []
         self.nb_iterations = 0
 
@@ -56,7 +57,7 @@ class Astar:
             self.open.remove(successor)  # retire celui qui a un score inférieur
             self.open.append(successor)  # et ajoute celui qui a un meilleur score à la place
         else:  # sinon l'ajoute à la liste
-            self.open.append(Node(self.graph, successor.pos, studied_node))
+            self.open.append(Node(self, successor.pos, studied_node))
 
     def __convert_to_pos(self) -> list[tuple[int, int]]:
         """Convertit les nodes du résultat en positions exploitables par un cerveau de créature
@@ -80,11 +81,23 @@ class Astar:
     def get_nb_iterations(self) -> int:
         return self.nb_iterations
 
-    def set_end_pos(self, pos: tuple) -> None:
-        self.graph.set_end_node(Node(self.graph, pos, None))
+    def get_start_node(self) -> Node:
+        return self.start_node
 
-    def set_start_pos(self, pos: tuple) -> None:
-        self.graph.set_start_node(Node(self.graph, pos, None))
+    def get_end_node(self) -> Node:
+        return self.end_node
+
+    def set_start_node(self, node: Node) -> None:
+        self.start_node = node
+
+    def set_end_node(self, node: Node) -> None:
+        self.end_node = node
+
+    def set_start_pos(self, pos) -> None:
+        self.set_start_node(Node(self, pos, None))
+
+    def set_end_pos(self, pos) -> None:
+        self.set_end_node(Node(self, pos, None))
 
     def iteration(self) -> None or bool:
         """Une itération de l'algorithme
@@ -107,6 +120,6 @@ class Astar:
             best_node_in_open = self.__get_best_node_in_open()  # prend la meilleure node dans la liste ouverte
             self.open.remove(best_node_in_open)  # la retire de la liste ouverte
             self.close.append(best_node_in_open)  # et l'ajoute à la liste fermée
-            if self.close[-1] == self.graph.get_end_node():  # si la dernière node de la liste fermée est la destination
+            if self.close[-1] == self.get_end_node():  # si la dernière node de la liste fermée est la destination
                 return self.__convert_to_pos()  # retourne un résultat(en le convertissant dans un meilleur format au passage)
         return False  # si l'itération se termine sans problème, retourne False
