@@ -5,6 +5,7 @@ class Humanoid(LivingEntity):
     def __init__(self, position, name, gender, grille):
         super().__init__(position, name, gender, grille)
         self.weapon = None
+        self.eatable = ["rabbits", "wolves", "bears"]
 
     def entity_attack(self, target_player):
         damage = self.attack

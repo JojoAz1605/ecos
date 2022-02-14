@@ -22,6 +22,7 @@ class LivingEntity(pygame.sprite.Sprite):
         self.grille = world.grille
         self.brain = Brain(self)
         self.pregnant = {"is_pregnant": False, "time_pregnant": 0}
+        self.eatable = list[str]
         if self.gender == 1:
             self.pregnant["is_pregnant"] = True
         self.pregnancy_time = -1

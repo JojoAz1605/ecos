@@ -9,12 +9,12 @@ class Wolf(Animal):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
         self.type = "Bear"
-        self.regime = 1
         self.health = 80
         self.attack = 9
         self.age = 0
         self.lifetime = randint(10, 16)
         self.pregnancy_time = 67  # en jours
+        self.eatable = ["humans", "orcs", "bears", "rabbits"]
 
         self.sprite_sheet = pygame.image.load('textures/entities/loup.png')  # Chargement du joueur
         self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc

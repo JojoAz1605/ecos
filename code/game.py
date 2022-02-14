@@ -53,7 +53,7 @@ class Game:
         }
         self.entities["items"].append(Woodenbranch(16 * 4, 16 * 4, "woodenbranch", 20))
         self.entities["items"].append(Pebble(16 * 4, 16 * 16, "pebble", 20))
-        for i in range(20):
+        for i in range(10):
             entity_type = randint(0, 4)
             entity_name = str(i)
             gender = randint(0, 1)
