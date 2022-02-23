@@ -122,6 +122,21 @@ class Game:
         self.nouveau_jour()
         self.group.update()
 
+    def calculate_dist_entity_by_list(self, entity: LivingEntity, entity_types: list[str]):
+        res = {}
+        for entity_type in entity_types:
+            if len(self.entities[entity_type]) == 0:
+                continue
+            res[entity_type] = []
+            for another_entity in self.entities[entity_type]:
+                if entity == another_entity:
+                    continue
+                res[entity_type].append(self.calculate_dist(entity, another_entity))
+        return res
+
+    def calculate_dist(self, entity: LivingEntity, another_entity: LivingEntity):
+        return abs(another_entity.position[0] - entity.position[0]) + abs(another_entity.position[1] - entity.position[1])
+
     def run(self):
 
         clock = pygame.time.Clock()
