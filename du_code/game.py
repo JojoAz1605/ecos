@@ -1,15 +1,15 @@
 import pygame
 import pytmx
 import pyscroll
-from code.entities.living.humanoid.orc import Orc
-from code.entities.living.humanoid.human import Human
-from code.pathfinding.utility.grille import Grille
-from code.entities.items.pebble import Pebble
-from code.entities.items.woodenbranch import Woodenbranch
-from code.entities.living.livingentity import LivingEntity
-from code.entities.living.animals.rabbit import Rabbit
-from code.entities.living.animals.bear import Bear
-from code.entities.living.animals.wolf import Wolf
+from du_code.entities.living.humanoid.orc import Orc
+from du_code.entities.living.humanoid.human import Human
+from du_code.pathfinding.utility.grille import Grille
+from du_code.entities.items.pebble import Pebble
+from du_code.entities.items.woodenbranch import Woodenbranch
+from du_code.entities.living.livingentity import LivingEntity
+from du_code.entities.living.animals.rabbit import Rabbit
+from du_code.entities.living.animals.bear import Bear
+from du_code.entities.living.animals.wolf import Wolf
 from random import randint
 
 
@@ -18,8 +18,7 @@ class Game:
     def __init__(self):
         # Création de la fenêtre
         self.screen = pygame.display.set_mode((800, 800))
-        pygame.display.set_caption("Ecose - Simulation d'écosystème"
-                                   )
+        pygame.display.set_caption("Ecose - Simulation d'écosystème")
         self.TAILLE_CASE = 16
 
         # Chargement de la carte
@@ -51,7 +50,8 @@ class Game:
         self.entities["items"].append(Woodenbranch(16 * 4, 16 * 4, "woodenbranch", 20))
         self.entities["items"].append(Pebble(16 * 4, 16 * 16, "pebble", 20))
         for i in range(10):
-            entity_type = randint(0, 4)
+            # entity_type = randint(0, 4)
+            entity_type = 0
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
@@ -73,7 +73,6 @@ class Game:
         self.day = 0  # le jour actuel
         self.year = 0  # l'année actuelle
         self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
-
 
     def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
         """Renvoie la liste des pixels composants un rectangle
@@ -112,6 +111,16 @@ class Game:
         if entity in self.entities[entity_type]:  # vérifie que l'entité est présente dans la liste
             self.entities[entity_type].remove(entity)  # on la retire
             self.group.remove(entity)
+
+    def get_entities_list(self, entity_types: list[str]) -> list[LivingEntity]:
+        res = []
+        for entity_type in entity_types:
+            if entity_type not in self.entities:
+                return res
+        for entity_type in entity_types:
+            for entity in self.entities[entity_type]:
+                res.append(entity)
+        return res
 
     def update(self):
         self.nouveau_jour()

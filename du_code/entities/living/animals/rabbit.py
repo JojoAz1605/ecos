@@ -2,13 +2,13 @@ from random import randint
 
 import pygame
 
-from code.entities.living.animals.animal import Animal
+from du_code.entities.living.animals.animal import Animal
 
 
 class Rabbit(Animal):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
-        self.type = "Rabbit"
+        self.type = "rabbits"
         self.health = 20
         self.attack = 2
         self.age = 0

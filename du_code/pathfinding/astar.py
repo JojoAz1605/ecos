@@ -1,4 +1,4 @@
-from code.pathfinding.utility.grille import Grille
+from du_code.pathfinding.utility.grille import Grille
 from .node import Node
 
 
