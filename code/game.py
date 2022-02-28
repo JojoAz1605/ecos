@@ -16,20 +16,23 @@ from random import randint
 class Game:
 
     def __init__(self):
+
         # Création de la fenêtre
+
         self.screen = pygame.display.set_mode((800, 800))
-        pygame.display.set_caption("Ecose - Simulation d'écosystème"
-                                   )
         self.TAILLE_CASE = 16
+        pygame.display.set_caption("Ecose - Simulation d'écosystème")
 
         # Chargement de la carte
+
         tmx_data = pytmx.util_pygame.load_pygame('maps/carte.tmx')
         map_data = pyscroll.data.TiledMapData(tmx_data)
         map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
 
         # Définition d'une liste qui va gérer les collisions en stockant les objets tiles de collision
 
-        self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE), int(self.screen.get_size()[1] / self.TAILLE_CASE))
+        self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE),
+                             int(self.screen.get_size()[1] / self.TAILLE_CASE))
         self.walls = []
         for wall in tmx_data.objects:
             if wall.name == "collision":
@@ -112,6 +115,8 @@ class Game:
         if entity in self.entities[entity_type]:  # vérifie que l'entité est présente dans la liste
             self.entities[entity_type].remove(entity)  # on la retire
             self.group.remove(entity)
+        else:
+            print(f"ERREUR: L'entité {entity}, n'est pas présente dans la liste")
 
     def update(self):
         self.nouveau_jour()
