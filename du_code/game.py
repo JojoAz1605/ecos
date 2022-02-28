@@ -49,9 +49,8 @@ class Game:
         }
         self.entities["items"].append(Woodenbranch(16 * 4, 16 * 4, "woodenbranch", 20))
         self.entities["items"].append(Pebble(16 * 4, 16 * 16, "pebble", 20))
-        for i in range(10):
-            # entity_type = randint(0, 4)
-            entity_type = 0
+        for i in range(40):
+            entity_type = randint(0, 4)
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
@@ -94,12 +93,13 @@ class Game:
                     continue  # on l'ignore
                 for entity in self.entities[entity_type]:  # pour toutes les entités dans la liste
                     entity.age += 1  # on incrémente son âge
-                    entity.check_life()
-                    if not entity.is_alive:  # si l'entité n'est plus vivante
-                        self.remove_entity(entity_type, entity)  # on la retire des listes pour qu'elle ne soit plus gérée
             self.day = 0  # on reset le nb de jours
             self.year += 1  # on incrémente l'année
-            print(f"Une nouvelle année commence, nous sommes en l'an {self.year} !")
+            print(f"\n-----Une nouvelle année commence, nous sommes en l'an {self.year} !-----")
+            for entity_type in self.entities:
+                if len(self.entities[entity_type]) != 0:
+                    print(f"Les {entity_type} sont maintenant {len(self.entities[entity_type])}!", end=', ')
+            print()
         else:
             self.day += 1  # on incrémente le jour
 
@@ -168,5 +168,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(60)  # Fixe le nombre de FPS
+            clock.tick()  # Fixe le nombre de FPS
         pygame.quit()
