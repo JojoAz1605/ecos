@@ -2,7 +2,7 @@ from random import randint
 
 import pygame
 
-from code.brain import Brain
+from du_code.brain import Brain
 
 
 class LivingEntity(pygame.sprite.Sprite):
@@ -18,13 +18,10 @@ class LivingEntity(pygame.sprite.Sprite):
         self.attack = int
         self.age = int
         self.lifetime = int
-        self.is_alive = True
         self.grille = world.grille
         self.brain = Brain(self)
         self.pregnant = {"is_pregnant": False, "time_pregnant": 0}
         self.eatable = list[str]
-        if self.gender == 1:
-            self.pregnant["is_pregnant"] = True
         self.pregnancy_time = -1
 
         self.sprite_sheet = pygame.image.load('textures/entities/placeholder.png')  # Chargement du joueur
@@ -38,6 +35,13 @@ class LivingEntity(pygame.sprite.Sprite):
             'left': self.get_image(0, 32),
             'up': self.get_image(0, 96)
         }
+
+    def can_reproduce(self) -> bool:
+        other_entities_of_same_type = self.world.get_entities_list([self.type])
+        for entity in other_entities_of_same_type:
+            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 20:
+                return True
+        return False
 
     def __str__(self):
         return f"Type: {self.type}; Name: {self.name}; gender: {self.gender}"
@@ -67,18 +71,17 @@ class LivingEntity(pygame.sprite.Sprite):
 
     def die(self) -> None:
         """Ce qu'il se passe à la mort d'une entité"""
-        print(f"HO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
-        self.brain = None  # supprime le cerveau pour éviter que la créature ne bouge
-        self.image.set_alpha(0)  # rend invisible la créature
-        self.is_alive = False  # la rend morte parce qu'elle est morte
+        print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
+        self.world.remove_entity(self.type, self)
 
     def check_life(self) -> None:
         """Check si oui ou non l'entité est morte"""
-        if self.health == 0 or self.age == self.lifetime:
+        if self.health <= 0 or self.age == self.lifetime:
             self.die()
 
     def update(self):  # Récupère la position de base
         self.check_pregnant()
+        self.check_life()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
         if self.brain is not None:
@@ -114,15 +117,18 @@ class LivingEntity(pygame.sprite.Sprite):
         if self.pregnant["is_pregnant"] and self.pregnant["time_pregnant"] == self.pregnancy_time:  # si la créature est enceinte et qu'elle est prête à mettre bas
             new_child = self.give_birth()  # une naissance
             self.world.group.add(new_child)  # on l'ajoute au groupe
-            print(self.name, " a donné naissance !")
+            print(f"\t{self.name}, a donné naissance !")
             self.pregnant["is_pregnant"] = False  # la créature n'est plus enceinte
             self.pregnant["time_pregnant"] = 0
+        elif self.can_reproduce() and not self.pregnant["is_pregnant"] and self.gender == 1:
+            print(f"\tCHAMPAAAAGNE, {self.name} est enceinte")
+            self.pregnant["is_pregnant"] = True
         elif self.pregnant["is_pregnant"]:  # si la créature est enceinte, mais qu'elle n'est pas encore prête à mettre bas
             self.pregnant["time_pregnant"] += 1  # un jour de plus au compteur
 
     def damage(self, damage):
         self.health -= damage
-        print(f"Aie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
+        print(f"\tAie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
 
     def entity_attack(self, target_player):
         target_player.damage(self.attack)

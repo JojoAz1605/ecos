@@ -1,4 +1,4 @@
-from code.entities.living.livingentity import LivingEntity
+from du_code.entities.living.livingentity import LivingEntity
 
 
 class Humanoid(LivingEntity):

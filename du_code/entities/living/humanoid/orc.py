@@ -2,18 +2,19 @@ from random import randint
 
 import pygame
 
-from code.entities.living.humanoid.humanoid import Humanoid
+from du_code.entities.living.humanoid.humanoid import Humanoid
 
 
 class Orc(Humanoid):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
-        self.type = "Orc"
+        self.type = "orcs"
         self.health = 150
         self.attack = 15
         self.age = 0
         self.lifetime = randint(70, 90)
         self.pregnancy_time = 270  # en jours
+        self.attackable = ["humans"]
 
         self.sprite_sheet = pygame.image.load('textures/entities/orc.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc

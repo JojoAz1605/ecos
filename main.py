@@ -1,5 +1,5 @@
 import pygame
-from code.game import Game
+from du_code.game import Game
 
 if __name__ == "__main__":
 	pygame.init()
