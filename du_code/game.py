@@ -17,7 +17,7 @@ class Game:
     def __init__(self):
         # Création de la fenêtre
         self.screen = pygame.display.set_mode((800, 800))
-        pygame.display.set_caption("Ecose - Simulation d'écosystème")
+        pygame.display.set_caption("Ecos - Simulation d'écosystème")
         self.TAILLE_CASE = 16
 
         # Chargement de la carte
