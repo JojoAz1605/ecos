@@ -12,9 +12,6 @@ class Node:
             self.parent = self  # il est son propre parent
         else:
             self.parent = parent  # sinon prend la valeur donnée
-        self.f_score = 0  # score du noeud
-        self.g_score = 0  # distance de manhattan du noeud par rapport à son parent
-        self.h_score = 0  # distance de manhattan du noeud par rapport à la destination
 
     def __eq__(self, other) -> bool:
         """Si le noeud possède la même position qu'un autre noeud, alors ce sont les mêmes"""
@@ -26,28 +23,18 @@ class Node:
 
     def __calculate_g(self) -> None:
         """Calcule le score G"""
-        node = self.parent
-        self.g_score = abs(node.pos[0] - self.pos[0]) + abs(node.pos[1] - self.pos[1])
-
-    def __calculate_h(self) -> None:
-        """Calcule le score H"""
-        node = self.algo.get_end_node()
-        self.h_score = abs(self.pos[0] - node.pos[0]) + abs(self.pos[1] - node.pos[1])
-
-    def get_pos(self) -> tuple[int, int]:
-        return self.pos
 
     def get_parent(self):
         return self.parent
 
     def get_score(self) -> int:
         """Calcule le score et le retourne
-        :return: le score de la node
+        :return: le score de la node_h
         """
-        self.__calculate_g()
-        self.__calculate_h()
-        self.f_score = self.g_score + self.h_score
-        return self.f_score
+        node_g = self.parent
+        node_h = self.algo.get_end_node()
+
+        return (abs(node_g.pos[0] - self.pos[0]) + abs(node_g.pos[1] - self.pos[1])) + (abs(self.pos[0] - node_h.pos[0]) + abs(self.pos[1] - node_h.pos[1]))
 
     def get_is_passable(self) -> bool:
         return self.is_passable
