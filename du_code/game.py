@@ -1,6 +1,7 @@
 import pygame
 import pytmx
 import pyscroll
+
 from du_code.entities.living.humanoid.orc import Orc
 from du_code.entities.living.humanoid.human import Human
 from du_code.pathfinding.utility.grille import Grille
@@ -10,6 +11,7 @@ from du_code.entities.living.livingentity import LivingEntity
 from du_code.entities.living.animals.rabbit import Rabbit
 from du_code.entities.living.animals.bear import Bear
 from du_code.entities.living.animals.wolf import Wolf
+
 from random import randint
 
 
@@ -167,5 +169,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick()  # Fixe le nombre de FPS
+            clock.tick(60)  # Fixe le nombre de FPS
         pygame.quit()

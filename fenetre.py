@@ -1,6 +1,6 @@
 import pygame
 import sys
-from code.game import Game
+from du_code.game import Game
 class Fenetre:
     def __init__(self):
         pygame.init()
