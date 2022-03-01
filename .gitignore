@@ -1,3 +1,4 @@
 .idea/*
+venv/*
 make_tree.bat
 output.txt
