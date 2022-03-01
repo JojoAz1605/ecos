@@ -14,7 +14,6 @@ from random import randint
 
 
 class Game:
-
     def __init__(self):
         # Création de la fenêtre
         self.screen = pygame.display.set_mode((800, 800))
