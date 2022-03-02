@@ -152,6 +152,17 @@ class Game:
         """
         return abs(another_entity.position[0] - entity.position[0]) + abs(another_entity.position[1] - entity.position[1])  # calcul par distance de Manhattan
 
+    def return_closest_entity(self, this_entity: LivingEntity, entity_types: list[LivingEntity]) -> list[LivingEntity]:
+        try:
+            closest = self.entities[entity_types[0]][0]
+            for entity_type in entity_types:
+                for entity in self.entities[entity_type]:
+                    if self.calculate_dist(this_entity, entity) <= self.calculate_dist(this_entity, closest):
+                        closest = entity
+            return closest
+        except IndexError:
+            pass
+
     def run(self):
         clock = pygame.time.Clock()
         # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement

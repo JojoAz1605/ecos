@@ -36,6 +36,20 @@ class LivingEntity(pygame.sprite.Sprite):
             'up': self.get_image(0, 96)
         }
 
+    def can_attack(self) -> bool:
+        try:
+            for entity_type in self.eatable:
+                for entity in self.world.entities[entity_type]:
+                    if self.world.calculate_dist(self, entity) <= 15:
+                        return True
+            return False
+        except KeyError:
+            pass
+
+    def check_attack(self):
+        if self.can_attack() and randint(0, 3) == 0:
+            self.entity_attack(self.world.return_closest_entity(self, self.eatable))
+
     def can_reproduce(self) -> bool:
         other_entities_of_same_type = self.world.get_entities_list([self.type])
         for entity in other_entities_of_same_type:
@@ -81,6 +95,7 @@ class LivingEntity(pygame.sprite.Sprite):
 
     def update(self):  # Récupère la position de base
         self.check_pregnant()
+        self.check_attack()
         self.check_life()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
@@ -131,4 +146,5 @@ class LivingEntity(pygame.sprite.Sprite):
         print(f"\tAie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
 
     def entity_attack(self, target_player):
-        target_player.damage(self.attack)
+        if target_player is not None:
+            target_player.damage(self.attack)

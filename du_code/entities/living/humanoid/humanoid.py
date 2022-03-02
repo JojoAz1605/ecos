@@ -8,10 +8,11 @@ class Humanoid(LivingEntity):
         self.eatable = ["rabbits", "wolves", "bears"]
 
     def entity_attack(self, target_player):
-        damage = self.attack
-        if self.has_weapon():
-            damage += self.weapon.damage
-        target_player.damage(damage)
+        if target_player is not None:
+            damage = self.attack
+            if self.has_weapon():
+                damage += self.weapon.damage
+            target_player.damage(damage)
 
     def set_weapon(self, weapon):
         self.weapon = weapon
