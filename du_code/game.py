@@ -18,7 +18,7 @@ from random import randint
 class Game:
     def __init__(self):
         # Création de la fenêtre
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode((1100, 800))
         pygame.display.set_caption("Ecos - Simulation d'écosystème")
         self.TAILLE_CASE = 16
 
@@ -177,7 +177,6 @@ class Game:
             self.group.draw(self.screen)  # Affiche la map
             surface_pos_y = 30
             for entity_type in self.entities:
-
                 entity_counter_surface, rect = font.render(f"{entity_type}: {str(len(self.entities[entity_type]))}", (255, 255, 255))
                 self.screen.blit(entity_counter_surface, (800, surface_pos_y))
                 surface_pos_y += 30
@@ -185,6 +184,9 @@ class Game:
                     entity.save_location()  # Sauvegarde la position du joueur
             timer_surface, rect = font.render(f"Année: {str(self.year)} | Jour: {str(self.day)}", (255, 255, 255))
             self.screen.blit(timer_surface, (800, 0))
+            """graph_surface = pygame.Surface((300, 300))
+            graph_surface.fill((255, 255, 255))
+            self.screen.blit(graph_surface, (800, 300))"""
 
             pygame.display.flip()
             for event in pygame.event.get():
