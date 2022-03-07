@@ -18,7 +18,7 @@ from random import randint
 class Game:
     def __init__(self):
         # Création de la fenêtre
-        self.screen = pygame.display.set_mode((800, 800))
+        self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Ecos - Simulation d'écosystème")
         self.TAILLE_CASE = 16
 
@@ -169,13 +169,23 @@ class Game:
 
         # Boucle de la simulation
 
+        font = pygame.freetype.Font("polices/FreeSansBold.ttf", 24)
+
         running = True
         while running:
-            for entity_type in self.entities:
-                for entity in self.entities[entity_type]:
-                    entity.save_location()  # Sauvegarde la position du joueur
             self.update()  # Update la position pour la gestion de collisions
             self.group.draw(self.screen)  # Affiche la map
+            surface_pos_y = 30
+            for entity_type in self.entities:
+
+                entity_counter_surface, rect = font.render(f"{entity_type}: {str(len(self.entities[entity_type]))}", (255, 255, 255))
+                self.screen.blit(entity_counter_surface, (800, surface_pos_y))
+                surface_pos_y += 30
+                for entity in self.entities[entity_type]:
+                    entity.save_location()  # Sauvegarde la position du joueur
+            timer_surface, rect = font.render(f"Année: {str(self.year)} | Jour: {str(self.day)}", (255, 255, 255))
+            self.screen.blit(timer_surface, (800, 0))
+
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
