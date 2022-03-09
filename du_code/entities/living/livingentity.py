@@ -85,7 +85,6 @@ class LivingEntity(pygame.sprite.Sprite):
         """Ce qu'il se passe à la mort d'une entité"""
         print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
         self.world.remove_entity(self.type, self)
-        self.kill()
 
     def check_life(self) -> None:
         """Check si oui ou non l'entité est morte"""

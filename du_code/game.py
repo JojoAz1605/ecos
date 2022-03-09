@@ -117,6 +117,7 @@ class Game:
         if entity in self.entities[entity_type]:  # vérifie que l'entité est présente dans la liste
             self.entities[entity_type].remove(entity)  # on la retire
             self.group.remove(entity)
+        entity.kill()
 
     def get_entities_list(self, entity_types: list[str]) -> list[LivingEntity]:
         res = []
@@ -140,23 +141,6 @@ class Game:
         """
         return abs(another_entity.position[0] - entity.position[0]) + abs(
             another_entity.position[1] - entity.position[1])  # calcul par distance de Manhattan
-
-    def calculate_dist_entity_by_list(self, entity: LivingEntity, entity_types: list[str]) -> dict[str, list]:
-        """Calcule la distance entre une entité et toutes les entités d'un ou plusieurs types spécifiés
-        :param entity: une entité
-        :param entity_types: une liste de types d'entités
-        :return: un dictionnaire avec les distances entre une entité et d'autres entités, en les regroupants par type
-        """
-        res = {}  # le résultat
-        for entity_type in entity_types:  # parcours des types d'entités donnés
-            if len(self.entities[entity_type]) == 0:  # si la liste des entités de ce type est vide
-                continue  # on l'ignore
-            res[entity_type] = []  # on initialise une liste des distances avec le type d'entité comme clé
-            for another_entity in self.entities[entity_type]:  # parcours les entités d'un type
-                if entity == another_entity:  # si l'entité est la même que l'autre
-                    continue  # on l'ignore
-                res[entity_type].append(self.calculate_dist(entity, another_entity))  # on ajoute la distance à la liste
-        return res
 
     def return_closest_entity(self, this_entity: LivingEntity, entity_types: list[LivingEntity]) -> list[LivingEntity]:
         try:
