@@ -51,7 +51,7 @@ class LivingEntity(pygame.sprite.Sprite):
     def can_reproduce(self) -> bool:
         other_entities_of_same_type = self.world.get_entities_list([self.type])
         for entity in other_entities_of_same_type:
-            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 40:
+            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 20:
                 return True
         return False
 

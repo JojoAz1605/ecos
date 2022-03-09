@@ -19,7 +19,7 @@ from random import randint
 class Game:
     def __init__(self):
         # Création de la fenêtre
-        self.screen = pygame.display.set_mode((1100, 800))
+        self.screen = pygame.display.set_mode((1050, 800))
         pygame.display.set_caption("Ecos - Simulation d'écosystème")
         self.TAILLE_CASE = 16
 
@@ -50,9 +50,10 @@ class Game:
             "plants": [],
             "weapons": []
         }
-        self.entities["weapons"].append(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))
-        self.entities["weapons"].append(Pebble((16 * 4, 16 * 16), "pebble", 20))
-        for i in range(50):
+        self.entities["weapons"].append(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
+        self.entities["weapons"].append(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
+
+        for i in range(50):  # ajoute des herbes
             self.entities["plants"].append(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
         for i in range(40):
             entity_type = randint(0, 4)
@@ -131,6 +132,15 @@ class Game:
         self.nouveau_jour()
         self.group.update()
 
+    def calculate_dist(self, entity: LivingEntity, another_entity: LivingEntity) -> float:
+        """Calcul de distance entre une entité et une autre
+        :param entity: une entité
+        :param another_entity: une autre entité
+        :return: la distance entre les deux
+        """
+        return abs(another_entity.position[0] - entity.position[0]) + abs(
+            another_entity.position[1] - entity.position[1])  # calcul par distance de Manhattan
+
     def calculate_dist_entity_by_list(self, entity: LivingEntity, entity_types: list[str]) -> dict[str, list]:
         """Calcule la distance entre une entité et toutes les entités d'un ou plusieurs types spécifiés
         :param entity: une entité
@@ -148,14 +158,6 @@ class Game:
                 res[entity_type].append(self.calculate_dist(entity, another_entity))  # on ajoute la distance à la liste
         return res
 
-    def calculate_dist(self, entity: LivingEntity, another_entity: LivingEntity) -> float:
-        """Calcul de distance entre une entité et une autre
-        :param entity: une entité
-        :param another_entity: une autre entité
-        :return: la distance entre les deux
-        """
-        return abs(another_entity.position[0] - entity.position[0]) + abs(another_entity.position[1] - entity.position[1])  # calcul par distance de Manhattan
-
     def return_closest_entity(self, this_entity: LivingEntity, entity_types: list[LivingEntity]) -> list[LivingEntity]:
         try:
             closest = self.entities[entity_types[0]][0]
@@ -168,30 +170,28 @@ class Game:
             pass
 
     def run(self):
-        clock = pygame.time.Clock()
-        # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement
+        clock = pygame.time.Clock()  # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement
+
+        font = pygame.freetype.Font("polices/FreeSansBold.ttf", 24)  # la police qui servira pour l'affichage
 
         # Boucle de la simulation
-
-        font = pygame.freetype.Font("polices/FreeSansBold.ttf", 24)
-
         running = True
         while running:
             self.update()  # Update la position pour la gestion de collisions
             self.group.draw(self.screen)  # Affiche la map
             surface_pos_y = 30
             for entity_type in self.entities:
-                entity_counter_surface, rect = font.render(f"{entity_type}: {str(len(self.entities[entity_type]))}", (255, 255, 255))
-                self.screen.blit(entity_counter_surface, (800, surface_pos_y))
-                surface_pos_y += 30
+                entity_counter_surface, rect = font.render(f"{entity_type}: {str(len(self.entities[entity_type]))}", (255, 255, 255))  # affichage graphique d'un compteur d'entité
+                self.screen.blit(entity_counter_surface, (800, surface_pos_y))  # affichage du compteur
+                surface_pos_y += 30  # décale en y
                 for entity in self.entities[entity_type]:
                     entity.save_location()  # Sauvegarde la position du joueur
-            timer_surface, rect = font.render(f"Année: {str(self.year)} | Jour: {str(self.day)}", (255, 255, 255))
-            self.screen.blit(timer_surface, (800, 0))
+            timer_surface, rect = font.render(f"Année: {str(self.year)} | Jour: {str(self.day)}", (255, 255, 255))  # affichage graphique du timer
+            self.screen.blit(timer_surface, (800, 0))  # affichage du timer
 
-            pygame.display.flip()
+            pygame.display.flip()  # poof, affichage == cédela majiiii
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
             clock.tick(60)  # Fixe le nombre de FPS
-        pygame.quit()
+        pygame.quit()  # pouf aplu pygame
