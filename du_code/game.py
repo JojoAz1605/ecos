@@ -5,8 +5,9 @@ import pyscroll
 from du_code.entities.living.humanoid.orc import Orc
 from du_code.entities.living.humanoid.human import Human
 from du_code.pathfinding.utility.grille import Grille
-from du_code.entities.items.pebble import Pebble
-from du_code.entities.items.woodenbranch import Woodenbranch
+from du_code.entities.items.weapons.pebble import Pebble
+from du_code.entities.items.weapons.woodenbranch import Woodenbranch
+from du_code.entities.items.plants.herb import Herb
 from du_code.entities.living.livingentity import LivingEntity
 from du_code.entities.living.animals.rabbit import Rabbit
 from du_code.entities.living.animals.bear import Bear
@@ -46,10 +47,13 @@ class Game:
             "rabbits": [],
             "bears": [],
             "wolves": [],
-            "items": []
+            "plants": [],
+            "weapons": []
         }
-        self.entities["items"].append(Woodenbranch(16 * 4, 16 * 4, "woodenbranch", 20))
-        self.entities["items"].append(Pebble(16 * 4, 16 * 16, "pebble", 20))
+        self.entities["weapons"].append(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))
+        self.entities["weapons"].append(Pebble((16 * 4, 16 * 16), "pebble", 20))
+        for i in range(50):
+            self.entities["plants"].append(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
         for i in range(40):
             entity_type = randint(0, 4)
             entity_name = str(i)
@@ -90,7 +94,7 @@ class Game:
         """
         if self.day == self.nb_jour_dans_une_annee:  # vérifie si on a atteint le nb de jours dans une année
             for entity_type in self.entities:  # parcours les différentes listes d'entités
-                if entity_type == "items":  # si on parcourt la liste des items
+                if entity_type == "weapons" or entity_type == "plants":  # si on parcourt la liste des items
                     continue  # on l'ignore
                 for entity in self.entities[entity_type]:  # pour toutes les entités dans la liste
                     entity.age += 1  # on incrémente son âge
@@ -192,5 +196,5 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick(60)  # Fixe le nombre de FPS
+            clock.tick()  # Fixe le nombre de FPS
         pygame.quit()

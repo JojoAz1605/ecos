@@ -1,6 +1,6 @@
 import pygame
 
-from du_code.entities.items.weapon import Weapon
+from du_code.entities.items.weapons.weapon import Weapon
 
 
 class Pebble(Weapon):

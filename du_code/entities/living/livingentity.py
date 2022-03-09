@@ -37,14 +37,12 @@ class LivingEntity(pygame.sprite.Sprite):
         }
 
     def can_attack(self) -> bool:
-        try:
+        if self.world.year >= 1:
             for entity_type in self.eatable:
                 for entity in self.world.entities[entity_type]:
                     if self.world.calculate_dist(self, entity) <= 15:
                         return True
             return False
-        except KeyError:
-            pass
 
     def check_attack(self):
         if self.can_attack() and randint(0, 3) == 0:
@@ -53,7 +51,7 @@ class LivingEntity(pygame.sprite.Sprite):
     def can_reproduce(self) -> bool:
         other_entities_of_same_type = self.world.get_entities_list([self.type])
         for entity in other_entities_of_same_type:
-            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 20:
+            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 40:
                 return True
         return False
 
@@ -87,6 +85,7 @@ class LivingEntity(pygame.sprite.Sprite):
         """Ce qu'il se passe à la mort d'une entité"""
         print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
         self.world.remove_entity(self.type, self)
+        self.kill()
 
     def check_life(self) -> None:
         """Check si oui ou non l'entité est morte"""
@@ -146,5 +145,6 @@ class LivingEntity(pygame.sprite.Sprite):
         print(f"\tAie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
 
     def entity_attack(self, target_player):
-        if target_player is not None:
+        if target_player is not None and target_player.type != "weapons":
             target_player.damage(self.attack)
+

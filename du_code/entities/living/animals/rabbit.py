@@ -14,7 +14,7 @@ class Rabbit(Animal):
         self.age = 0
         self.lifetime = randint(9, 14)
         self.pregnancy_time = 31  # en jours
-        self.eatable = ["plants"]  # TODO des plantes parce que povr piti lapain i peu pa mangé
+        self.eatable = ["plants"]
 
         self.sprite_sheet = pygame.image.load('textures/entities/rabbit.png')  # Chargement du joueur
         self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc

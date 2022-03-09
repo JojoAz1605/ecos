@@ -5,8 +5,8 @@ import pyscroll
 from du_code.entities.living.humanoid.orc import Orc
 from du_code.entities.living.humanoid.human import Human
 from du_code.pathfinding.utility.grille import Grille
-from du_code.entities.items.pebble import Pebble
-from du_code.entities.items.woodenbranch import Woodenbranch
+from du_code.entities.items.weapons.pebble import Pebble
+from du_code.entities.items.weapons.woodenbranch import Woodenbranch
 from du_code.entities.living.livingentity import LivingEntity
 from du_code.entities.living.animals.rabbit import Rabbit
 from du_code.entities.living.animals.bear import Bear

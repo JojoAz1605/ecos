@@ -15,6 +15,7 @@ class Human(Humanoid):
         self.lifetime = randint(60, 85)
         self.pregnancy_time = 270  # en jours
         self.attackable = ["orcs"]
+        self.eatable = ["wolves", "rabbits", "bears"]
 
         self.sprite_sheet = pygame.image.load('textures/entities/human.png')  # Chargement du joueur
         self.image = self.get_image(0, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc
