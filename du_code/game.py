@@ -188,13 +188,10 @@ class Game:
                     entity.save_location()  # Sauvegarde la position du joueur
             timer_surface, rect = font.render(f"Année: {str(self.year)} | Jour: {str(self.day)}", (255, 255, 255))
             self.screen.blit(timer_surface, (800, 0))
-            """graph_surface = pygame.Surface((300, 300))
-            graph_surface.fill((255, 255, 255))
-            self.screen.blit(graph_surface, (800, 300))"""
 
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False  # Si l'utilisateur clique sur la croix, quitter la fenêtre
-            clock.tick()  # Fixe le nombre de FPS
+            clock.tick(60)  # Fixe le nombre de FPS
         pygame.quit()
