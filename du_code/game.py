@@ -1,6 +1,8 @@
 import pygame
 import pytmx
 import pyscroll
+import numpy as np
+import matplotlib.pyplot as plt
 
 from du_code.entities.living.humanoid.orc import Orc
 from du_code.entities.living.humanoid.human import Human
@@ -78,6 +80,8 @@ class Game:
         self.day = 0  # le jour actuel
         self.year = 0  # l'année actuelle
         self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
+        self.entities_counter_array = np.zeros((1, 5), int)
+        self.update_array()
 
     def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
         """Renvoie la liste des pixels composants un rectangle
@@ -90,6 +94,22 @@ class Game:
                 posList.append((x, y))
         return posList
 
+    def update_array(self) -> None:
+        le_truc_a_rajouter = []
+        for entity_type in self.entities:
+            if entity_type not in "plantsweapons":
+                le_truc_a_rajouter.append(len(self.entities[entity_type]))
+        oui = np.array(le_truc_a_rajouter).reshape(1, 5)
+        self.entities_counter_array = np.append(self.entities_counter_array, oui, axis=0)
+
+    def make_graph(self) -> None:
+        types = ["humans", "orcs", "rabbits", "bears", "wolves"]
+        x = np.array(range(0, self.year+2))
+        for col in range(self.entities_counter_array.shape[1]):
+            plt.plot(x, self.entities_counter_array[:, col])
+        plt.legend(types)
+        plt.savefig(f"graphs/année - {str(self.year)}")
+
     def nouveau_jour(self) -> None:
         """Fonction qui définit ce qu'il se passe pour un nouveau jour
         """
@@ -101,6 +121,8 @@ class Game:
                     entity.age += 1  # on incrémente son âge
             self.day = 0  # on reset le nb de jours
             self.year += 1  # on incrémente l'année
+            self.update_array()
+            self.make_graph()
             print(f"\n-----Une nouvelle année commence, nous sommes en l'an {self.year} !-----")
             for entity_type in self.entities:
                 if len(self.entities[entity_type]) != 0:

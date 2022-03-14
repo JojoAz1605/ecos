@@ -1,3 +1,6 @@
-pygame
-pytmx
-pyscroll
+pygame~=2.1.2
+pytmx~=3.31
+pyscroll~=2.29
+
+numpy~=1.21.3
+matplotlib~=3.4.3
