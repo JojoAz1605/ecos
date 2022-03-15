@@ -30,5 +30,5 @@ class Wolf(Animal):
     def give_birth(self):
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
         newChild = Wolf(position_offset, self.name + " child", randint(0, 1), self.world)
-        self.world.entities["wolves"].append(newChild)
+        self.world.entities["wolves"].add(newChild)
         return newChild

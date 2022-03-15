@@ -37,22 +37,24 @@ class LivingEntity(pygame.sprite.Sprite):
         }
 
     def can_attack(self) -> bool:
-        if self.world.year >= 1:
-            for entity_type in self.eatable:
-                for entity in self.world.entities[entity_type]:
-                    if self.world.calculate_dist(self, entity) <= 15:
+        for entity_type in self.eatable:
+            entity_group = self.world.entities[entity_type]
+            if pygame.sprite.spritecollide(self, entity_group, False):
+                for entity in entity_group:
+                    if self.rect.colliderect(entity):
                         return True
-            return False
+        return False
 
     def check_attack(self):
         if self.can_attack() and randint(0, 3) == 0:
             self.entity_attack(self.world.return_closest_entity(self, self.eatable))
 
     def can_reproduce(self) -> bool:
-        other_entities_of_same_type = self.world.get_entities_list([self.type])
-        for entity in other_entities_of_same_type:
-            if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 20:
-                return True
+        entity_group = self.world.entities[self.type]
+        if pygame.sprite.spritecollide(self, entity_group, False) and len(self.world.entities[self.type]) < 20:
+            for entity in entity_group:
+                if self.rect.colliderect(entity.rect) and entity.gender != self.gender:
+                    return True
         return False
 
     def __str__(self):
@@ -122,7 +124,7 @@ class LivingEntity(pygame.sprite.Sprite):
         """
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]  # sert pour bien placer le nouveau-né sur la grille
         newChild = LivingEntity(position_offset, self.name + " child", randint(0, 1), self.world)  # créer une nouvelle créature
-        self.world.entities[None].append(newChild)  # la rajoute à la liste des entités de son type
+        self.world.entities[None].add(newChild)  # la rajoute à la liste des entités de son type
         return newChild  # retourne le nouveau-né
 
     def check_pregnant(self) -> None:
@@ -146,4 +148,3 @@ class LivingEntity(pygame.sprite.Sprite):
     def entity_attack(self, target_player):
         if target_player is not None and target_player.type != "weapons":
             target_player.damage(self.attack)
-

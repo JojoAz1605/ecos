@@ -44,33 +44,33 @@ class Game:
 
         player_position = tmx_data.get_object_by_name("humain")
         self.entities = {
-            "humans": [],
-            "orcs": [],
-            "rabbits": [],
-            "bears": [],
-            "wolves": [],
-            "plants": [],
-            "weapons": []
+            "humans": pygame.sprite.Group(),
+            "orcs": pygame.sprite.Group(),
+            "rabbits": pygame.sprite.Group(),
+            "bears": pygame.sprite.Group(),
+            "wolves": pygame.sprite.Group(),
+            "plants": pygame.sprite.Group(),
+            "weapons": pygame.sprite.Group()
         }
-        self.entities["weapons"].append(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
-        self.entities["weapons"].append(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
+        self.entities["weapons"].add(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
+        self.entities["weapons"].add(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
 
         for i in range(50):  # ajoute des herbes
-            self.entities["plants"].append(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
+            self.entities["plants"].add(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
         for i in range(40):
             entity_type = randint(0, 4)
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
-                self.entities["humans"].append(Human([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["humans"].add(Human([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 1:
-                self.entities["orcs"].append(Orc([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["orcs"].add(Orc([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 2:
-                self.entities["rabbits"].append(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["rabbits"].add(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 3:
-                self.entities["bears"].append(Bear([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["bears"].add(Bear([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 4:
-                self.entities["wolves"].append(Wolf([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["wolves"].add(Wolf([player_position.x, player_position.y], entity_name, gender, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
@@ -166,13 +166,15 @@ class Game:
 
     def return_closest_entity(self, this_entity: LivingEntity, entity_types: list[LivingEntity]) -> list[LivingEntity]:
         try:
-            closest = self.entities[entity_types[0]][0]
+            closest = None
             for entity_type in entity_types:
                 for entity in self.entities[entity_type]:
-                    if self.calculate_dist(this_entity, entity) <= self.calculate_dist(this_entity, closest):
+                    if self.calculate_dist(this_entity, entity) <= self.calculate_dist(this_entity, closest) or closest is None:
                         closest = entity
             return closest
         except IndexError:
+            pass
+        except AttributeError:
             pass
 
     def run(self):

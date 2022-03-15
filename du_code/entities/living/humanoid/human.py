@@ -32,5 +32,5 @@ class Human(Humanoid):
     def give_birth(self):
         position_offset = [self.position[0] + self.position[0] % 16, self.position[1] + self.position[1] % 16]
         newChild = Human(position_offset, self.name + " child", randint(0, 1), self.world)
-        self.world.entities["humans"].append(newChild)
+        self.world.entities["humans"].add(newChild)
         return newChild
