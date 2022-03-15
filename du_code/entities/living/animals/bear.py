@@ -15,6 +15,7 @@ class Bear(Animal):
         self.lifetime = randint(20, 30)
         self.pregnancy_time = 315  # en jours
         self.eatable = ["rabbits", "orcs", "humans", "wolves"]
+        self.age_mini = 10
 
         self.sprite_sheet = pygame.image.load('textures/entities/ours.png')  # Chargement du joueur
         self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc

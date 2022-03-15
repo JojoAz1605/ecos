@@ -6,6 +6,7 @@ class Humanoid(LivingEntity):
         super().__init__(position, name, gender, grille)
         self.weapon = None
         self.eatable = ["rabbits", "wolves", "bears"]
+        self.age_mini = 16
 
     def entity_attack(self, target_player):
         if target_player is not None:

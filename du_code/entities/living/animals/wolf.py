@@ -15,6 +15,7 @@ class Wolf(Animal):
         self.lifetime = randint(10, 16)
         self.pregnancy_time = 67  # en jours
         self.eatable = ["humans", "orcs", "bears", "rabbits"]
+        self.age_mini = 3
 
         self.sprite_sheet = pygame.image.load('textures/entities/loup.png')  # Chargement du joueur
         self.image = self.get_image(32, 0)  # Récupère l'image 0,0 de la decoupe en 32 px, pour avoir l'image 2 de la ligne 1 on va faire 32,0 etc

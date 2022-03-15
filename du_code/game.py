@@ -55,7 +55,7 @@ class Game:
         self.entities["weapons"].add(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
         self.entities["weapons"].add(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
 
-        for i in range(50):  # ajoute des herbes
+        for i in range(5):  # ajoute des herbes
             self.entities["plants"].add(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
         for i in range(40):
             entity_type = randint(0, 4)
@@ -108,7 +108,8 @@ class Game:
         for col in range(self.entities_counter_array.shape[1]):
             plt.plot(x, self.entities_counter_array[:, col])
         plt.legend(types)
-        plt.savefig(f"graphs/année - {str(self.year)}")
+        plt.savefig("graphs/graph")
+        plt.close()
 
     def nouveau_jour(self) -> None:
         """Fonction qui définit ce qu'il se passe pour un nouveau jour
