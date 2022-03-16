@@ -51,7 +51,7 @@ class LivingEntity(pygame.sprite.Sprite):
             self.entity_attack(self.world.return_closest_entity(self, self.eatable))
 
     def can_reproduce(self):
-        other_entities_of_same_type = self.world.get_entities_list([self.type])
+        other_entities_of_same_type = self.world.entities[self.type]
         for entity in other_entities_of_same_type:
             if self.world.calculate_dist(self, entity) <= 15 and self.gender != entity.gender and len(self.world.entities[self.type]) < 20:
                 return True

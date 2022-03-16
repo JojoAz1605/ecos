@@ -84,15 +84,11 @@ class LivingEntity(pygame.sprite.Sprite):
         self.position[1] += 2
         self.animation('down')
 
-    def die(self) -> None:
-        """Ce qu'il se passe à la mort d'une entité"""
-        print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
-        self.world.remove_entity(self.type, self)
-
     def check_life(self) -> None:
         """Check si oui ou non l'entité est morte"""
         if self.health <= 0 or self.age >= self.lifetime:
-            self.die()
+            print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
+            self.kill()
 
     def update(self):  # Récupère la position de base
         self.check_pregnant()

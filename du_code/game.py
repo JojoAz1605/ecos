@@ -107,8 +107,9 @@ class Game:
         x = np.array(range(0, self.year+2))
         for col in range(self.entities_counter_array.shape[1]):
             plt.plot(x, self.entities_counter_array[:, col])
-        plt.legend(types)
+        plt.legend(types, loc="upper left")
         plt.grid(True)
+        plt.xlabel("Temps qui passe"), plt.ylabel("Nombres d'entités")
         plt.savefig("graphs/graph")
         plt.close()
 
@@ -133,51 +134,9 @@ class Game:
         else:
             self.day += 1  # on incrémente le jour
 
-    def remove_entity(self, entity_type: str, entity: LivingEntity) -> None:
-        """Retire une entité des listes
-        :param entity_type: le type de l'entité à retirer
-        :param entity: l'entité à retirer
-        """
-        if entity in self.entities[entity_type]:  # vérifie que l'entité est présente dans la liste
-            self.entities[entity_type].remove(entity)  # on la retire
-            self.group.remove(entity)
-        entity.kill()
-
-    def get_entities_list(self, entity_types: list[str]) -> list[LivingEntity]:
-        res = []
-        for entity_type in entity_types:
-            if entity_type not in self.entities:
-                return res
-        for entity_type in entity_types:
-            for entity in self.entities[entity_type]:
-                res.append(entity)
-        return res
-
     def update(self):
         self.nouveau_jour()
         self.group.update()
-
-    def calculate_dist(self, entity: LivingEntity, another_entity: LivingEntity) -> float:
-        """Calcul de distance entre une entité et une autre
-        :param entity: une entité
-        :param another_entity: une autre entité
-        :return: la distance entre les deux
-        """
-        return abs(another_entity.position[0] - entity.position[0]) + abs(
-            another_entity.position[1] - entity.position[1])  # calcul par distance de Manhattan
-
-    def return_closest_entity(self, this_entity: LivingEntity, entity_types: list[LivingEntity]) -> list[LivingEntity]:
-        try:
-            closest = None
-            for entity_type in entity_types:
-                for entity in self.entities[entity_type]:
-                    if self.calculate_dist(this_entity, entity) <= self.calculate_dist(this_entity, closest) or closest is None:
-                        closest = entity
-            return closest
-        except IndexError:
-            pass
-        except AttributeError:
-            pass
 
     def run(self):
         clock = pygame.time.Clock()  # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement

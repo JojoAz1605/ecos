@@ -9,4 +9,4 @@ class Plant(Item):
 
     def damage(self, damage):
         print(f"OOF, {self.name} a été mangé(e)")
-        self.world.remove_entity(self.type, self)
+        self.kill()
