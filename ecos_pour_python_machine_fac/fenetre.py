@@ -1,17 +1,16 @@
 import pygame
-import pygame.sprite
-import pygame.font
-import sys
 from du_code.game import Game
 #presentation et declaration:
 pygame.init()
 game = Game()
+para = Para()
 white = (255,255,255)
 black = (0,0,0)
 X = 500
 Y = 700
 menu_du_jeu = pygame.display.set_mode((500,700))
 pygame.display.set_caption('Menu du Jeu')
+
 
 #creation des titres et sous:
 fontE = pygame.font.SysFont('arial',32)
@@ -21,9 +20,10 @@ textRect = titre.get_rect()
 textRect2 = sous_titre.get_rect()
 textRect.center = (X//2, 50)
 textRect2.center = (X//2, 80)
-sfont = pygame.font.SysFont('arial',25) #creation d'une police pour les boutons
-
-mousse = pygame.mouse.get_pos() #creation de la mouse
+#creation d'une police pour les boutons:
+sfont = pygame.font.SysFont('arial',25)
+#creation de la souris:
+mousse = pygame.mouse.get_pos()
 
 #definition du rectangle pour quitter la menu:
 class Rect_quit(pygame.sprite.Sprite):
@@ -56,6 +56,19 @@ class Rect_run(pygame.sprite.Sprite):
         menu_du_jeu.blit(brun, (25, Y / 2 + 305))
         return brun.get_rect()'''
 
+#definition du rectangle pour acceder aux parametre:
+class Rect_para(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image=pygame.Surface((225,225))
+        self.image.fill(black)
+        self.rect=self.image.get_rect()
+        self.rect.center=(250, 250)
+
+    '''def b_run(self):
+        menu_du_jeu.blit(brun, (25, Y / 2 + 305))
+        return brun.get_rect()'''
+
 #definition du sprite de la souris:
 class Mouse(pygame.sprite.Sprite):
     def __init__(self):
@@ -79,11 +92,13 @@ class Fenetre:
         souris=Mouse()
         quitter = Rect_quit()
         run = Rect_run()
+        para = Rect_para()
 
         #definition des sprites:
         allSprites=pygame.sprite.Group()
         allSprites.add(quitter)
         allSprites.add(run)
+        allSprites.add(para)
         sourisSprites=pygame.sprite.Group(souris)
         
         #While True parceque les while True c'est toujours rigolo
@@ -93,20 +108,25 @@ class Fenetre:
             menu_du_jeu.blit(titre, textRect)
             menu_du_jeu.blit(sous_titre,textRect2)
 
-            #bouton quitter
-            if  souris.rect.colliderect(quitter.rect):
-                pygame.quit()
-
-            #bouton lancer
-            elif souris.rect.colliderect(run.rect):
-                menu_du_jeu = pygame.display.set_mode((1050,800))
-                pygame.display.set_caption('Ecos')
-                game.run()
-                
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+            for ev in pygame.event.get():
+                if ev.type == pygame.QUIT:
                     pygame.quit()
+                if ev.type == pygame.MOUSEBUTTONDOWN: 
+                    #bouton quitter
+                    if  souris.rect.colliderect(quitter.rect):
+                        pygame.quit()
 
+                    #bouton lancer
+                    elif souris.rect.colliderect(run.rect):
+                        menu_du_jeu = pygame.display.set_mode((1050,800))
+                        pygame.display.set_caption('Ecos')
+                        game.run()
+
+                    #bouton para
+                    elif souris.rect.colliderect(run.rect):
+                        menu_du_jeu = pygame.display.set_mode((640,480))
+                        pygame.display.set_caption('Settings')
+                        
             #mise a jour des sprites
             allSprites.update()
             sourisSprites.update()
