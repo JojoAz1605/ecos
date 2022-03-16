@@ -10,10 +10,11 @@ class Wolf(Animal):
         super().__init__(position, name, gender, world)
         self.type = "wolves"
         self.health = 80
-        self.attack = 9
+        self.attack = 7
         self.age = 0
         self.lifetime = randint(10, 16)
-        self.pregnancy_time = 67  # en jours
+        self.recovery_time = 60
+        self.pregnancy_time = 140  # en jours
         self.eatable = ["humans", "orcs", "bears", "rabbits"]
         self.age_mini = 3
 

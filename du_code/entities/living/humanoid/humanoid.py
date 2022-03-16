@@ -6,6 +6,7 @@ class Humanoid(LivingEntity):
         super().__init__(position, name, gender, grille)
         self.weapon = None
         self.eatable = ["rabbits", "wolves", "bears"]
+        self.recovery_time = 62
         self.age_mini = 16
 
     def entity_attack(self, target_player):

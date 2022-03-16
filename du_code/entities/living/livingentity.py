@@ -20,7 +20,8 @@ class LivingEntity(pygame.sprite.Sprite):
         self.lifetime = int
         self.grille = world.grille
         self.brain = Brain(self)
-        self.pregnant = {"is_pregnant": False, "time_pregnant": 0, "recovery_time": 365}
+        self.recovery_time = 365
+        self.pregnant = {"is_pregnant": False, "time_pregnant": 0, "recovery_time": self.recovery_time}
         self.eatable = list[str]
         self.pregnancy_time = -1
         self.attack_cooldown = 0
@@ -39,20 +40,20 @@ class LivingEntity(pygame.sprite.Sprite):
         }
 
     def check_attack(self):
-        if randint(0, 3) == 0 and self.world.year >= 2 and self.attack_cooldown <= 0:
+        if randint(0, 3) == 0 and self.world.year >= 3 and self.attack_cooldown <= 0:
             for entity_type in self.eatable:
                 entity_group = self.world.entities[entity_type]
                 if pygame.sprite.spritecollide(self, entity_group, False):
                     for entity in entity_group:
                         if self.rect.colliderect(entity):
                             self.entity_attack(entity)
-                            self.attack_cooldown = 100
+                            self.attack_cooldown = 150
         elif self.attack_cooldown > 0:
             self.attack_cooldown -= 1
 
     def can_reproduce(self) -> bool:
         entity_group = self.world.entities[self.type]
-        if self.gender == 1 and self.world.year >= 1 and pygame.sprite.spritecollide(self, entity_group, False) and len(self.world.entities[self.type]) < 20:
+        if self.gender == 1 and self.age >= self.age_mini and self.world.year >= 1 and pygame.sprite.spritecollide(self, entity_group, False) and len(self.world.entities[self.type]) < 50:
             for entity in entity_group:
                 if self.rect.colliderect(entity.rect) and entity.gender != self.gender and entity.age >= entity.age_mini:
                     return True
@@ -132,7 +133,7 @@ class LivingEntity(pygame.sprite.Sprite):
             print(f"\t{self.name}, a donné naissance !")
             self.pregnant["is_pregnant"] = False  # la créature n'est plus enceinte
             self.pregnant["time_pregnant"] = 0
-            self.pregnant["recovery_time"] = 365
+            self.pregnant["recovery_time"] = self.recovery_time
         elif self.can_reproduce() and not self.pregnant["is_pregnant"] and self.pregnant["recovery_time"] <= 0:
             print(f"\tCHAMPAAAAGNE, {self.name} est enceinte")
             self.pregnant["is_pregnant"] = True

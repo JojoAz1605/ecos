@@ -13,6 +13,7 @@ class Bear(Animal):
         self.attack = 13
         self.age = 0
         self.lifetime = randint(20, 30)
+        self.recovery_time = 62
         self.pregnancy_time = 315  # en jours
         self.eatable = ["rabbits", "orcs", "humans", "wolves"]
         self.age_mini = 10

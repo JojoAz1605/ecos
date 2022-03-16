@@ -14,6 +14,7 @@ from du_code.entities.living.livingentity import LivingEntity
 from du_code.entities.living.animals.rabbit import Rabbit
 from du_code.entities.living.animals.bear import Bear
 from du_code.entities.living.animals.wolf import Wolf
+from du_code.entities.living.animals.fish import Fish
 
 from random import randint
 
@@ -49,6 +50,7 @@ class Game:
             "rabbits": pygame.sprite.Group(),
             "bears": pygame.sprite.Group(),
             "wolves": pygame.sprite.Group(),
+            "fishes": pygame.sprite.Group(),
             "plants": pygame.sprite.Group(),
             "weapons": pygame.sprite.Group()
         }
@@ -57,8 +59,8 @@ class Game:
 
         for i in range(5):  # ajoute des herbes
             self.entities["plants"].add(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
-        for i in range(40):
-            entity_type = randint(0, 4)
+        for i in range(50):
+            entity_type = randint(0, 5)
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
@@ -71,6 +73,8 @@ class Game:
                 self.entities["bears"].add(Bear([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 4:
                 self.entities["wolves"].add(Wolf([player_position.x, player_position.y], entity_name, gender, self))
+            elif entity_type == 5:
+                self.entities["fishes"].add(Fish([player_position.x, player_position.y], entity_name, gender, self))
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
@@ -80,7 +84,7 @@ class Game:
         self.day = 0  # le jour actuel
         self.year = 0  # l'année actuelle
         self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
-        self.entities_counter_array = np.zeros((1, 5), int)
+        self.entities_counter_array = np.zeros((1, 6), int)
         self.update_array()
 
     def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
@@ -99,11 +103,11 @@ class Game:
         for entity_type in self.entities:
             if entity_type not in "plantsweapons":
                 le_truc_a_rajouter.append(len(self.entities[entity_type]))
-        oui = np.array(le_truc_a_rajouter).reshape(1, 5)
+        oui = np.array(le_truc_a_rajouter).reshape(1, 6)
         self.entities_counter_array = np.append(self.entities_counter_array, oui, axis=0)
 
     def make_graph(self) -> None:
-        types = ["humans", "orcs", "rabbits", "bears", "wolves"]
+        types = ["humans", "orcs", "rabbits", "bears", "wolves", "fishes"]
         x = np.array(range(0, self.year+2))
         for col in range(self.entities_counter_array.shape[1]):
             plt.plot(x, self.entities_counter_array[:, col])
