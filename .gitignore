@@ -1,3 +1,8 @@
 .idea/*
+__pycache__/
 make_tree.bat
 output.txt
+.env
+.venv
+env/
+venv/
