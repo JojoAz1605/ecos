@@ -108,6 +108,7 @@ class Game:
         for col in range(self.entities_counter_array.shape[1]):
             plt.plot(x, self.entities_counter_array[:, col])
         plt.legend(types)
+        plt.grid(True)
         plt.savefig("graphs/graph")
         plt.close()
 

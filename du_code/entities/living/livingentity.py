@@ -23,6 +23,7 @@ class LivingEntity(pygame.sprite.Sprite):
         self.pregnant = {"is_pregnant": False, "time_pregnant": 0, "recovery_time": 365}
         self.eatable = list[str]
         self.pregnancy_time = -1
+        self.attack_cooldown = 0
         self.age_mini = -1
 
         self.sprite_sheet = pygame.image.load('textures/entities/placeholder.png')  # Chargement du joueur
@@ -37,18 +38,17 @@ class LivingEntity(pygame.sprite.Sprite):
             'up': self.get_image(0, 96)
         }
 
-    def can_attack(self) -> bool:
-        for entity_type in self.eatable:
-            entity_group = self.world.entities[entity_type]
-            if pygame.sprite.spritecollide(self, entity_group, False):
-                for entity in entity_group:
-                    if self.rect.colliderect(entity):
-                        return True
-        return False
-
     def check_attack(self):
-        if self.can_attack() and randint(0, 3) == 0:
-            self.entity_attack(self.world.return_closest_entity(self, self.eatable))
+        if randint(0, 3) == 0 and self.world.year >= 2 and self.attack_cooldown <= 0:
+            for entity_type in self.eatable:
+                entity_group = self.world.entities[entity_type]
+                if pygame.sprite.spritecollide(self, entity_group, False):
+                    for entity in entity_group:
+                        if self.rect.colliderect(entity):
+                            self.entity_attack(entity)
+                            self.attack_cooldown = 100
+        elif self.attack_cooldown > 0:
+            self.attack_cooldown -= 1
 
     def can_reproduce(self) -> bool:
         entity_group = self.world.entities[self.type]
@@ -91,7 +91,7 @@ class LivingEntity(pygame.sprite.Sprite):
 
     def check_life(self) -> None:
         """Check si oui ou non l'entité est morte"""
-        if self.health <= 0 or self.age == self.lifetime:
+        if self.health <= 0 or self.age >= self.lifetime:
             self.die()
 
     def update(self):  # Récupère la position de base
@@ -150,5 +150,5 @@ class LivingEntity(pygame.sprite.Sprite):
         print(f"\tAie, {self.name} vient de subir {damage} dégâts et possède maintenant {self.health} points de vie")
 
     def entity_attack(self, target_player):
-        if target_player is not None and target_player.type != "weapons":
+        if target_player != "plants" and target_player.type != "weapons":
             target_player.damage(self.attack)
