@@ -27,23 +27,19 @@ class Game:
         self.TAILLE_CASE = 16
 
         # Chargement de la carte
-        tmx_data = pytmx.util_pygame.load_pygame('maps/carte.tmx')
-        map_data = pyscroll.data.TiledMapData(tmx_data)
-        map_layer = pyscroll.orthographic.BufferedRenderer(map_data, self.screen.get_size())
+        self.tmx_data = pytmx.util_pygame.load_pygame('maps/carte.tmx')
+        self.map_data = pyscroll.data.TiledMapData(self.tmx_data)
+        self.map_layer = pyscroll.orthographic.BufferedRenderer(self.map_data, self.screen.get_size())
 
         # Définition d'une liste qui va gérer les collisions en stockant les objets tiles de collision
 
         self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE), int(self.screen.get_size()[1] / self.TAILLE_CASE))
         self.walls = []
-        for wall in tmx_data.objects:
-            if wall.name == "collision":
-                self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))
-                for point in self.getRectPixels(self.walls[-1]):
-                    self.grille.set_val(point, 1)
+        self.get_collisions()
 
-        # Générer un joueur
+        # Dessin du groupe de calques
+        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=3)
 
-        player_position = tmx_data.get_object_by_name("humain")
         self.entities = {
             "humans": pygame.sprite.Group(),
             "orcs": pygame.sprite.Group(),
@@ -54,15 +50,39 @@ class Game:
             "plants": pygame.sprite.Group(),
             "weapons": pygame.sprite.Group()
         }
+        # ajout d'armes sur la map
         self.entities["weapons"].add(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
         self.entities["weapons"].add(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
 
-        for i in range(5):  # ajoute des herbes
+        # ajoute des herbes sur la map(parfois dans l'eau)
+        for i in range(5):
             self.entities["plants"].add(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
-        for i in range(50):
-            entity_type = randint(0, 4)
-            entity_name = str(i)
-            gender = randint(0, 1)
+        self.populate_world(50)  # place les entités sur la carte
+
+        self.day = 0  # le jour actuel
+        self.year = 0  # l'année actuelle
+        self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
+        self.entities_counter_array = np.zeros((1, 6), int)
+        self.update_array()
+
+    def get_collisions(self) -> None:
+        for wall in self.tmx_data.objects:  # parcours les murs
+            if wall.name == "collision":  # si il y a des collisions
+                self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))  # on ajoute ça à la liste des murs
+                for point in self.getRectPixels(self.walls[-1]):  # parcours les points du mur
+                    self.grille.set_val(point, 1)  # et fait en sorte que cette case soit considérée comme étant un obstacle
+
+    def populate_world(self, nb_entity: int) -> None:
+        """Rajoute des entités dans le monde
+        :param nb_entity: le nombre d'entités à rajouter
+        """
+        # position de base
+        player_position = self.tmx_data.get_object_by_name("humain")
+
+        for i in range(nb_entity):  # boucle pour créer des entités
+            entity_type = randint(0, 4)  # prend un type d'entité aléatoire
+            entity_name = str(i)  # le nom, c'est juste un nombre
+            gender = randint(0, 1)  # genre aléatoire
             if entity_type == 0:
                 self.entities["humans"].add(Human([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 1:
@@ -75,17 +95,9 @@ class Game:
                 self.entities["wolves"].add(Wolf([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 5:
                 self.entities["fishes"].add(Fish([player_position.x, player_position.y], entity_name, gender, self))  # c'est plus une blague qu'autre chose
-
-        # Dessin du groupe de calques
-        self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
         for entity_type in self.entities:
             for entity in self.entities[entity_type]:
                 self.group.add(entity)
-        self.day = 0  # le jour actuel
-        self.year = 0  # l'année actuelle
-        self.nb_jour_dans_une_annee = 365  # à modifier pour changer le rythme de passage des années
-        self.entities_counter_array = np.zeros((1, 6), int)
-        self.update_array()
 
     def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
         """Renvoie la liste des pixels composants un rectangle
@@ -138,11 +150,11 @@ class Game:
         else:
             self.day += 1  # on incrémente le jour
 
-    def update(self):
+    def update(self) -> None:
         self.nouveau_jour()
         self.group.update()
 
-    def run(self):
+    def run(self) -> None:
         clock = pygame.time.Clock()  # Fixe le nombre de FPS à chaque tour de boucle pour que le joueur ne se déplace pas trop rapidement
 
         font = pygame.freetype.Font("polices/FreeSansBold.ttf", 24)  # la police qui servira pour l'affichage
