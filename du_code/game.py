@@ -60,7 +60,7 @@ class Game:
         for i in range(5):  # ajoute des herbes
             self.entities["plants"].add(Herb((randint(16, 784), randint(16, 784)), "herb1", self))
         for i in range(50):
-            entity_type = randint(0, 5)
+            entity_type = randint(0, 4)
             entity_name = str(i)
             gender = randint(0, 1)
             if entity_type == 0:
@@ -74,7 +74,7 @@ class Game:
             elif entity_type == 4:
                 self.entities["wolves"].add(Wolf([player_position.x, player_position.y], entity_name, gender, self))
             elif entity_type == 5:
-                self.entities["fishes"].add(Fish([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["fishes"].add(Fish([player_position.x, player_position.y], entity_name, gender, self))  # c'est plus une blague qu'autre chose
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
