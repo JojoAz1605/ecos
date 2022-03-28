@@ -1,4 +1,5 @@
 from random import randint
+from typing import Type
 
 import pygame
 
@@ -14,15 +15,15 @@ class LivingEntity(pygame.sprite.Sprite):
         self.name = name
         self.gender = gender
         self.world = world
-        self.health = int
-        self.attack = int
-        self.age = int
-        self.lifetime = int
+        self.health = Type[int]
+        self.attack = Type[int]
+        self.age = Type[int]
+        self.lifetime = Type[int]
         self.grille = world.grille
         self.brain = Brain(self)
         self.recovery_time = 365
         self.pregnant = {"is_pregnant": False, "time_pregnant": 0, "recovery_time": self.recovery_time}
-        self.eatable = list[str]
+        self.eatable = Type[list[str]]
         self.pregnancy_time = -1
         self.attack_cooldown = 0
         self.age_mini = -1
@@ -39,7 +40,7 @@ class LivingEntity(pygame.sprite.Sprite):
             'up': self.get_image(0, 96)
         }
 
-    def check_attack(self):
+    def check_attack(self) -> None:
         if randint(0, 3) == 0 and self.world.year >= 3 and self.attack_cooldown <= 0:
             for entity_type in self.eatable:
                 entity_group = self.world.entities[entity_type]
@@ -91,10 +92,13 @@ class LivingEntity(pygame.sprite.Sprite):
             print(f"\tHO MON DIEU, {self.name}, un {self.type} vient de mourir, c'était un/e {self.gender} :'O")
             self.kill()
 
-    def update(self):  # Récupère la position de base
+    def checklist(self) -> None:
         self.check_pregnant()
         self.check_attack()
         self.check_life()
+
+    def update(self):  # Récupère la position de base
+        self.checklist()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom
         if self.brain is not None:

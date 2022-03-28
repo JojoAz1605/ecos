@@ -54,8 +54,8 @@ class Game:
             "weapons": pygame.sprite.Group()
         }
         # ajout d'armes sur la map
-        self.entities["weapons"].add(Woodenbranch((16 * 4, 16 * 4), "woodenbranch", 20))  # ajoute une branche sur la map
-        self.entities["weapons"].add(Pebble((16 * 4, 16 * 16), "pebble", 20))  # ajoute un caillou sur la map
+        self.entities["weapons"].add(Woodenbranch((16 * 4, 16 * 4), "woodenbranch"))  # ajoute une branche sur la map
+        self.entities["weapons"].add(Pebble((16 * 4, 16 * 16), "pebble"))  # ajoute un caillou sur la map
 
         # ajoute des herbes sur la map(parfois dans l'eau)
         for i in range(5):

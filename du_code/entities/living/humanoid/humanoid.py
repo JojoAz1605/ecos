@@ -1,4 +1,5 @@
 from du_code.entities.living.livingentity import LivingEntity
+import pygame
 
 
 class Humanoid(LivingEntity):
@@ -9,6 +10,13 @@ class Humanoid(LivingEntity):
         self.recovery_time = 62
         self.age_mini = 16
 
+    def check_equip_weapon(self) -> None:
+        entity_group = self.world.entities["weapons"]
+        if pygame.sprite.spritecollide(self, entity_group, False):
+            for entity in entity_group:
+                if self.rect.colliderect(entity) and not self.has_weapon():
+                    self.set_weapon(entity)
+
     def entity_attack(self, target_player):
         if target_player is not None:
             damage = self.attack
@@ -16,9 +24,15 @@ class Humanoid(LivingEntity):
                 damage += self.weapon.damage
             target_player.damage(damage)
 
+    def checklist(self) -> None:
+        self.check_pregnant()
+        self.check_equip_weapon()
+        self.check_attack()
+        self.check_life()
+
     def set_weapon(self, weapon):
         self.weapon = weapon
-        print(f"{self.name} a trouvé {self.weapon.name} et gagné {self.weapon.damage} points d'attaque")
+        print(f"\t{self.name} a trouvé {self.weapon.name} et gagne {self.weapon.damage} points d'attaque")
 
     def has_weapon(self):
         return self.weapon is not None
