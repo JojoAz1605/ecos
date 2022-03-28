@@ -21,6 +21,10 @@ class Item(pygame.sprite.Sprite):
     def get_name(self):
         return self.name
 
+    def checklist(self) -> None:
+        pass
+
     def update(self):  # Récupère la position de base
+        self.checklist()
         self.rect.midbottom = self.position
         self.feet.midbottom = self.rect.midbottom

@@ -3,7 +3,7 @@ from .node import Node
 
 
 class Astar:
-    def __init__(self, grid: Grille, start_pos: tuple[int, int], end_pos: tuple[int, int]) -> None:
+    def __init__(self, grid: Grille, start_pos: tuple[int, int], end_pos: tuple[int, int], brain) -> None:
         """L'algorithme A*, filez lui une grille, un début et une fin, il trouvera le chemin tout seul ;)
         :param grid: une grille pour que l'algorithme puisse se retrouver
         :param start_pos: la position de départ
@@ -12,6 +12,7 @@ class Astar:
         self.grid = grid
         self.start_node = Node(self, start_pos, None)
         self.end_node = Node(self, end_pos, None)
+        self.brain = brain
         self.open = [self.start_node]  # la liste ouverte, stockant les nœuds qui restent à explorer
         self.close = []  # la liste fermée, stockant les nœuds les plus prometteurs
         self.nb_iterations = 0  # le nombre actuel d'itération de l'algorithme
@@ -114,7 +115,8 @@ class Astar:
                 continue  # on l'ignore et on passe au successeur suivant
             self.__update_if_already_in_open_and_with_better_score(node, successor)  # voit si le successeur est dans la liste ouverte
         if len(self.open) == 0:  # si la liste ouverte se vide entièrement
-            print("pas de solution")
+            print(f"\tAH! On dirait que {self.brain.owner.name} est sorti de la matrice :o")
+            self.brain.owner.kill()
             return None  # aucune solution, None est retourné
         else:
             best_node_in_open = self.__get_best_node_in_open()  # prend la meilleure node dans la liste ouverte

@@ -13,7 +13,7 @@ class Brain:
         self.grille = self.owner.grille  # la grille sur laquelle évolue l'entité
         self.path = None  # le chemin initialisé comme étant nul
         self.destination = self.get_random_dest()  # la destination initialisée comme étant aléatoire
-        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)), self.destination)  # l'algorithme permettant de calculer le chemin
+        self.algo = Astar(self.grille, (int(self.owner.position[0] / 16), int(self.owner.position[1] / 16)), self.destination, self)  # l'algorithme permettant de calculer le chemin
 
     def vec_2_dir(self, vec: tuple[int, int]) -> int:
         """

@@ -8,5 +8,5 @@ class Plant(Item):
         self.type = "plants"
 
     def damage(self, damage):
-        print(f"OOF, {self.name} a été mangé(e)")
+        print(f"\tOOF, {self.name} a été mangé(e)")
         self.kill()
