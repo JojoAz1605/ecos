@@ -35,7 +35,10 @@ class Game:
 
         self.grille = Grille(int(self.screen.get_size()[0] / self.TAILLE_CASE), int(self.screen.get_size()[1] / self.TAILLE_CASE))
         self.walls = []
-        self.get_collisions()
+        self.spawn_pos = []  # liste des positions valides en tant que spawn d'entités
+        self.generate_collisions()
+        self.generate_spawnpoints()
+        print(self.spawn_pos)
 
         # Dessin du groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=3)
@@ -65,12 +68,19 @@ class Game:
         self.entities_counter_array = np.zeros((1, 6), int)
         self.update_array()
 
-    def get_collisions(self) -> None:
+    def generate_collisions(self) -> None:
         for wall in self.tmx_data.objects:  # parcours les murs
             if wall.name == "collision":  # si il y a des collisions
                 self.walls.append(pygame.Rect(wall.x, wall.y, wall.width, wall.height))  # on ajoute ça à la liste des murs
-                for point in self.getRectPixels(self.walls[-1]):  # parcours les points du mur
+                for point in self.get_rect_pixels(self.walls[-1]):  # parcours les points du mur
                     self.grille.set_val(point, 1)  # et fait en sorte que cette case soit considérée comme étant un obstacle
+
+    def generate_spawnpoints(self):
+        for x in range(0, self.grille.width * 16, 16):
+            for y in range(0, self.grille.width * 16, 16):
+                possible_rect = pygame.Rect(x, y, 16, 16)
+                if [x, y] not in self.spawn_pos and possible_rect.collidelist(self.walls) == -1:
+                    self.spawn_pos.append([x, y])
 
     def populate_world(self, nb_entity: int) -> None:
         """Rajoute des entités dans le monde
@@ -80,26 +90,27 @@ class Game:
         player_position = self.tmx_data.get_object_by_name("humain")
 
         for i in range(nb_entity):  # boucle pour créer des entités
+            pos = self.spawn_pos[randint(0, len(self.spawn_pos) - 1)]
             entity_type = randint(0, 4)  # prend un type d'entité aléatoire
             entity_name = str(i)  # le nom, c'est juste un nombre
             gender = randint(0, 1)  # genre aléatoire
             if entity_type == 0:
-                self.entities["humans"].add(Human([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["humans"].add(Human(pos, entity_name, gender, self))
             elif entity_type == 1:
-                self.entities["orcs"].add(Orc([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["orcs"].add(Orc(pos, entity_name, gender, self))
             elif entity_type == 2:
-                self.entities["rabbits"].add(Rabbit([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["rabbits"].add(Rabbit(pos, entity_name, gender, self))
             elif entity_type == 3:
-                self.entities["bears"].add(Bear([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["bears"].add(Bear(pos, entity_name, gender, self))
             elif entity_type == 4:
-                self.entities["wolves"].add(Wolf([player_position.x, player_position.y], entity_name, gender, self))
+                self.entities["wolves"].add(Wolf(pos, entity_name, gender, self))
             elif entity_type == 5:
-                self.entities["fishes"].add(Fish([player_position.x, player_position.y], entity_name, gender, self))  # c'est plus une blague qu'autre chose
+                self.entities["fishes"].add(Fish(pos, entity_name, gender, self))  # c'est plus une blague qu'autre chose
         for entity_type in self.entities:
             for entity in self.entities[entity_type]:
                 self.group.add(entity)
 
-    def getRectPixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
+    def get_rect_pixels(self, rect: pygame.Rect) -> list[tuple[int, int]]:
         """Renvoie la liste des pixels composants un rectangle
         :param rect: un rectangle
         :return: une liste des positions des pixels
