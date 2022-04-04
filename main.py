@@ -1,7 +1,7 @@
 import pygame
-from du_code.game import Game
+from fenetre import Fenetre
 
 if __name__ == "__main__":
 	pygame.init()
-	game = Game()
-	game.run()
+	menu = Fenetre()
+	menu.run()
