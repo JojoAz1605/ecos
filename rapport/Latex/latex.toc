@@ -1,0 +1,8 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}rapide présentation / résumé du projet}{2}%
+\contentsline {section}{\numberline {2}qui a fait quoi ?}{3}%
+\contentsline {subsection}{\numberline {2.1}résumé de ce qui a était fait durant les semaines du projet}{3}%
+\contentsline {section}{\numberline {3}les difficultées rencontrées}{4}%
+\contentsline {section}{\numberline {4}les eventuels ajout qu'on aurait voulu}{5}%
+\contentsline {section}{\numberline {5}les eventuels sources}{6}%
+\contentsline {section}{\numberline {6}conclusion}{7}%
