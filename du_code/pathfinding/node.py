@@ -21,9 +21,6 @@ class Node:
         """Pour l'affichage console"""
         return str(self.pos)
 
-    def __calculate_g(self) -> None:
-        """Calcule le score G"""
-
     def get_parent(self):
         return self.parent
 
@@ -42,33 +39,19 @@ class Node:
     def set_parent(self, parent) -> None:
         self.parent = parent
 
-    def __get_neigbours_nodes(self) -> list:
-        """Retourne les nodes adjacentes
-        :return: les nodes adjacentes
-        """
-        res = []
-
-        node_x = self.pos[0]
-        node_y = self.pos[1]
-        if node_x + 1 < self.algo.grid.width:
-            res.append(Node(self.algo, (node_x + 1, node_y), self))
-        if node_x - 1 > 0:
-            res.append(Node(self.algo, (node_x - 1, node_y), self))
-        if node_y + 1 < self.algo.grid.height:
-            res.append(Node(self.algo, (node_x, node_y + 1), self))
-        if node_y - 1 > 0:
-            res.append(Node(self.algo, (node_x, node_y - 1), self))
-
-        return res
-
     def get_successors(self) -> list:
         """Donne les successeurs de la node
         :return: les successeurs de la node
         """
         res = []
-        neighbors = self.__get_neigbours_nodes()  # prend ses voisins
-        for neighbor in neighbors:  # pour tous les voisins
-            if neighbor.get_is_passable():  # si le voisin est traversable
-                res.append(neighbor)  # l'ajoute au résultat
-        return res
 
+        if self.pos[0] + 1 < self.algo.grid.width and self.algo.grid.get_is_passable((self.pos[0] + 1, self.pos[1])):
+            res.append(Node(self.algo, (self.pos[0] + 1, self.pos[1]), self))
+        if self.pos[0] - 1 > 0 and self.algo.grid.get_is_passable((self.pos[0] - 1, self.pos[1])):
+            res.append(Node(self.algo, (self.pos[0] - 1, self.pos[1]), self))
+        if self.pos[1] + 1 < self.algo.grid.height and self.algo.grid.get_is_passable((self.pos[0], self.pos[1] + 1)):
+            res.append(Node(self.algo, (self.pos[0], self.pos[1] + 1), self))
+        if self.pos[1] - 1 > 0 and self.algo.grid.get_is_passable((self.pos[0], self.pos[1] - 1)):
+            res.append(Node(self.algo, (self.pos[0], self.pos[1] - 1), self))
+
+        return res

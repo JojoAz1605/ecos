@@ -46,7 +46,10 @@ class Grille:
         :param pos: la position d'une case
         :return: la valeur de la case
         """
-        return self.grille[pos[0]][pos[1]]
+        try:
+            return self.grille[pos[0]][pos[1]]
+        except IndexError:
+            pass
 
     def get_is_passable(self, pos: tuple[int, int]) -> bool:
         """Retourne si la valeur à une position donnée est traversable

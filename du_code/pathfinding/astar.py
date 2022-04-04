@@ -36,17 +36,6 @@ class Astar:
         self.close = []
         self.nb_iterations = 0
 
-    def __is_in_list(self, one_node: Node, liste: list[Node]) -> bool:
-        """Voit si une node est dans la liste donnée
-        :param one_node: une node
-        :param liste: une autre node
-        :return: oui ou non
-        """
-        for node in liste:  # parcours des nodes
-            if node == one_node:  # si une node correspond
-                return True  # alors oui
-        return False  # sinon non
-
     def __update_if_already_in_open_and_with_better_score(self, studied_node: Node, successor: Node) -> None:
         """Voit si une node est déjà dans la liste ouverte, et avec un meilleur score
         si oui: met à jour son parent
@@ -54,7 +43,7 @@ class Astar:
         :param studied_node: le noeud qui est étudié par la boucle principale
         :param successor: un noeud qui succède au noeud étudié
         """
-        if successor in self.open and successor.get_score() < self.open.index(successor):  # si le successeur est dans la liste et à un score inférieur
+        if successor in self.open and successor.get_score() < self.open[self.open.index(successor)].get_score():  # si le successeur est dans la liste et à un score inférieur
             self.open.remove(successor)  # retire celui qui a un score inférieur
             self.open.append(successor)  # et ajoute celui qui a un meilleur score à la place
         else:  # sinon l'ajoute à la liste
@@ -100,7 +89,7 @@ class Astar:
     def set_end_pos(self, pos) -> None:
         self.set_end_node(Node(self, pos, None))
 
-    def iteration(self) -> None or bool:
+    def iteration(self) -> None or bool or list[tuple[int, int]]:
         """Une itération de l'algorithme
         :return: False si toujours pas fini ou une liste de positions si fini et None si aucun résultat
         """
@@ -111,7 +100,7 @@ class Astar:
             node = self.open[0]  # sinon c'est le premier de la liste ouverte
         successors = node.get_successors()  # prend tous les successeurs de la node étudiée
         for successor in successors:
-            if self.__is_in_list(successor, self.close):  # si le successeur est dans la liste fermée
+            if successor in self.close:  # si le successeur est dans la liste fermée
                 continue  # on l'ignore et on passe au successeur suivant
             self.__update_if_already_in_open_and_with_better_score(node, successor)  # voit si le successeur est dans la liste ouverte
         if len(self.open) == 0:  # si la liste ouverte se vide entièrement

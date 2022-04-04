@@ -9,7 +9,7 @@ class Rabbit(Animal):
     def __init__(self, position, name, gender, world):
         super().__init__(position, name, gender, world)
         self.type = "rabbits"
-        self.health = 60
+        self.health = 45
         self.attack = 2
         self.age = 0
         self.lifetime = randint(9, 14)
