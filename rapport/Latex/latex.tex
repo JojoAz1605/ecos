@@ -12,7 +12,7 @@
 \usepackage{setspace}
 \usepackage{fancyhdr}
 \usepackage{color}
-
+\usepackage{hyperref} 
 
 \newtheorem{definition}{Definition}
 \newtheorem{example}{Example}
@@ -43,14 +43,16 @@ Alors une simulation d'écosystème c'est une simulation de vie, reprenant plusi
 La reproduction, chasse, "guerre", faim...\\
 
 \subsection{Ce que fait notre simulation}
-Notre simulation fait :\\
+Nous avons décider de donner la nom Ecos a notre projet, car nous n'avions pas trouver d'autre idées que de raccourcir le mots écosystème en Ecos. Notre simulation contient 5 espèces différentes : l'humain, l'orc, l'ours, le loup, le lapin. Nous avons donc ajouter des "armes": un caillou et un bâton. Pour ce qui est de la nourritures nos entités étant majoritairement carnivores, nous n'avons pas eu besoin de rajouter beaucoup de choses pour la nourriture si ce n'est de l'herbe pour le lapin qui est tout en bas de la chaîne alimentaire de notre simulation.\\
 \newpage
 
 \section{Qui a fait quoi ?}
 
-Bonvarlet bastien :\\
-Masson Joris : \\
-Champenois Brandon : Le menu du jeu, le rapport latex, les sprites de chaque entités
+\begin{itemize}
+\item Bonvarlet bastien :\\
+\item Masson Joris : \\
+\item Champenois Brandon : Le menu du jeu, le rapport latex, les sprites de chaque entités
+\end{itemize}
 
 \subsection{Résumé de ce qui a était fait durant les semaines du projet}
 
@@ -59,14 +61,28 @@ Bonvarlet Bastien :\\
 \item Pour toutes les modifs pour la map et les bases graphiques et codes du log : A passer une dizaine d'heures sur les deux premières semaines.\\
 \item Pour la gestion des déplacements de base : a peu près 1-2 heures en tout.\\
 \item Pour la création du logo : a peu près 1-2 heures en tout.\\
+\begin{figure*}[ht!]
+ \centering
+ \includegraphics[width=0.5\linewidth]{images/creation_logo.jpg}
+ \caption{logo final}
+ \label{fig::example::one}
+\end{figure*}
 \item Pour les animations : \\
 \item Pour le sprite du lapin : (insérer figure du lapin)\\
 \end{enumerate}
 \newpage
 Masson Joris : \\
 \begin{enumerate}
-\item Il a passé environ 15-20h sur l'alogorithme  A*.
-\item Il a fait le beamer du "" au "".
+\item Il a passé environ 15-20 heures sur l’algorithme  A* réparti sur 2-3 semaines.\\
+\item Il a passé environ 6 heures sur la reproduction, les combats et la faim.\\
+\item Il a fait un système de graphique avec matplotlib, il y a consacré une dizaines d'heures:\\
+\begin{figure*}[ht!]
+ \centering
+ \includegraphics[width=1\linewidth]{images/graph.png}
+ \caption{exemple de graphique}
+ \label{fig::example::one}
+\end{figure*}
+\item Il a fait le beamer du "" au "".\\
 \end{enumerate}
 \newpage
 Champenois Brandon : \\
@@ -124,12 +140,12 @@ Cela lui a pris 3-4 heures\\
 \begin{figure*}[ht!]
  \centering
  \includegraphics[width=0.5\linewidth]{images/caillou&batton}
- \caption{croquis du caillou et du baton}
+ \caption{croquis du caillou et du bâton}
  \label{fig::example::one}
 \end{figure*}
 \\
 \newpage
-{\color{white}jeejej}
+{\color{white}Ceci sert a la mise en page}
 \newpage
 \item Et ensuite il a donc fait les sprites de chaque entités en croquis :
 \\
@@ -156,7 +172,7 @@ Cela lui a pris 3-4 heures\\
    \centering
    \includegraphics[width=\linewidth]{images/baton.png}
   \end{minipage}
-  \caption{(a) sprite du caillou ; (b) sprite du baton}
+  \caption{(a) sprite du caillou ; (b) sprite du bâton}
   \label{fig::example::two}
 \end{figure*}
 \newpage
@@ -191,18 +207,48 @@ Si nous aurions eu plus de temps nous aurions voulu faire des fins alternatives 
 \section{Les éventuels sources}
 
 Pour les sprites : \\
-		 Sprite de l'humain : nous n'avons pas trouver de sources.\\
-		 Sprite de l'orc : C'est une recoloration du sprite de l'humain.\\
+		 Sprite de l'humain :
+\begin{figure*}[ht!]
+ \centering
+ \includegraphics[width=0.5\linewidth]{images/human.png}
+ \caption{Nous n'avons pas trouver de sources}
+ \label{fig::example::one}
+\end{figure*}
+\\
+		 Sprite de l'orc :
+\begin{figure*}[ht!]
+ \centering
+ \includegraphics[width=0.5\linewidth]{images/orc.png}
+ \caption{C'est une recoloration du sprite de l'humain}
+ \label{fig::example::one}
+\end{figure*}
+\\
 		 Les autres sprites : Nous n'avons pas de sources puisqu'ils ont étaient fait par nos soins.\\
-Pour la texture de la map : \\
-Pour "l'algorithme" : \\
-Pour le code : \\
+Pour la texture de la map : https://stealthix.itch.io/rpg-nature-tileset  - \href{https://stealthix.itch.io/rpg-nature-tileset}{Tileset Map}\\
+Pour "l'algorithme" : https://khayyam.developpez.com/articles/algo/astar/ - \href{https://khayyam.developpez.com/articles/algo/astar/}{La documentation}\\
+Pour le code : fait nous même (avec aide du prof a des moment)\\
 
 \newpage
 
 \section{Conclusion}
 
 Pour conclure nous aurions aimaient / voulu :\\
+Si nous aurions eu plus de temps nous aurions voulu faire un écran de fin, des fins alternatives, un menu pour gérer le nombre d'entité et autres.\\
+\\
+Merci d'avoir lu notre rapport.\\
+Nous voulions remercier:\\
+\begin{itemize}
+\item Mr CHAHIR notre enseignant de travaux pratiques en conception logiciel, qui nous a aidez a résoudre pas mal de problème sur notre simulation d'écosystème.
+\end{itemize}
+
+\vspace{1cm}
+
+Etudiants en L1 informatique groupe 5:\\
+\begin{itemize}
+\item BONVARLET Bastien\\
+\item MASSON Joris\\
+\item CHAMPENOIS Brandon\\
+\end{itemize}
 
 \newpage
 \end{document}
