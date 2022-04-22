@@ -1,9 +1,10 @@
 \babel@toc {french}{}
 \contentsline {section}{\numberline {1}Rapide présentation / résumé du projet}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Ce que fait notre simulation}{2}{subsection.1.1}%
-\contentsline {section}{\numberline {2}Qui a fait quoi ?}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Résumé de ce qui a était fait durant les semaines du projet}{3}{subsection.2.1}%
-\contentsline {section}{\numberline {3}Les difficultés rencontrées}{11}{section.3}%
-\contentsline {section}{\numberline {4}Les éventuels ajout qu'on aurait voulu}{12}{section.4}%
+\contentsline {subsection}{\numberline {1.2}Architecture du projet}{2}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Manuel d'utilisation de l'application }{3}{section.2}%
+\contentsline {section}{\numberline {3}Qui a fait quoi ?}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Résumé de ce qui a était fait durant les semaines du projet}{4}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Illustration sur un exemple concret}{12}{section.4}%
 \contentsline {section}{\numberline {5}Les éventuels sources}{13}{section.5}%
 \contentsline {section}{\numberline {6}Conclusion}{14}{section.6}%

@@ -44,6 +44,27 @@ La reproduction, chasse, "guerre", faim...\\
 
 \subsection{Ce que fait notre simulation}
 Nous avons décider de donner la nom Ecos a notre projet, car nous n'avions pas trouver d'autre idées que de raccourcir le mots écosystème en Ecos. Notre simulation contient 5 espèces différentes : l'humain, l'orc, l'ours, le loup, le lapin. Nous avons donc ajouter des "armes": un caillou et un bâton. Pour ce qui est de la nourritures nos entités étant majoritairement carnivores, nous n'avons pas eu besoin de rajouter beaucoup de choses pour la nourriture si ce n'est de l'herbe pour le lapin qui est tout en bas de la chaîne alimentaire de notre simulation.\\
+
+\subsection{Architecture du projet}
+insérer arborécens ici\\
+expliquer brièvement et clairement l'architecture du projet: \\
+jduddoidiodjdji\\
+
+\newpage
+
+\section{Manuel d'utilisation de l'application }
+
+Tout d'abord pour lancer l'application il suffit d’exécuter le main.py. Qui lui même exécutera le fichier fenetre.py qui exécutera une fenêtre de 500 * 700 pixels de la nous aurons deux possibilités soit arrêter l'application via le bouton "Quitter", soit exécuter le fichier game.py via le bouton "lancer". Si vous appuyer sur "quitter" la fenêtre se fermera. Si vous appuyer sur "lancer" qui exécutera a son tour le fichier game.py. Le fichier game.py génère une fenêtre de jeu de 1050 * 800 pixels qui va générer la carte sur 800 * 800 pixels ou les entités apparaîtrons de manière aléatoire sur la carte
+sur la droite de la fenêtre nous aurons des informations tel que les jours, années écouler et le nombre d'entité par espèces e, temps réel et un graphique sur l'évolution de la population de chaque espèces.\\
+Nos entités vivantes ce déplace selon un tuple aléatoire et on leurs demande d'aller jusque la avec l'algorithme, cela dépend également des conditions de faim.\\
+Notre algorithme est basé sur l'algorithme A* ou A star. Cet algorithme va regarder les cases alentours, puis leur calculer un score, la case ayant le score le plus bas va l'emporter et l'algorithme va donc prendre cette case pour référence et l'algorithme va recommencer jusqu'à arriver a destination.\\
+Le principe de cette algorithme et de trouver et de suivre le chemin le plus rapide pour arriver a destination.
+\begin{figure*}[ht!]
+ \centering
+ \includegraphics[width=\linewidth]{images/exemple_algo-A*.png}
+ \caption{exemple de l'algorithme A* (A star)}
+ \label{fig::example::one}
+\end{figure*}
 \newpage
 
 \section{Qui a fait quoi ?}
@@ -192,16 +213,8 @@ Cela lui a pris 3-4 heures\\
 \end{enumerate}
 \newpage
 
-\section{Les difficultés rencontrées}
-
-Nous avons eu quelques difficultés sur : \\
-
-\newpage
-
-\section{Les éventuels ajout qu'on aurait voulu}
-
-Si nous aurions eu plus de temps nous aurions voulu faire des fins alternatives et d'autres fenêtres comme une fenêtre de paramètres.\\
-
+\section{Illustration sur un exemple concret}
+les illustrations de l'exemple :\\
 \newpage
 
 \section{Les éventuels sources}
