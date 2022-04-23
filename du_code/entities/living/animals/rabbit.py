@@ -23,10 +23,10 @@ class Rabbit(Animal):
         self.image.set_colorkey([0, 0, 0])  # Couleur de fond en noir
         self.rect = self.image.get_rect()
         self.images = {
-            'down': self.get_image(43, 3),
-            'right': self.get_image(45, 37),
-            'left': self.get_image(6, 37),
-            'up': self.get_image(8, 5)
+            'down': self.get_image(96, 0),
+            'right': self.get_image(0, 0),
+            'left': self.get_image(32, 0),
+            'up': self.get_image(64, 0)
         }
 
     def give_birth(self):

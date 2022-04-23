@@ -4,6 +4,7 @@ import pyscroll
 import numpy as np
 import matplotlib.pyplot as plt
 
+from du_code.entities.living import livingentity
 from du_code.entities.living.humanoid.orc import Orc
 from du_code.entities.living.humanoid.human import Human
 from du_code.pathfinding.utility.grille import Grille
@@ -107,6 +108,7 @@ class Game:
             elif entity_type == 5:
                 self.entities["fishes"].add(Fish(pos, entity_name, gender, self))  # c'est plus une blague qu'autre chose
         for entity_type in self.entities:
+            # livingentity.update_animation()
             for entity in self.entities[entity_type]:
                 self.group.add(entity)
 
