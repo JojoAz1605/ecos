@@ -43,7 +43,7 @@ Alors une simulation d'écosystème c'est une simulation de vie, reprenant plusi
 La reproduction, chasse, "guerre", faim...\\
 
 \subsection{Ce que fait notre simulation}
-Nous avons décider de donner la nom Ecos a notre projet, car nous n'avions pas trouver d'autre idées que de raccourcir le mots écosystème en Ecos. Notre simulation contient 5 espèces différentes : l'humain, l'orc, l'ours, le loup, le lapin. Nous avons donc ajouter des "armes": un caillou et un bâton. Pour ce qui est de la nourritures nos entités étant majoritairement carnivores, nous n'avons pas eu besoin de rajouter beaucoup de choses pour la nourriture si ce n'est de l'herbe pour le lapin qui est tout en bas de la chaîne alimentaire de notre simulation.\\
+Nos avons décider de donner la nom Ecos a notre projet, car nous n'avions pas trouver d'autre idées que de raccourcir le mots écosystème en Ecos. Notre simulation contient 5 espèces différentes : l'humain, l'orc, l'ours, le loup, le lapin. Nous avons donc ajouter des "armes": un caillou et un bâton. Pour ce qui est de la nourritures nos entités étant majoritairement carnivores, nous n'avons pas eu besoin de rajouter beaucoup de choses pour la nourriture si ce n'est de l'herbe pour le lapin qui est tout en bas de la chaîne alimentaire de notre simulation.\\
 \subsection{Architecture du projet}
 \subsubsection{Explication de l'architecture du projet:}
 Notre projet est organisé de manière à ce que chaque programme, dossier et autres fichiers puisses communiquer ensemble assez facilement.\\
@@ -121,7 +121,7 @@ Le principe de cet algorithme et de trouver et de suivre le chemin le plus rapid
 \section{Qui a fait quoi ?}
 
 \begin{itemize}
-\item Bonvarlet bastien :\\
+\item Bonvarlet bastien : la base des classes, la base du jeu et base graphique, la map, tentative de gestion des animations.\\
 \item Masson Joris : l'algorithme, le game.py, la reproduction, les combats\\
 \item Champenois Brandon : Le menu du jeu, le rapport latex, les sprites de chaque entités
 \end{itemize}
@@ -133,6 +133,7 @@ Bonvarlet Bastien :\\
 \item Pour toutes les modifs pour la map et les bases graphiques et codes du log : A passer une dizaine d'heures sur les deux premières semaines.\\
 \item Pour la gestion des déplacements de base : a peu près 1-2 heures en tout.\\
 \item Pour la création du logo : a peu près 1-2 heures en tout.\\
+\item Pour la tentative d'animations : a peu près 2-3 heures en tout. Pour les animations le problème venait du fait que les sprites n'ont pas tous le même nombre d'images et qu'il aurai fallu séparer les sprites en images ou séparer les sprites en sélectionnant les images une par une et en les ajoutant à des listes de déplacements par entité afin de faire défiler les animations (liste pour aller en avant, une autre pour aller en arrière)...\\
 \begin{figure*}[ht!]
  \centering
  \includegraphics[width=0.5\linewidth]{images/creation_logo.jpg}
