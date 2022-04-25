@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.1)  23 APR 2022 13:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.3.1)  25 APR 2022 11:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -727,31 +727,30 @@ Package pdftex.def Info: images/logoUni.png  used on input line 103.
 <images/exemple_algo_A_star.png, id=119, 531.9875pt x 307.1475pt>
 File: images/exemple_algo_A_star.png Graphic file (type png)
 <use images/exemple_algo_A_star.png>
-Package pdftex.def Info: images/exemple_algo_A_star.png  used on input line 114
+Package pdftex.def Info: images/exemple_algo_A_star.png  used on input line 115
 .
 (pdftex.def)             Requested size: 360.0pt x 207.85458pt.
-File: images/logoUni.png Graphic file (type png)
-<use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 118.
-(pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 
-[7 <./images/exemple_algo_A_star.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 123--124
+Underfull \hbox (badness 10000) in paragraph at lines 107--119
 
  []
 
-
+File: images/logoUni.png Graphic file (type png)
+<use images/logoUni.png>
+Package pdftex.def Info: images/logoUni.png  used on input line 119.
+(pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
+[7]
 Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 130--131
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+Underfull \hbox (badness 10000) in paragraph at lines 131--132
 
  []
 
@@ -760,37 +759,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 133--134
 
  []
 
-<images/creation_logo.jpg, id=126, 5492.52pt x 7323.36pt>
-File: images/creation_logo.jpg Graphic file (type jpg)
-<use images/creation_logo.jpg>
-Package pdftex.def Info: images/creation_logo.jpg  used on input line 137.
-(pdftex.def)             Requested size: 180.0pt x 239.91722pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-File: images/logoUni.png Graphic file (type png)
-<use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 142.
-(pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
-[8 <./images/creation_logo.jpg>]
-<images/rabbit.png, id=135, 138.5175pt x 99.37125pt>
+<images/creation_logo.jpg, id=125, 5492.52pt x 7323.36pt>
+File: images/creation_logo.jpg Graphic file (type jpg)
+<use images/creation_logo.jpg>
+Package pdftex.def Info: images/creation_logo.jpg  used on input line 138.
+(pdftex.def)             Requested size: 180.0pt x 239.91722pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
+
+ []
+
+<images/rabbit.png, id=126, 138.5175pt x 99.37125pt>
 File: images/rabbit.png Graphic file (type png)
 <use images/rabbit.png>
-Package pdftex.def Info: images/rabbit.png  used on input line 145.
+Package pdftex.def Info: images/rabbit.png  used on input line 146.
 (pdftex.def)             Requested size: 270.0pt x 193.71855pt.
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
 Package pdftex.def Info: images/logoUni.png  used on input line 151.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
- [9 <./images/rabbit.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+[8 <./images/exemple_algo_A_star.png>]
+File: images/logoUni.png Graphic file (type png)
+<use images/logoUni.png>
+Package pdftex.def Info: images/logoUni.png  used on input line 152.
+(pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
+ [9 <./images/creation_logo.jpg> <./images/rabbit.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
@@ -799,235 +798,235 @@ Underfull \hbox (badness 10000) in paragraph at lines 155--156
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
+
+ []
+
 <images/graph.png, id=144, 462.528pt x 346.896pt>
 File: images/graph.png Graphic file (type png)
 <use images/graph.png>
-Package pdftex.def Info: images/graph.png  used on input line 159.
+Package pdftex.def Info: images/graph.png  used on input line 160.
 (pdftex.def)             Requested size: 360.0pt x 270.01141pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 163--164
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 165.
+Package pdftex.def Info: images/logoUni.png  used on input line 166.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [10 <./images/graph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 166--167
+Underfull \hbox (badness 10000) in paragraph at lines 167--168
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--169
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
 <images/human.png, id=155, 192.72pt x 128.48pt>
 File: images/human.png Graphic file (type png)
 <use images/human.png>
-Package pdftex.def Info: images/human.png  used on input line 173.
+Package pdftex.def Info: images/human.png  used on input line 174.
 (pdftex.def)             Requested size: 180.0pt x 119.99878pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--178
+Underfull \hbox (badness 10000) in paragraph at lines 170--179
 
  []
 
 <images/orc.png, id=156, 115.632pt x 77.088pt>
 File: images/orc.png Graphic file (type png)
 <use images/orc.png>
-Package pdftex.def Info: images/orc.png  used on input line 182.
+Package pdftex.def Info: images/orc.png  used on input line 183.
 (pdftex.def)             Requested size: 180.0pt x 120.00623pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--189
+Underfull \hbox (badness 10000) in paragraph at lines 179--190
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--189
+Underfull \hbox (badness 10000) in paragraph at lines 179--190
 
  []
 
 <images/loup.jpg, id=157, 3131.7pt x 4175.6pt>
 File: images/loup.jpg Graphic file (type jpg)
 <use images/loup.jpg>
-Package pdftex.def Info: images/loup.jpg  used on input line 194.
+Package pdftex.def Info: images/loup.jpg  used on input line 195.
 (pdftex.def)             Requested size: 180.0pt x 239.9486pt.
 <images/loup2.jpg, id=158, 3131.7pt x 4175.6pt>
 File: images/loup2.jpg Graphic file (type jpg)
 <use images/loup2.jpg>
-Package pdftex.def Info: images/loup2.jpg  used on input line 198.
+Package pdftex.def Info: images/loup2.jpg  used on input line 199.
 (pdftex.def)             Requested size: 180.0pt x 239.9486pt.
 
-Overfull \hbox (2.42162pt too wide) in paragraph at lines 192--200
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 193--201
 []$[]$  $[]$ 
  []
 
 <images/ours.jpg, id=159, 3131.7pt x 4175.6pt>
 File: images/ours.jpg Graphic file (type jpg)
 <use images/ours.jpg>
-Package pdftex.def Info: images/ours.jpg  used on input line 206.
+Package pdftex.def Info: images/ours.jpg  used on input line 207.
 (pdftex.def)             Requested size: 180.0pt x 239.9486pt.
 <images/lapin.jpg, id=160, 3131.7pt x 4175.6pt>
 File: images/lapin.jpg Graphic file (type jpg)
 <use images/lapin.jpg>
-Package pdftex.def Info: images/lapin.jpg  used on input line 213.
+Package pdftex.def Info: images/lapin.jpg  used on input line 214.
 (pdftex.def)             Requested size: 180.0pt x 239.9486pt.
 <images/caillou&batton.jpg, id=161, 3131.7pt x 4175.6pt>
 File: images/caillou&batton.jpg Graphic file (type jpg)
 <use images/caillou&batton.jpg>
-Package pdftex.def Info: images/caillou&batton.jpg  used on input line 220.
+Package pdftex.def Info: images/caillou&batton.jpg  used on input line 221.
 (pdftex.def)             Requested size: 180.0pt x 239.9486pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--225
+Underfull \hbox (badness 10000) in paragraph at lines 190--226
 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 225.
+Package pdftex.def Info: images/logoUni.png  used on input line 226.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [11 <./images/human.png> <./images/orc.png>]
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 227.
+Package pdftex.def Info: images/logoUni.png  used on input line 228.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
  [12 <./images/loup.jpg> <./images/loup2.jpg> <./images/ours.jpg>]
 <images/loup.png, id=181, 144.54pt x 101.62968pt>
 File: images/loup.png Graphic file (type png)
 <use images/loup.png>
-Package pdftex.def Info: images/loup.png  used on input line 232.
+Package pdftex.def Info: images/loup.png  used on input line 233.
 (pdftex.def)             Requested size: 180.0pt x 126.56845pt.
 <images/ours.png, id=182, 144.54pt x 96.36pt>
 File: images/ours.png Graphic file (type png)
 <use images/ours.png>
-Package pdftex.def Info: images/ours.png  used on input line 239.
+Package pdftex.def Info: images/ours.png  used on input line 240.
 (pdftex.def)             Requested size: 180.0pt x 120.00563pt.
 <images/caillou.png, id=183, 24.09pt x 24.09pt>
 File: images/caillou.png Graphic file (type png)
 <use images/caillou.png>
-Package pdftex.def Info: images/caillou.png  used on input line 247.
+Package pdftex.def Info: images/caillou.png  used on input line 248.
 (pdftex.def)             Requested size: 180.0pt x 180.0881pt.
 <images/baton.png, id=184, 24.09pt x 24.09pt>
 File: images/baton.png Graphic file (type png)
 <use images/baton.png>
-Package pdftex.def Info: images/baton.png  used on input line 251.
+Package pdftex.def Info: images/baton.png  used on input line 252.
 (pdftex.def)             Requested size: 180.0pt x 180.0881pt.
 
-Overfull \hbox (2.42162pt too wide) in paragraph at lines 245--253
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 246--254
 []$[]$  $[]$ 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 256.
+Package pdftex.def Info: images/logoUni.png  used on input line 257.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [13 <./images/lapin.jpg> <./images/caillou&batton.jpg>]
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 256.
+Package pdftex.def Info: images/logoUni.png  used on input line 257.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
  [14 <./images/loup.png> <./images/ours.png> <./images/caillou.png> <./images/b
 aton.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 257--259
+Underfull \hbox (badness 10000) in paragraph at lines 258--260
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--259
+Underfull \hbox (badness 10000) in paragraph at lines 258--260
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--261
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 259--261
+Underfull \hbox (badness 10000) in paragraph at lines 260--262
 
  []
 
 <images/herbe.png, id=204, 24.09pt x 24.09pt>
 File: images/herbe.png Graphic file (type png)
 <use images/herbe.png>
-Package pdftex.def Info: images/herbe.png  used on input line 264.
+Package pdftex.def Info: images/herbe.png  used on input line 265.
 (pdftex.def)             Requested size: 108.0011pt x 108.01868pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 261--269
+Underfull \hbox (badness 10000) in paragraph at lines 262--270
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
+Underfull \hbox (badness 10000) in paragraph at lines 270--271
 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 271.
+Package pdftex.def Info: images/logoUni.png  used on input line 272.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [15 <./images/herbe.png>]
 <images/exemple1.png, id=215, 513.92pt x 740.7675pt>
 File: images/exemple1.png Graphic file (type png)
 <use images/exemple1.png>
-Package pdftex.def Info: images/exemple1.png  used on input line 278.
+Package pdftex.def Info: images/exemple1.png  used on input line 279.
 (pdftex.def)             Requested size: 135.0pt x 194.58437pt.
 <images/exemple2.png, id=216, 1062.97125pt x 841.1425pt>
 File: images/exemple2.png Graphic file (type png)
 <use images/exemple2.png>
-Package pdftex.def Info: images/exemple2.png  used on input line 282.
+Package pdftex.def Info: images/exemple2.png  used on input line 283.
 (pdftex.def)             Requested size: 270.0pt x 213.64783pt.
 
-Overfull \hbox (90.0pt too wide) in paragraph at lines 282--283
+Overfull \hbox (90.0pt too wide) in paragraph at lines 283--284
  [][] 
  []
 
 
-Overfull \hbox (2.42162pt too wide) in paragraph at lines 276--284
+Overfull \hbox (2.42162pt too wide) in paragraph at lines 277--285
 []$[]$  $[]$ 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 287.
+Package pdftex.def Info: images/logoUni.png  used on input line 288.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [16 <./images/exemple1.png> <./images/exemple2.png>]
 File: images/human.png Graphic file (type png)
 <use images/human.png>
-Package pdftex.def Info: images/human.png  used on input line 295.
+Package pdftex.def Info: images/human.png  used on input line 296.
 (pdftex.def)             Requested size: 180.0pt x 119.99878pt.
 File: images/orc.png Graphic file (type png)
 <use images/orc.png>
-Package pdftex.def Info: images/orc.png  used on input line 303.
+Package pdftex.def Info: images/orc.png  used on input line 304.
 (pdftex.def)             Requested size: 180.0pt x 120.00623pt.
 
-Overfull \hbox (0.269pt too wide) in paragraph at lines 291--312
+Overfull \hbox (0.269pt too wide) in paragraph at lines 292--313
 \T1/cmr/m/n/10.95 Pour "l'al-go-rithme" : https ://khayyam.developpez.com/artic
 les/algo/astar/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--312
+Underfull \hbox (badness 10000) in paragraph at lines 292--313
 
  []
 
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 313.
+Package pdftex.def Info: images/logoUni.png  used on input line 314.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 317--324
+Underfull \hbox (badness 10000) in paragraph at lines 318--325
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 330--331
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
+Underfull \hbox (badness 10000) in paragraph at lines 331--332
 
  []
 
@@ -1041,23 +1040,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--335
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 335--336
+
+ []
+
 File: images/logoUni.png Graphic file (type png)
 <use images/logoUni.png>
-Package pdftex.def Info: images/logoUni.png  used on input line 337.
+Package pdftex.def Info: images/logoUni.png  used on input line 338.
 (pdftex.def)             Requested size: 79.66266pt x 29.87547pt.
 [18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 339.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 339.
  (./latex.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 338.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 338.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 339.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 339.
 Package rerunfilecheck Info: File `latex.out' has not changed.
 (rerunfilecheck)             Checksum: 0D12D0A28F3E28803DFEEBCC4D4854E7;830.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 338.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 339.
  ) 
 Here is how much of TeX's memory you used:
  8982 strings out of 481239
@@ -1066,18 +1070,18 @@ Here is how much of TeX's memory you used:
  23952 multiletter control sequences out of 15000+600000
  545709 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,15n,45p,658b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.
-600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
-200.600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-crm1095.600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx1095.600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecbx1440.600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfour/j
-knappen/ec/eccc1200.600pk> </home/22001827/.texlive2019/texmf-var/fonts/pk/ljfo
+ 34i,15n,45p,662b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095.
+600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
+200.600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+crm1095.600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecbx1095.600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecbx1440.600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfour/j
+knappen/ec/eccc1200.600pk> </home/22008229/.texlive2019/texmf-var/fonts/pk/ljfo
 ur/jknappen/ec/ecrm1200.600pk>
-Output written on latex.pdf (18 pages, 14769723 bytes).
+Output written on latex.pdf (18 pages, 14770502 bytes).
 PDF statistics:
- 508 PDF objects out of 1000 (max. 8388607)
+ 510 PDF objects out of 1000 (max. 8388607)
  211 compressed objects within 3 object streams
  74 named destinations out of 1000 (max. 500000)
  224 words of extra memory for PDF output out of 10000 (max. 10000000)
