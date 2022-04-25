@@ -8,7 +8,7 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 X = 500
 Y = 700
-menu_du_jeu = pygame.display.set_mode((500, 700))
+menu_du_jeu = pygame.display.set_mode((500, 400))
 pygame.display.set_caption('Menu du Jeu')
 
 # logo
@@ -31,7 +31,7 @@ class Rect_quit(pygame.sprite.Sprite):
         self.image = pygame.Surface((140, 40))
         self.image.fill(black)
         self.rect = self.image.get_rect()
-        self.rect.center = (X / 2 + 170, Y / 2 + 300)
+        self.rect.center = (X / 2 + 80, Y / 2 + 20)
 
 
 # definition du rectangle pour lancer le jeu:
@@ -41,7 +41,7 @@ class Rect_run(pygame.sprite.Sprite):
         self.image = pygame.Surface((140, 40))
         self.image.fill(black)
         self.rect = self.image.get_rect()
-        self.rect.center = (80, Y / 2 + 300)
+        self.rect.center = (X / 2 - 100, Y / 2 + 20)
 
 
 # definition du sprite de la souris:
@@ -101,7 +101,7 @@ class Fenetre:
             allSprites.update()
             sourisSprites.update()
             allSprites.draw(menu_du_jeu)
-            sfont.render_to(menu_du_jeu, (30, Y / 2 + 292), "Lancer", (255, 255, 255))
-            sfont.render_to(menu_du_jeu, (X / 2 + 120, Y / 2 + 292), "Quitter", (255, 255, 255))
+            sfont.render_to(menu_du_jeu, (110, Y / 2 + 10), "Lancer", (255, 255, 255))
+            sfont.render_to(menu_du_jeu, (X / 2 + 40, Y / 2 + 10), "Quitter", (255, 255, 255))
             pygame.display.flip()
         pygame.display.update()
