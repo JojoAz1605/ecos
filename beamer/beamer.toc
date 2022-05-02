@@ -1,0 +1,15 @@
+\beamer@sectionintoc {1}{Présentation générale}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{En général}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Pourquoi ce choix de projet?}{4}{0}{1}
+\beamer@sectionintoc {2}{Répartition des tâches}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Bastien}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Brandon}{5}{0}{2}
+\beamer@subsectionintoc {2}{3}{Joris}{6}{0}{2}
+\beamer@sectionintoc {3}{Explication du projet}{7}{0}{3}
+\beamer@subsectionintoc {3}{1}{Général}{7}{0}{3}
+\beamer@subsectionintoc {3}{2}{Déroulement du programme}{8}{0}{3}
+\beamer@subsectionintoc {3}{3}{Le système de classes}{9}{0}{3}
+\beamer@subsectionintoc {3}{4}{Mécaniques}{10}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{1}{Les déplacements}{10}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{2}{Le système de combat}{11}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{3}{Le système de reproduction}{12}{0}{3}
