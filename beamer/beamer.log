@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  3 MAY 2022 15:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  3 MAY 2022 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -758,15 +758,12 @@ Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks45
 \inpenc@posthook=\toks46
 )
-(C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerthemeMarbu
-rg.sty
-(C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamercolortheme
-whale.sty)
+(C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamerthemeMalmo
+e.sty
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beameroutertheme
-sidebar.sty
-\beamer@sidebarwidth=\dimen292
-\beamer@headheight=\dimen293
-))
+split.sty)
+(C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/beamer\beamercolortheme
+whale.sty))
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
@@ -802,14 +799,14 @@ LaTeX Font Info:    ... okay on input line 9.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: includehead includefoot 
-* h-part:(L,W,R)=(14.22636pt, 278.83713pt, 71.13187pt)
+* h-part:(L,W,R)=(28.45274pt, 307.28987pt, 28.45274pt)
 * v-part:(T,H,B)=(0.0pt, 273.14662pt, 0.0pt)
 * \paperwidth=364.19536pt
 * \paperheight=273.14662pt
-* \textwidth=278.83713pt
+* \textwidth=307.28987pt
 * \textheight=244.6939pt
-* \oddsidemargin=-58.04362pt
-* \evensidemargin=-58.04362pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
 * \topmargin=-72.26999pt
 * \headheight=14.22636pt
 * \headsep=0.0pt
@@ -833,13 +830,13 @@ LaTeX Font Info:    ... okay on input line 9.
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count334
-\scratchdimen=\dimen294
+\scratchdimen=\dimen292
 \scratchbox=\box76
 \nofMPsegments=\count335
 \nofMParguments=\count336
 \everyMPshowfont=\toks47
 \MPscratchCnt=\count337
-\MPscratchDim=\dimen295
+\MPscratchDim=\dimen293
 \MPnumerator=\count338
 \makeMPintoPDFobject=\count339
 \everyMPtoPDFconversion=\toks48
@@ -952,129 +949,150 @@ Dictionary: translator-numbers-dictionary, Language: English
 heorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 ) (beamer.nav)
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
+Overfull \hbox (7.6659pt too wide) in paragraph at lines 9--9
+ [][]  
+ []
 
+
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [1{C:/Users/noctu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 ]
 (beamer.toc)
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
 
  (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
 
 
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 36.
+ut line 38.
 
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathk
 erncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
 thkerncmss.
 )
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [3
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [4
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [5
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [6
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [7
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [8
 
 ]
-<diagramme_class.png, id=481, 1403.2425pt x 302.12875pt>
+<diagramme_class.png, id=364, 1403.2425pt x 302.12875pt>
 File: diagramme_class.png Graphic file (type png)
 <use diagramme_class.png>
-Package pdftex.def Info: diagramme_class.png  used on input line 150.
+Package pdftex.def Info: diagramme_class.png  used on input line 152.
 (pdftex.def)             Requested size: 336.78508pt x 72.51237pt.
 
-Overfull \hbox (57.94795pt too wide) in paragraph at lines 150--150
+Overfull \hbox (29.49521pt too wide) in paragraph at lines 152--152
  [] 
  []
 
 
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [9
 
  <./diagramme_class.png>]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [10
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [11
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [12
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [13
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [14
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [15
 
 ]
-Overfull \vbox (10.68721pt too high) has occurred while \output is active []
-
+Overfull \hbox (7.6659pt too wide) has occurred while \output is active
+ [][]  
+ []
 
 [16
 
@@ -1093,22 +1111,22 @@ Package rerunfilecheck Info: File `beamer.out' has not changed.
 (rerunfilecheck)             Checksum: B2E382E4B24CC35FA66A1D10441187F5;2159.
  ) 
 Here is how much of TeX's memory you used:
- 21986 strings out of 478582
- 436433 string characters out of 2844345
- 684197 words of memory out of 3000000
- 39655 multiletter control sequences out of 15000+600000
+ 21909 strings out of 478582
+ 433528 string characters out of 2844345
+ 680645 words of memory out of 3000000
+ 39578 multiletter control sequences out of 15000+600000
  482063 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,16n,122p,439b,740s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 128i,20n,122p,439b,746s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmss10.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmss12.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmss8.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmss9.pfb><C:/Users/noctu/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on beamer.pdf (16 pages, 249758 bytes).
+Output written on beamer.pdf (16 pages, 204677 bytes).
 PDF statistics:
- 886 PDF objects out of 1000 (max. 8388607)
+ 675 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)
- 182 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 176 words of extra memory for PDF output out of 10000 (max. 10000000)
 
