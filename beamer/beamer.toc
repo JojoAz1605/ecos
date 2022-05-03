@@ -13,3 +13,8 @@
 \beamer@subsubsectionintoc {3}{4}{1}{Les déplacements}{10}{0}{3}
 \beamer@subsubsectionintoc {3}{4}{2}{Le système de combat}{11}{0}{3}
 \beamer@subsubsectionintoc {3}{4}{3}{Le système de reproduction}{12}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{4}{Le système d'arme}{13}{0}{3}
+\beamer@sectionintoc {4}{Démonstration}{14}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{15}{0}{5}
+\beamer@subsectionintoc {5}{1}{Ce qu'on aurait voulu faire}{15}{0}{5}
+\beamer@subsectionintoc {5}{2}{Fin(?)}{16}{0}{5}
