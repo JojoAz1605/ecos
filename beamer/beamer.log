@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  3 MAY 2022 15:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  3 MAY 2022 17:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -969,19 +969,19 @@ Overfull \hbox (7.6659pt too wide) has occurred while \output is active
 [2
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
 
  (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
 
 
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 38.
+ut line 40.
 
 (C:\Users\noctu\AppData\Local\Programs\MiKTeX\tex/latex/sansmathaccent\ot1mathk
 erncmss.fd
@@ -1033,10 +1033,10 @@ Overfull \hbox (7.6659pt too wide) has occurred while \output is active
 <diagramme_class.png, id=364, 1403.2425pt x 302.12875pt>
 File: diagramme_class.png Graphic file (type png)
 <use diagramme_class.png>
-Package pdftex.def Info: diagramme_class.png  used on input line 152.
+Package pdftex.def Info: diagramme_class.png  used on input line 154.
 (pdftex.def)             Requested size: 336.78508pt x 72.51237pt.
 
-Overfull \hbox (29.49521pt too wide) in paragraph at lines 152--152
+Overfull \hbox (29.49521pt too wide) in paragraph at lines 154--154
  [] 
  []
 
@@ -1124,7 +1124,7 @@ fonts/cm/cmss12.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmss8.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmss9.pfb><C:/Users/noctu/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on beamer.pdf (16 pages, 204602 bytes).
+Output written on beamer.pdf (16 pages, 204642 bytes).
 PDF statistics:
  675 PDF objects out of 1000 (max. 8388607)
  54 named destinations out of 1000 (max. 500000)
