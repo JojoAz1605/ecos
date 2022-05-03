@@ -1,5 +1,5 @@
 \beamer@sectionintoc {1}{Présentation générale}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{En général}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Vue générale}{3}{0}{1}
 \beamer@subsectionintoc {1}{2}{Pourquoi ce choix de projet?}{4}{0}{1}
 \beamer@sectionintoc {2}{Répartition des tâches}{5}{0}{2}
 \beamer@subsectionintoc {2}{1}{Bastien}{5}{0}{2}
