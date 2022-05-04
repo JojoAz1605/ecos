@@ -9,6 +9,8 @@
 \begin{document}
 
 \begin{frame}
+\centering
+\includegraphics[scale=0.6]{ecos.png}
 \titlepage
 \end{frame}
 
@@ -63,6 +65,7 @@
 					\item Interface graphique
 				\end{itemize}
 			\item Tentative de gestion des animations
+			\item Notre incroyable et magnifique logo
 		\end{itemize}
 	\end{block}
 	\subsection{Brandon}
@@ -162,6 +165,19 @@
 		\item Destination choisie au hasard
 		\item Une fois la destination atteinte, une autre est choisie au hasard
 		\item Une seule exécution d'A* par frame par entité
+	\end{itemize}
+\end{frame}
+
+\subsubsection{Gestion des collisions}
+
+\begin{frame} \frametitle{La gestion des collisions}
+	\begin{itemize}
+		\item Chaque entité est enregistrée dans un groupe de sprite
+		\begin{itemize}
+			\item Chaque groupe de sprite est enregistré dans un dictionnaire regroupant tous les groupes d'entités
+			\item Le dictionnaire possède comme clé les noms des types d'entités
+		\end{itemize}
+		\item On ne prend que les groupes d'entités nécessaires lors des vérification de collisions
 	\end{itemize}
 \end{frame}
 
