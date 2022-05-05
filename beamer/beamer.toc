@@ -9,13 +9,13 @@
 \beamer@subsectionintoc {3}{1}{Général}{7}{0}{3}
 \beamer@subsectionintoc {3}{2}{Déroulement du programme}{8}{0}{3}
 \beamer@subsectionintoc {3}{3}{Le système de classes}{9}{0}{3}
-\beamer@subsectionintoc {3}{4}{Mécaniques}{10}{0}{3}
-\beamer@subsubsectionintoc {3}{4}{1}{Les déplacements}{10}{0}{3}
-\beamer@subsubsectionintoc {3}{4}{2}{Gestion des collisions}{11}{0}{3}
-\beamer@subsubsectionintoc {3}{4}{3}{Le système de combat}{12}{0}{3}
-\beamer@subsubsectionintoc {3}{4}{4}{Le système de reproduction}{13}{0}{3}
-\beamer@subsubsectionintoc {3}{4}{5}{Le système d'arme}{14}{0}{3}
-\beamer@sectionintoc {4}{Démonstration}{15}{0}{4}
-\beamer@sectionintoc {5}{Conclusion}{16}{0}{5}
-\beamer@subsectionintoc {5}{1}{Ce qu'on aurait voulu faire}{16}{0}{5}
-\beamer@subsectionintoc {5}{2}{Fin(?)}{17}{0}{5}
+\beamer@subsectionintoc {3}{4}{Mécaniques}{11}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{1}{Les déplacements}{11}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{2}{Gestion des collisions}{12}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{3}{Le système de combat}{13}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{4}{Le système de reproduction}{14}{0}{3}
+\beamer@subsubsectionintoc {3}{4}{5}{Le système d'arme}{15}{0}{3}
+\beamer@sectionintoc {4}{Démonstration}{16}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{17}{0}{5}
+\beamer@subsectionintoc {5}{1}{Ce qu'on aurait voulu faire}{17}{0}{5}
+\beamer@subsectionintoc {5}{2}{Fin(?)}{18}{0}{5}
