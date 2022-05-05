@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  5 MAY 2022 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.5.2)  5 MAY 2022 12:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1041,10 +1041,10 @@ Overfull \hbox (7.6659pt too wide) has occurred while \output is active
 <diagramme_class.png, id=367, 1403.2425pt x 302.12875pt>
 File: diagramme_class.png Graphic file (type png)
 <use diagramme_class.png>
-Package pdftex.def Info: diagramme_class.png  used on input line 163.
+Package pdftex.def Info: diagramme_class.png  used on input line 156.
 (pdftex.def)             Requested size: 336.78508pt x 72.51237pt.
 
-Overfull \hbox (29.49521pt too wide) in paragraph at lines 163--163
+Overfull \hbox (29.49521pt too wide) in paragraph at lines 156--156
  [] 
  []
 
@@ -1135,7 +1135,7 @@ Package rerunfilecheck Info: File `beamer.out' has not changed.
 Here is how much of TeX's memory you used:
  21925 strings out of 478582
  433702 string characters out of 2844345
- 682645 words of memory out of 3000000
+ 680645 words of memory out of 3000000
  39588 multiletter control sequences out of 15000+600000
  482063 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1146,7 +1146,7 @@ fonts/cm/cmss12.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmss8.pfb><C:/Users/noctu/AppData/Local/Programs/MiKTeX/fonts
 /type1/public/amsfonts/cm/cmss9.pfb><C:/Users/noctu/AppData/Local/Programs/MiKT
 eX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on beamer.pdf (18 pages, 236678 bytes).
+Output written on beamer.pdf (18 pages, 234920 bytes).
 PDF statistics:
  749 PDF objects out of 1000 (max. 8388607)
  59 named destinations out of 1000 (max. 500000)
